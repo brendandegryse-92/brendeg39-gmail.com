@@ -1,0 +1,120 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Abel Regular'), local('Abel-Regular'), url(https://fonts.gstatic.com/s/abel/v10/MwQ5bhbm2POE2V9BPQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+body {
+margin: 0;
+width: 100%;
+padding: 0;
+font-family: 'Abel';
+}
+.rad {
+  height: 2%;
+  width: 30%;
+}
+h1 {
+  background-color: #3c3333;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+.radio {
+  height: 2%;
+  width: 2%;
+}
+table {
+  border: 2px;
+  border-color: #706d63;
+  width: 100%;
+}
+td {
+  border-radius: 20px;
+  background-color: Transparent;
+  filter: drop-shadow(5px 5px 4px #6b5e5e);
+  font-size: 20px;
+  width: 8%;
+  text-align: center;
+}
+.button {
+  background-color: Transparent;
+  float: left;
+}
+.img {
+    background-color: Transparent;
+}
+input {
+  border-radius: 20px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: #3d3c38;
+  background-color: white;
+  font-size: 100%;
+  width: 100%;
+  font-family: 'Abel';
+  z-index: 0;
+}
+.head {
+text-decoration: none;
+color: white;
+z-index: 7;
+}
+.active {
+  background-color: grey;
+  width: 100%;
+}
+img {
+  background-color: Transparent;
+  float: left;
+  height: 10%;
+  width: 10%;
+}
+.split {
+  width: 400px;
+}
+.nav {
+  overflow: hidden;
+  background-color: #3d3c38;
+  position: sticky;
+  margin-top: 0px;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 7;
+}
+.checkbox {
+  height:auto;
+}
+.Login {
+  float: right;
+}
+.toprow {
+  position: sticky;
+}
+.nav a {
+  float: left;
+  background-color: #3d3c38;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+.nav a:hover, a.activeNav{
+  background-color: white;
+  color: black;
+}
+.dropdown {
+  display: inline-block;
+  z-index: 0;
+}

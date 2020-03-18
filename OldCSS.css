@@ -1,0 +1,80 @@
+
+html {
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+width: 100%;
+padding: 0;
+background-image: url(https://www.deere.com/assets/images/region-4/products/harvesting/s-series-combines/4600commandcenter-r4d092155-1366x768.jpg);
+background-repeat: round;
+}
+h1 {
+background-image: linear-gradient(blue, #33ccff);
+padding-top: 1%;
+padding-bottom: 1%;
+margin: 0;
+position: relative;
+top: 0;
+width: 100%;
+}
+table {
+border: 2px;
+border-color: #42bff5;
+width: 100%;
+}
+.head {
+text-decoration: none;
+color: black;
+}
+td {
+border: 2px;
+border-radius: 20px;
+background-color: #42bff5;
+font-size: 80%;
+width: 12%;
+text-align: center;
+}
+.button {
+background-color: Transparent;
+float: left;
+}
+.img {
+  background-color: Transparent;
+}
+input {
+border-radius: 20px;
+background-color: #42bff5;
+font-size: 80%;
+width: 100%;
+}
+img {
+background-color: white;
+height: 10%;
+width: 10%;
+}
+.nav {
+overflow: hidden;
+background-color: orange;
+position: sticky;
+margin-top: 0px;
+top: 0;
+width: 100%;
+text-align: center;
+}
+.Login {
+float: right;
+}
+.nav a {
+float: left;
+color: #f2f2f2;
+overflow: hidden;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 16px;
+}
+.nav a:hover {
+background-color: blue;
+}

@@ -44,6 +44,6 @@ echo '<a href="account.php">'.$name[0].'</a>';
 }
   ?>
   </div>
-  <p>Welcome</p>
+  <p>Welcome to On Farm Record Keeping</p>
 </body>
 </html>

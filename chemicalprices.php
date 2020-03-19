@@ -72,8 +72,9 @@ echo '<td><input value="'.$name[3].'"></input></td>';
 echo '<td><input type="number" value="'.$name[4].'"></input></td>';
 if ($name[5] == 1) {echo '<td><input name="Active" type="checkbox" checked/></td>';}
 if ($name[5] == 0) {echo '<td><input name="Active" type="checkbox"/></td>';}
-if ($name[6] == 1) {echo '<td><input name="Active" type="checkbox" checked/></td></tr></table>';}
-if ($name[6] == 0) {echo '<td><input name="Active" type="checkbox"/></td></tr></table>';}
+if ($name[6] == 1) {echo '<td><input name="Active" type="checkbox" checked/></td>';}
+if ($name[6] == 0) {echo '<td><input name="Active" type="checkbox"/></td>';}
+echo '<td background-color="white" class="img"x><img class="img" src="Xout.svg" onclick="clearRow(0)"/></td></tr></table>';
        ?>
         <script>
         function clearRow(x){

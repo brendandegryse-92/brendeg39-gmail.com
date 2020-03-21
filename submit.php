@@ -15,36 +15,36 @@ if ($data->tableName == "PrimeID") {
   $_SESSION['PrimeID'] = $_SESSION['rowPrimaryID'][$data->PrimeID];
 }
 if ($data->tableName == "operator") {
-  if ($data->OpNumber == null && $data->counter<$data->length) {
+  if ($data->OpName == null && $data->counter<$data->length) {
     $sql = "DELETE FROM  operator WHERE OperatorID = ? AND UserID = ?";
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_SESSION['rowPrimaryID'][$data->counter], $_SESSION['ID']]);
   }
  elseif ($data->counter + 1 < $data->length) {
-$sql = "UPDATE operator SET OpNumber = ?, OpName = ?, OpAddress = ?, OpCity = ?, OpState = ?, OpZip = ?, OpPhone = ?, IsActive = ? WHERE OperatorID = ? AND UserID = ?";
+$sql = "UPDATE operator SET OpName = ?, OpAddress = ?, OpCity = ?, OpState = ?, OpZip = ?, OpPhone = ?, IsActive = ? WHERE OperatorID = ? AND UserID = ?";
 $stmt = $connection->prepare($sql);
-$stmt->execute([$data->OpNumber, $data->OpName, $data->OpAddress, $data->OpCity, $data->OpState, $data->OpZip, $data->OpPhone, $data->Active, $_SESSION['rowPrimaryID'][$data->counter], $_SESSION['ID']]);}
+$stmt->execute([$data->OpName, $data->OpAddress, $data->OpCity, $data->OpState, $data->OpZip, $data->OpPhone, $data->Active, $_SESSION['rowPrimaryID'][$data->counter], $_SESSION['ID']]);}
 elseif ($data->counter + 1 == $data->length) {
-    $sql = "INSERT INTO operator (OpNumber, OpName, OpAddress, OpCity, OpState, OpZip, OpPhone, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO operator (OpName, OpAddress, OpCity, OpState, OpZip, OpPhone, IsActive, UserID) Values (?,?,?,?,?,?,?,?)";
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$data->OpNumber, $data->OpName, $data->OpAddress, $data->OpCity, $data->OpState, $data->OpZip, $data->OpPhone, $data->Active, $_SESSION['ID']]);
+    $stmt->execute([$data->OpName, $data->OpAddress, $data->OpCity, $data->OpState, $data->OpZip, $data->OpPhone, $data->Active, $_SESSION['ID']]);
 }}
 
 elseif ($data->tableName == "Farms") {
-  if ($data->FarmNumber == null && $data->FarmName == "") {
+  if ($data->FarmName == "") {
     $sql = "DELETE FROM  farms WHERE ID = ? AND UserID = ?";
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_SESSION['rowPrimaryID'][$data->counter], $_SESSION['ID']]);
     $data->counter = $data->length+10;
   }
  if ($data->counter < $data->length-1) {
-$sql = "UPDATE farms SET FarmNumber = ?, Owner = ?, FarmName = ?, FSA_Farm = ?, FSA_Tract = ?, InsuranceID = ?, County = ?, Description = ?, RentType = ?, PID = ?, IsActive = ? WHERE ID = ? AND UserID = ?";
+$sql = "UPDATE farms SET Owner = ?, FarmName = ?, FSA_Farm = ?, FSA_Tract = ?, InsuranceID = ?, County = ?, Description = ?, RentType = ?, PID = ?, IsActive = ? WHERE ID = ? AND UserID = ?";
 $stmt = $connection->prepare($sql);
-$stmt->execute([$data->FarmNumber, $data->Owner, $data->FarmName, $data->FSA_Farm, $data->FSA_Tract, $data->InsuranceID, $data->County, $data->Description, $data->RentType, $data->PID, $data->Active, $_SESSION['rowPrimaryID'][$data->counter], $_SESSION['ID']]);}
-if (($data->counter == $data->length-1) && ($data->FarmNumber != 0)) {
-    $sql = "INSERT INTO farms (FarmNumber,, Owner, FarmName, CropLand, FSA_Farm, FSA_Tract, InsuranceID, County, Description, RentType, PID, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$stmt->execute([$data->Owner, $data->FarmName, $data->FSA_Farm, $data->FSA_Tract, $data->InsuranceID, $data->County, $data->Description, $data->RentType, $data->PID, $data->Active, $_SESSION['rowPrimaryID'][$data->counter], $_SESSION['ID']]);}
+if (($data->counter == $data->length-1) && ($data->FarmName != "")) {
+    $sql = "INSERT INTO farms (Owner, FarmName, CropLand, FSA_Farm, FSA_Tract, InsuranceID, County, Description, RentType, PID, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?,?,?,?)";
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$data->FarmNumber, $data->Owner, $data->FarmName,$data->CropLand, $data->FSA_Farm, $data->FSA_Tract, $data->InsuranceID, $data->County, $data->Description, $data->RentType, $data->PID, $data->Active, $_SESSION['ID']]);
+    $stmt->execute([$data->Owner, $data->FarmName,$data->CropLand, $data->FSA_Farm, $data->FSA_Tract, $data->InsuranceID, $data->County, $data->Description, $data->RentType, $data->PID, $data->Active, $_SESSION['ID']]);
 }}
 
 elseif ($data->tableName == "Fields") {
@@ -207,6 +207,19 @@ elseif ($data->tableName == "appgeninfo") {
     $_SESSION['GenAppID'] = $connection->lastInsertId();
   }
 }
+
+elseif ($data->tableName == "appgenupdate") {
+  if ($data->FarmName == "") {
+    $sql = "DELETE FROM  appgeninfo WHERE ID = ? AND UserID = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);
+    $data->counter = $data->length+10;
+  }
+ elseif ($data->counter < $data->length-1) {
+$sql = "UPDATE appgeninfo SET Applicator = ?, AppType = ?, DateApplied = ?, StopTime = ?, Conditions = ?, ReconcileDate = ?, FieldFrom = ?, FieldTo = ?, AutoSteerHeading = ? WHERE ID = ? AND UserID = ?";
+$stmt = $connection->prepare($sql);
+$stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->StopTime, $data->Conditions, $data->ReconcileDate, $data->FieldFrom, $data->FieldTo, $data->AutoSteerHeading, $_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);}
+}}
 
 elseif ($data->tableName == "appchemtable") {
   if ($data->ChemAppID != null) {

@@ -73,6 +73,7 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 foreach ($arr as $i=>$val) {
+  $_SESSION['rowPrimaryID'][$i] = $val[0];
   foreach ($val as $key => $value) {
     if ($value == "") {
       $arr[$i][$key] = "--";
@@ -81,7 +82,6 @@ foreach ($arr as $i=>$val) {
 }
 $_SESSION['rowPrimaryID'] = array();
 foreach ($arr as $i=>$val) {
-  $_SESSION['rowPrimaryID'][$i] = $val[0];
   echo '<tr onclick="load('.$i.')"><td class="noshadow">'.$val[1].'</td>';
   echo '<td class="noshadow">'.$val[2].'</td>';
   echo '<td class="noshadow">'.$val[3].'</td>';
@@ -97,7 +97,7 @@ foreach ($arr as $i=>$val) {
 <script>
 function load(x) {
   var xmlhttp = new XMLHttpRequest();
-  json = {tableName : "changePrimeID", PrimeID : x};
+  json = {tableName : "PrimeID", PrimeID : x};
   json = JSON.stringify(json);
   xmlhttp.open("POST", "submit.php", false);
   xmlhttp.send(json);

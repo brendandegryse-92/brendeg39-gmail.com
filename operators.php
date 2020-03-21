@@ -42,7 +42,6 @@ echo '<a href="account.php">'.$name[0].'</a>';
   <table>
     <div class="toprow">
     <tr>
-      <td>Number</td>
       <td>Name</td>
       <td>Address</td>
       <td>City</td>
@@ -81,7 +80,6 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
       function newRow($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone, $Active) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
-          echo '<td><input name="OperatorID" type="number" value="'.$OpID.'"/></td>';
           echo '<td><input name="Name" value="'.$Name.'"/></td>';
           echo '<td><input name="Address" value="'.$Address.'"/></td>';
           echo '<td><input name="City" value="'.$City.'"/></td>';
@@ -124,9 +122,9 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var x=0;
 
             for (x = 0; x < (forms.length); x++){
-                  json = {OpNumber : forms[x][0].value, OpName : forms[x][1].value, OpAddress : forms[x][2].value, OpCity : forms[x][3].value, OpState : forms[x][4].value, Active : forms[x][7].checked, OpZip : forms[x][5].value, OpPhone : forms[x][6].value, tableName : "operator", length : forms.length, counter : x};
-                  if (forms[x][7].checked == true) {json.Active = 1;}
-                  if (forms[x][7].checked == false) {json.Active = 0;}
+                  json = {OpName : forms[x][0].value, OpAddress : forms[x][1].value, OpCity : forms[x][2].value, OpState : forms[x][3].value, Active : forms[x][6].checked, OpZip : forms[x][4].value, OpPhone : forms[x][5].value, tableName : "operator", length : forms.length, counter : x};
+                  if (forms[x][6].checked == true) {json.Active = 1;}
+                  if (forms[x][6].checked == false) {json.Active = 0;}
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);

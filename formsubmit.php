@@ -41,14 +41,15 @@ echo '<a href="account.php">'.$name[0].'</a>';
   <table>
     <div class="toprow">
     <tr>
-      <td>GenAppID</td>
-      <td>AppMiscEntryID</td>
-      <td>AppType</td>
-      <td>AppDescription</td>
-      <td>EnteredAcres</td>
-      <td>CostPerAcre</td>
-      <td>TotalUsed</td>
-      <td>AdjustedAmount</td>
+      <td>Applicator</td>
+      <td>App Type</td>
+      <td>Date Applied</td>
+      <td>Stop Time</td>
+      <td>Conditions</td>
+      <td>Reconcile Date</td>
+      <td>Field From</td>
+      <td>Field To</td>
+      <td>Auto Steer Heading</td>
       <td class="button"><button onclick="submit()"> Submit </button></td>
     </tr>
   </div>
@@ -62,25 +63,30 @@ try {
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-$sql = "SELECT OperatorID, OpNumber, OpName, OpAddress, OpCity, OpState, OpZip, OpPhone, IsActive FROM operator WHERE UserID = ? ORDER BY OpNumber ASC";
+$sql = "SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading FROM appgeninfo WHERE UserID = ? AND GenAppID = ?";
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_SESSION['ID']]);
+$stmt->execute([$_SESSION['ID'], $_SESSION['PrimeID']]);
+echo $_SESSION['PrimeID'];
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
-      newRow(1, $_SESSION['GenAppID'], null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-      function newRow($rowNm, $GenAppID, $AppMiscEntryID, $AppType, $AppDescription, $EnteredAcres, $CostPerAcre, $TotalUsed, $AdjustedAmount) {
+foreach ($arr as $i=>$val) {
+  array_push($_SESSION['rowPrimaryID'], $val[0]);
+  newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9]);
+  $rowIndex[$i] = $i;}
+      function newRow($rowNm, $Applicator, $AppType, $DateApplied, $StopTime, $Conditions, $ReconcileDate, $FieldFrom, $FieldTo, $AutoSteerHeading) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
-        echo '<td><input type="number" style="background-color: grey; color: white;" value="'.$GenAppID.'" disabled/></td>';
-        echo '<td><input type="number" value="'.$AppMiscEntryID.'"/></td>';
-        echo '<td><input type="number" value="'.$AppType.'"/></td>';
-        echo '<td><input type="number" value="'.$AppDescription.'"/></td>';
-        echo '<td><input type="number" value="'.$EnteredAcres.'"/></td>';
-        echo '<td><input type="number" value="'.$CostPerAcre.'"/></td>';
-        echo '<td><input type="number" value="'.$TotalUsed.'"/></td>';
-        echo '<td><input type="number" value="'.$AdjustedAmount.'"/></td>';
-        echo '<td background-color="white" class="img"x><img class="img" align="left" src="Xout.svg" onclick="clearRow('.$rowNm.')"/></td>';
-        echo "</tr>";
-        echo '</form>';
+        echo '<td><input value="'.$Applicator.'"/></td>';
+        echo '<td><input value="'.$AppType.'"/></td>';
+        echo '<td><input placeholder="yyyy-mm-dd" type="date" value="'.$DateApplied.'"/></td>';
+        echo '<td><input value="'.$StopTime.'"/></td>';
+        echo '<td><input value="'.$Conditions.'"/></td>';
+        echo '<td><input placeholder="yyyy-mm-dd" type="date" value="'.$ReconcileDate.'"/></td>';
+        echo '<td><input type="number" value="'.$FieldFrom.'"/></td>';
+        echo '<td><input type="number" value="'.$FieldTo.'"/></td>';
+        echo '<td><input value="'.$AutoSteerHeading.'"/></td>';
+          echo '<td background-color="white" class="img"x><img class="img" align="left" src="Xout.svg" onclick="clearRow('.$rowNm.')"/></td>';
+          echo "</tr>";
+          echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
        ?>
@@ -112,13 +118,12 @@ $arr = $stmt->fetchAll(PDO::FETCH_NUM);
               //alert(this.responseText);
             }
           }
-            for (x = 0; x < (forms.length); x++){
-                  json = {AppMiscEntryID : forms[x][1].value, Apptype : forms[x][2].value, AppDescription : forms[x][3].value, EnteredAcres : forms[x][4].value, CostPerAcre : forms[x][5].value, TotalUsed : forms[x][6].value, AdjustedAmount : forms[x][7].value, tableName : "appmiscentry", length : forms.length, counter : x};
+                  json = {Applicator : forms[x][0].value, AppType : forms[x][1].value, DateApplied : forms[x][2].value, StopTime : forms[x][3].value, Conditions : forms[x][4].value,
+                  ReconcileDate : forms[x][5].value, FieldFrom : forms[x][6].value, FieldTo : forms[x][7].value, AutoSteerHeading : forms[x][8].value, tableName : "appgeninfo", length : 2, counter : 0};
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);
-                }
-            location.href = "applicants.php";
+            location.href = "forms.php";
           };
         </script>
 </body>

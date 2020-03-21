@@ -42,7 +42,7 @@ echo '<a href="account.php">'.$name[0].'</a>';
   <table>
     <div class="toprow">
     <tr>
-      <td>Number</td>
+      <td style="display: none;">Number</td>
       <td style="display: none;">Operator ID</td>
       <td style="display: none;">Buisiness ID</td>
       <td>Owner</td>
@@ -78,7 +78,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
-  $sql = "SELECT OperatorID, OpName FROM operator WHERE UserID = ? AND IsActive = 1";
+  $sql = "SELECT OpName FROM operator WHERE UserID = ? AND IsActive = 1";
   $statement = $connection->prepare($sql);
   $statement->execute([$_SESSION['ID']]);
   $array = $statement->fetchall(PDO::FETCH_NUM);
@@ -93,12 +93,11 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
       function newRow($rowNm, $FarmNumber, $OpID, $BusinessID, $Owner, $FarmName, $CropLand, $FSA_Farm, $FSA_Tract, $InsuranceID, $County, $Description, $RentType, $PID, $Active, $Operators) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
-        echo '<td><input name="FarmNumber" type="number" value="'.$FarmNumber.'"/></td>';
-          echo '<td><select id="select'.$rowNm.'" onchange="setOpID('.$rowNm.')">';
+          echo '<td><select id="select'.$rowNm.'">';
           if ($Operators) {
           foreach ($Operators as $op) {echo '<option id="'.$op[0].'"';
-            if ($Owner == $op[1]) {echo ' selected';}
-            echo '>'.$op[1].'</option>';}
+            if ($Owner == $op[0]) {echo ' selected';}
+            echo '>'.$op[0].'</option>';}
           }
           else {echo '<option>No Operators active</option>';}
           echo '</td></select>';
@@ -165,10 +164,10 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
             for (x = 0; x < (forms.length); x++){
-                  json = {FarmNumber : forms[x][0].value, Owner : document.getElementById("select" + x).options[document.getElementById("select" + x).selectedIndex].value, FarmName : forms[x][2].value, CropLand : forms[x][3].value, FSA_Farm : forms[x][4].value,
-                  FSA_Tract : forms[x][5].value, InsuranceID : forms[x][6].value, County : forms[x][7].value, Description : forms[x][8].value, RentType : forms[x][9].value, PID : forms[x][10].value, Active : forms[x][11].checked, tableName : "Farms", length : forms.length, counter : x};
-                  if (forms[x][11].checked == true) {json.Active = 1;}
-                  if (forms[x][11].checked == false) {json.Active = 0;}
+                  json = {Owner : document.getElementById("select" + x).options[document.getElementById("select" + x).selectedIndex].value, FarmName : forms[x][1].value, CropLand : forms[x][2].value, FSA_Farm : forms[x][3].value,
+                  FSA_Tract : forms[x][4].value, InsuranceID : forms[x][5].value, County : forms[x][6].value, Description : forms[x][7].value, RentType : forms[x][8].value, PID : forms[x][9].value, Active : forms[x][10].checked, tableName : "Farms", length : forms.length, counter : x};
+                  if (forms[x][10].checked == true) {json.Active = 1;}
+                  if (forms[x][10].checked == false) {json.Active = 0;}
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);

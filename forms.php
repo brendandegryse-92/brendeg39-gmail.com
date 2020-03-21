@@ -72,15 +72,15 @@ $sql = 'SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions,
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
+$_SESSION['rowPrimaryID'] = array();
 foreach ($arr as $i=>$val) {
-  $_SESSION['rowPrimaryID'][$i] = $val[0];
+  array_push($_SESSION['rowPrimaryID'], $val[0]);
   foreach ($val as $key => $value) {
     if ($value == "") {
       $arr[$i][$key] = "--";
     }
   }
 }
-$_SESSION['rowPrimaryID'] = array();
 foreach ($arr as $i=>$val) {
   echo '<tr onclick="load('.$i.')"><td class="noshadow">'.$val[1].'</td>';
   echo '<td class="noshadow">'.$val[2].'</td>';

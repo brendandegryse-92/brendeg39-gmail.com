@@ -119,6 +119,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
+        echo '</table><a class="buttons" href="farmsplit.php">Farm Splits</a>';
         function getNextRowNumber($rowIndex) {
           $rowNumber = end($rowIndex);
           $rowNumber += 1;
@@ -175,6 +176,5 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             location.reload(true);
           };
         </script>
-        <a href="farmsplit.php">Farm Splits</a>
 </body>
 </html>

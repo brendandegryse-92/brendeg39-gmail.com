@@ -118,3 +118,10 @@ img {
   display: inline-block;
   z-index: 0;
 }
+.buttons {
+  padding: 3px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: white;
+  background-color: #3d3c38;
+}

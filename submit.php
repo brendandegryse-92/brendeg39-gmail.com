@@ -209,17 +209,17 @@ elseif ($data->tableName == "appgeninfo") {
 }
 
 elseif ($data->tableName == "appgenupdate") {
-  if ($data->FarmName == "") {
-    $sql = "DELETE FROM  appgeninfo WHERE ID = ? AND UserID = ?";
+  if ($data->Applicator == "") {
+    $sql = "DELETE FROM  appgeninfo WHERE GenAppID = ? AND UserID = ?";
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);
     $data->counter = $data->length+10;
   }
  elseif ($data->counter < $data->length-1) {
-$sql = "UPDATE appgeninfo SET Applicator = ?, AppType = ?, DateApplied = ?, StopTime = ?, Conditions = ?, ReconcileDate = ?, FieldFrom = ?, FieldTo = ?, AutoSteerHeading = ? WHERE ID = ? AND UserID = ?";
+$sql = "UPDATE appgeninfo SET Applicator = ?, AppType = ?, DateApplied = ?, StopTime = ?, Conditions = ?, ReconcileDate = ?, FieldFrom = ?, FieldTo = ?, AutoSteerHeading = ? WHERE GenAppID = ? AND UserID = ?";
 $stmt = $connection->prepare($sql);
 $stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->StopTime, $data->Conditions, $data->ReconcileDate, $data->FieldFrom, $data->FieldTo, $data->AutoSteerHeading, $_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);}
-}}
+}
 
 elseif ($data->tableName == "appchemtable") {
   if ($data->ChemAppID != null) {

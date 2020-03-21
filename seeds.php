@@ -4,13 +4,6 @@
 <head>
   <link rel="stylesheet" href="styles.css">
   <style>
-  .buttons {
-    padding: 3px;
-    border-radius: 7px;
-    text-decoration: none;
-    color: white;
-    background-color: #3d3c38;
-  }
     tr:nth-child(even) {
     background-color: #f2f2f2;}
 

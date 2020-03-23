@@ -5,40 +5,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1><a href="index.php" class="head">Simplified Technology Services Inc.</a></h1>
-<div class="nav">
-  <a href="operators.php">Operators</a>
-  <a href="farms.php">Farms</a>
-  <a href="fields.php">Fields</a>
-  <a class="activeNav" href="prices.php">Prices</a>
-  <a href="crop.php">Crop</a>
-  <a href="applicants.php">Applications</a>
-  <a href="#Chemicals">Chemicals</a>
-  <a href="#Feritalizers">Feritalizers</a>
-  <a href="forms.php">Forms</a>
-  <?php
-  session_start();
-  if($_SESSION['ID'] < 1) {header('Location: login.php');}
-  $server = "localhost";
-  $uname = "client";
-  $pword = "Pass";
-try {
-  $connection = new PDO("mysql:host=$server;dbname=simplifiedtechnologyservices",$uname,$pword);
-  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
-}
-catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-if ($_SESSION['ID'] == null) {
-  echo '<a href="login.php" class="Login">Login</a>';
-}
-else {
-$sql = "SELECT name FROM users WHERE UserID = ?";
-$stmt = $connection->prepare($sql);
-$stmt->execute([$_SESSION['ID']]);
-$name = $stmt->fetch();
-echo '<a href="account.php">'.$name[0].'</a>';
-}
-  ?>
-  </div>
+  <div include="head.html"></div>
   <table>
     <div class="toprow">
     <tr>
@@ -101,6 +68,43 @@ echo '<td><input name="Active" type="checkbox" checked/></td></tr></table>';
                 }
             location.href= "fertilizers.php";
           };
-        </script>
+        </script><script>
+      function includeHTML() {
+        var z, i, elmnt, file, xhttp;
+        /* Loop through a collection of all HTML elements: */
+        z = document.getElementsByTagName("*");
+        for (i = 0; i < z.length; i++) {
+          elmnt = z[i];
+          /*search for elements with a certain atrribute:*/
+          file = elmnt.getAttribute("include");
+          if (file) {
+            /* Make an HTTP request using the attribute value as the file name: */
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4) {
+                if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                /* Remove the attribute, and call this function once more: */
+                elmnt.removeAttribute("include");
+                includeHTML();
+              }
+            }
+            xhttp.open("POST", file, false);
+            xhttp.send();
+            /* Exit the function: */
+            return;
+          }
+        }
+      }
+      </script>
+      <script>
+      includeHTML();
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.status == 200) {document.getElementById("account").innerHTML = this.responseText;}
+      }
+      xhttp.open("POST", "accountphp.php", false);
+      xhttp.send();
+      </script>
 </body>
 </html>

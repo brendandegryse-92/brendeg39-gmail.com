@@ -12,29 +12,6 @@
 </head>
 <body>
   <div include="head.html"></div>
-  <?php
-  session_start();
-  $server = "localhost";
-  $uname = "client";
-  $pword = "Pass";
-  try {
-  $connection = new PDO("mysql:host=$server;dbname=simplifiedtechnologyservices",$uname,$pword);
-  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
-  }
-  catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-  echo '<div class="nav">';
-  if ($_SESSION['ID'] == null) {
-  echo '<a href="login.php" class="Login">Login</a>';
-  }
-  else {
-  $sql = "SELECT name FROM users WHERE UserID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  $name = $stmt->fetch();
-  echo '<a href="account.php">'.$name[0].'</a>';
-}
-echo '</div>';
-  ?>
   <p>Welcome to On Farm Record Keeping</p><script>
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -49,7 +26,7 @@ function includeHTML() {
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;alert(this.responseText);}
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
           if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
           /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("include");
@@ -66,6 +43,12 @@ function includeHTML() {
 </script>
 <script>
 includeHTML();
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.status == 200) {document.getElementById("account").innerHTML = this.responseText;}
+}
+xhttp.open("POST", "accountphp.php", false);
+xhttp.send();
 </script>
 </body>
 </html>

@@ -30,12 +30,13 @@
   $server = "localhost";
   $uname = "client";
   $pword = "Pass";
+  $color = "";
 try {
   $connection = new PDO("mysql:host=$server;dbname=simplifiedtechnologyservices",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-$sql = 'SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading FROM appgeninfo Where UserID = ?';
+$sql = 'SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading, Type FROM appgeninfo Where UserID = ?';
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
@@ -49,7 +50,10 @@ foreach ($arr as $i=>$val) {
   }
 }
 foreach ($arr as $i=>$val) {
-  echo '<tr onclick="load('.$i.')"><td class="noshadow">'.$val[1].'</td>';
+  if ($val[10] == "fertilizer") {$color = "brown";}
+  if ($val[10] == "chemical") {$color = "green";}
+  if ($val[10] == "misc") {$color = "orange";}
+  echo '<tr style="background-color: '.$color.';" onclick="load('.$i.')"><td class="noshadow">'.$val[1].'</td>';
   echo '<td class="noshadow">'.$val[2].'</td>';
   echo '<td class="noshadow">'.$val[3].'</td>';
   echo '<td class="noshadow">'.$val[4].'</td>';
@@ -70,43 +74,10 @@ function load(x) {
   xmlhttp.send(json);
   location.href = "formsubmit.php";
 }
-</script><script>
-function includeHTML() {
-var z, i, elmnt, file, xhttp;
-/* Loop through a collection of all HTML elements: */
-z = document.getElementsByTagName("*");
-for (i = 0; i < z.length; i++) {
-  elmnt = z[i];
-  /*search for elements with a certain atrribute:*/
-  file = elmnt.getAttribute("include");
-  if (file) {
-    /* Make an HTTP request using the attribute value as the file name: */
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-        if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-        /* Remove the attribute, and call this function once more: */
-        elmnt.removeAttribute("include");
-        includeHTML();
-      }
-    }
-    xhttp.open("POST", file, false);
-    xhttp.send();
-    /* Exit the function: */
-    return;
-  }
-}
-}
-</script>
+</script><script type="text/javascript" src="headjs.js"></script>
 <script>
-includeHTML();
-xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-if (this.status == 200) {document.getElementById("account").innerHTML = this.responseText;}
-}
-xhttp.open("POST", "accountphp.php", false);
-xhttp.send();
+var x = "forms";
+document.getElementById(x).className += " activeNav";
 </script>
   </body>
   </html>

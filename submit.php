@@ -201,9 +201,9 @@ elseif (($data->counter == $data->length-1) && ($data->CropID != 0)) {
 
 elseif ($data->tableName == "appgeninfo") {
   if ($data->Applicator != null) {
-    $sql = 'INSERT INTO appgeninfo (Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading, UserID) Values (?,?,?,?,?,?,?,?,?,?)';
+    $sql = 'INSERT INTO appgeninfo (Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading, Type, UserID) Values (?,?,?,?,?,?,?,?,?,?,?)';
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->StopTime, $data->Conditions, $data->ReconcileDate, $data->FieldFrom, $data->FieldTo, $data->AutoSteerHeading, $_SESSION['ID']]);
+    $stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->StopTime, $data->Conditions, $data->ReconcileDate, $data->FieldFrom, $data->FieldTo, $data->AutoSteerHeading, $data->Type, $_SESSION['ID']]);
     $_SESSION['GenAppID'] = $connection->lastInsertId();
   }
 }

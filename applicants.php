@@ -89,7 +89,10 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
                   json = {Applicator : forms[x][0].value, AppType : forms[x][1].value, DateApplied : forms[x][2].value, StopTime : forms[x][3].value, Conditions : forms[x][4].value,
-                  ReconcileDate : forms[x][5].value, FieldFrom : forms[x][6].value, FieldTo : forms[x][7].value, AutoSteerHeading : forms[x][8].value, tableName : "appgeninfo", length : forms.length, counter : x};
+                  ReconcileDate : forms[x][5].value, FieldFrom : forms[x][6].value, FieldTo : forms[x][7].value, AutoSteerHeading : forms[x][8].value, Type : "", tableName : "appgeninfo", length : forms.length, counter : x};
+                  if (document.getElementById("chemical").checked) {json.Type = "chemical";}
+                  if (document.getElementById("fertilizer").checked) {json.Type = "fertilizer";}
+                  if (document.getElementById("misc").checked) {json.Type = "misc";}
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);
@@ -104,43 +107,10 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                 location.href = "misc_apply.php";
               }
           };
-        </script><script>
-      function includeHTML() {
-        var z, i, elmnt, file, xhttp;
-        /* Loop through a collection of all HTML elements: */
-        z = document.getElementsByTagName("*");
-        for (i = 0; i < z.length; i++) {
-          elmnt = z[i];
-          /*search for elements with a certain atrribute:*/
-          file = elmnt.getAttribute("include");
-          if (file) {
-            /* Make an HTTP request using the attribute value as the file name: */
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-              if (this.readyState == 4) {
-                if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-                if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-                /* Remove the attribute, and call this function once more: */
-                elmnt.removeAttribute("include");
-                includeHTML();
-              }
-            }
-            xhttp.open("POST", file, false);
-            xhttp.send();
-            /* Exit the function: */
-            return;
-          }
-        }
-      }
-      </script>
-      <script>
-      includeHTML();
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.status == 200) {document.getElementById("account").innerHTML = this.responseText;}
-      }
-      xhttp.open("POST", "accountphp.php", false);
-      xhttp.send();
-      </script>
+        </script><script type="text/javascript" src="headjs.js"></script>
+        <script>
+        var x = "applicants";
+        document.getElementById(x).className += " activeNav";
+        </script>
 </body>
 </html>

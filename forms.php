@@ -51,7 +51,7 @@ foreach ($arr as $i=>$val) {
 }
 foreach ($arr as $i=>$val) {
   if ($val[10] == "fertilizer") {$color = "brown";}
-  if ($val[10] == "chemical") {$color = "green";}
+  if ($val[10] == "chemical") {$color = "lightgreen";}
   if ($val[10] == "misc") {$color = "orange";}
   echo '<tr style="background-color: '.$color.';" onclick="load('.$i.')"><td class="noshadow">'.$val[1].'</td>';
   echo '<td class="noshadow">'.$val[2].'</td>';

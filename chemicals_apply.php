@@ -14,7 +14,6 @@
   <table>
     <div class="toprow">
     <tr>
-      <td>ChemAppID</td>
       <td>AppType</td>
       <td>ChemID</td>
       <td>MonitorAcres</td>
@@ -45,10 +44,9 @@ try {
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
       newRow(1, $_SESSION['GenAppID'], null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-      function newRow($rowNm, $GenAppID, $ChemAppID, $AppType, $ChemID, $MonitorAcres, $Rate, $TotalUsed, $AdjustedAmount, $Date, $ReconcileDate, $WindSpeed, $WindDirection, $Humidity, $Temperature, $TipSize, $Pressure, $GroundSpeed, $Other) {
+      function newRow($rowNm, $GenAppID, $AppType, $ChemID, $MonitorAcres, $Rate, $TotalUsed, $AdjustedAmount, $Date, $ReconcileDate, $WindSpeed, $WindDirection, $Humidity, $Temperature, $TipSize, $Pressure, $GroundSpeed, $Other) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
-        echo '<td><input type="number" value="'.$ChemAppID.'"/></td>';
         echo '<td><input type="number" value="'.$AppType.'"/></td>';
         echo '<td><input type="number" value="'.$ChemID.'"/></td>';
         echo '<td><input type="number" id="sel'.$rowNm.'" onchange="Updat('.$rowNm.')" value="'.$MonitorAcres.'"/></td>';
@@ -108,8 +106,8 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
             for (x = 0; x < (forms.length); x++){
-                  json = {ChemAppID : forms[x][0].value, Apptype : forms[x][1].value, ChemID : forms[x][2].value, MonitorAcres : forms[x][3].value, Rate : forms[x][4].value, TotalUsed : forms[x][5].value, AdjustedAmount : forms[x][6].value, Date : forms[x][7].value,
-                  ReconcileDate : forms[x][8].value, WindSpeed : forms[x][9].value, WindDirection : forms[x][10].value, Humidity : forms[x][11].value, Temperature : forms[x][12].value, TipSize : forms[x][13].value, Pressure : forms[x][14].value, GroundSpeed : forms[x][15].value, Other : forms[x][16].value, tableName : "appchemtable", length : forms.length, counter : x};
+                  json = {Apptype : forms[x][0].value, ChemID : forms[x][1].value, MonitorAcres : forms[x][2].value, Rate : forms[x][3].value, TotalUsed : forms[x][4].value, AdjustedAmount : forms[x][5].value, Date : forms[x][6].value,
+                  ReconcileDate : forms[x][7].value, WindSpeed : forms[x][8].value, WindDirection : forms[x][9].value, Humidity : forms[x][10].value, Temperature : forms[x][11].value, TipSize : forms[x][12].value, Pressure : forms[x][13].value, GroundSpeed : forms[x][14].value, Other : forms[x][15].value, tableName : "appchemtable", length : forms.length, counter : x};
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);

@@ -30,15 +30,15 @@ try {
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-$sql = "SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading FROM appgeninfo WHERE UserID = ? AND GenAppID = ?";
+$sql = "SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions, ReconcileDate, FieldFrom, FieldTo, AutoSteerHeading, Type FROM appgeninfo WHERE UserID = ? AND GenAppID = ?";
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID'], $_SESSION['PrimeID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 foreach ($arr as $i=>$val) {
   array_push($_SESSION['rowPrimaryID'], $val[0]);
-  newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9]);
+  newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10]);
   $rowIndex[$i] = $i;}
-      function newRow($rowNm, $Applicator, $AppType, $DateApplied, $StopTime, $Conditions, $ReconcileDate, $FieldFrom, $FieldTo, $AutoSteerHeading) {
+      function newRow($rowNm, $Applicator, $AppType, $DateApplied, $StopTime, $Conditions, $ReconcileDate, $FieldFrom, $FieldTo, $AutoSteerHeading, $Type) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
         echo '<td><input value="'.$Applicator.'"/></td>';
@@ -50,6 +50,7 @@ foreach ($arr as $i=>$val) {
         echo '<td><input type="number" value="'.$FieldFrom.'"/></td>';
         echo '<td><input type="number" value="'.$FieldTo.'"/></td>';
         echo '<td><input value="'.$AutoSteerHeading.'"/></td>';
+        echo '<p id="type" style="display: none;">'.$Type.'</p>';
           echo '<td background-color="white" class="img"x><img class="img" align="left" src="Xout.svg" onclick="clearRow('.$rowNm.')"/></td>';
           echo "</tr>";
           echo '</form>';
@@ -89,7 +90,7 @@ foreach ($arr as $i=>$val) {
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);
-            location.href = "forms.php";
+                  location.href = document.getElementById("type").innerHTML + "sForm.php";
           };
         </script><script type="text/javascript" src="headjs.js"></script>
         <script>

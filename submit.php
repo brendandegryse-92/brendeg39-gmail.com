@@ -222,7 +222,12 @@ $stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->St
 }
 
 elseif ($data->tableName == "appchemtable") {
-  if ($data->ChemAppID != null) {
+  if ($data->Apptype != "" && $data->counter =="update") {
+ $sql = "UPDATE appchemtable SET AppType = ?, ChemID = ?, MonitorAcres = ?, Rate = ?, TotalUsed = ?, AdjustedAmount = ?, Date = ?, ReconcileDate = ?, WindSpeed = ?, WindDirection = ?, Humidity = ?, Temperature = ?, TipSize = ?, Pressure = ?, GroundSpeed = ?, Other = ? WHERE GenAppID = ? AND UserID = ?";
+ $stmt = $connection->prepare($sql);
+ $stmt->execute([$data->Apptype, $data->ChemID, $data->MonitorAcres, $data->Rate, $data->TotalUsed, $data->AdjustedAmount, $data->Date, $data->ReconcileDate, $data->WindSpeed, $data->WindDirection, $data->Humidity, $data->Temperature, $data->TipSize, $data->Pressure, $data->GroundSpeed, $data->Other, $_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);
+  }
+  elseif ($data->Apptype != null) {
     $sql = 'INSERT INTO appchemtable (GenAppID, AppType, ChemID, MonitorAcres, Rate, TotalUsed, AdjustedAmount, Date, ReconcileDate, WindSpeed, WindDirection, Humidity, Temperature, TipSize, Pressure, GroundSpeed, Other, UserID) Values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_SESSION['GenAppID'], $data->Apptype, $data->ChemID, $data->MonitorAcres, $data->Rate, $data->TotalUsed, $data->AdjustedAmount, $data->Date, $data->ReconcileDate, $data->WindSpeed, $data->WindDirection, $data->Humidity, $data->Temperature, $data->TipSize, $data->Pressure, $data->GroundSpeed, $data->Other, $_SESSION['ID']]);

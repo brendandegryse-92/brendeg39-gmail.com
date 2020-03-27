@@ -101,7 +101,7 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
          xmlhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
              //myObj = JSON.parse(this.responseText);
-             alert(this.responseText);
+             //alert(this.responseText);
            }
          }
            for (x = 0; x < (forms.length); x++){
@@ -111,7 +111,7 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
                  xmlhttp.open("POST", "submit.php", false);
                  xmlhttp.send(json);
                }
-           //location.href = "forms.php";
+           location.href = "forms.php";
          };
          </script>
   <script type="text/javascript" src="headjs.js"></script>

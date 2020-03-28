@@ -76,7 +76,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
             for (x = 0; x < (forms.length); x++){
-                  json = {AppMiscEntryID : forms[x][1].value, Apptype : forms[x][2].value, AppDescription : forms[x][3].value, EnteredAcres : forms[x][4].value, CostPerAcre : forms[x][5].value, TotalUsed : forms[x][6].value, AdjustedAmount : forms[x][7].value, tableName : "appmiscentry", length : forms.length, counter : x};
+                  json = {AppMiscEntryID : forms[x][1].value, Apptype : forms[x][2].value, AppDescription : forms[x][3].value, EnteredAcres : forms[x][4].value, CostPerAcre : forms[x][5].value, TotalUsed : forms[x][6].value, AdjustedAmount : forms[x][7].value, tableName : "appmiscentry", length : forms.length, counter : "new"};
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);

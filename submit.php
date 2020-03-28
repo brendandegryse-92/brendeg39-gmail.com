@@ -212,13 +212,13 @@ elseif ($data->tableName == "appgenupdate") {
   if ($data->Applicator == "") {
     $sql = "DELETE FROM  appgeninfo WHERE GenAppID = ? AND UserID = ?";
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);
+    $stmt->execute([$_SESSION['PrimeID'], $_SESSION['ID']]);
     $data->counter = $data->length+10;
   }
  elseif ($data->counter < $data->length-1) {
 $sql = "UPDATE appgeninfo SET Applicator = ?, AppType = ?, DateApplied = ?, StopTime = ?, Conditions = ?, ReconcileDate = ?, FieldFrom = ?, FieldTo = ?, AutoSteerHeading = ? WHERE GenAppID = ? AND UserID = ?";
 $stmt = $connection->prepare($sql);
-$stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->StopTime, $data->Conditions, $data->ReconcileDate, $data->FieldFrom, $data->FieldTo, $data->AutoSteerHeading, $_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);}
+$stmt->execute([$data->Applicator, $data->AppType, $data->DateApplied, $data->StopTime, $data->Conditions, $data->ReconcileDate, $data->FieldFrom, $data->FieldTo, $data->AutoSteerHeading, $_SESSION['PrimeID'], $_SESSION['ID']]);}
 }
 
 elseif ($data->tableName == "appchemtable") {
@@ -248,11 +248,16 @@ elseif ($data->tableName == "appferttable") {
 }
 
 elseif ($data->tableName == "appmiscentry") {
-  if ($data->AppMiscEntryID != null) {
+  if ($data->Apptype != "" && $data->counter =="update") {
+    $sql = 'UPDATE appmiscentry SET AppType = ?, AppDescription = ?, EnteredAcres = ?, CostPerAcre = ?, TotalUsed = ?, AdjustedAmount = ? WHERE GenAppID = ? AND UserID = ?';
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$data->Apptype, $data->AppDescription, $data->EnteredAcres, $data->CostPerAcre, $data->TotalUsed, $data->AdjustedAmount, $_SESSION['rowPrimaryID'][0], $_SESSION['ID']]);
+  }
+  elseif ($data->Apptype != null && $data->counter == "new") {
     $sql = 'INSERT INTO appmiscentry (GenAppID, AppMiscEntryID, AppType, AppDescription, EnteredAcres, CostPerAcre, TotalUsed, AdjustedAmount, UserID) Values (?,?,?,?,?,?,?,?,?)';
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_SESSION['GenAppID'], $data->AppMiscEntryID, $data->Apptype, $data->AppDescription, $data->EnteredAcres, $data->CostPerAcre, $data->TotalUsed, $data->AdjustedAmount, $_SESSION['ID']]);
   }
 }
-echo json_encode($stmt);
+echo json_encode($data);
 ?>

@@ -12,26 +12,15 @@
 </head>
 <body>
   <div include="head.html"></div>
-  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
-      <td>AppType</td>
-      <td>ChemID</td>
-      <td>MonitorAcres</td>
-      <td>Rate</td>
-      <td>TotalUsed</td>
-      <td>AdjustedAmount</td>
-      <td>Date</td>
-      <td>ReconcileDate</td>
-      <td>WindSpeed</td>
-      <td>WindDirection</td>
-      <td>Humidity</td>
-      <td>Temperature</td>
-      <td>TipSize</td>
-      <td>Pressure</td>
-      <td>GroundSpeed</td>
-      <td>Other</td>
+    <td>AppType</td>
+    <td>AppDescription</td>
+    <td>EnteredAcres</td>
+    <td>CostPerAcre</td>
+    <td>TotalUsed</td>
+    <td>AdjustedAmount</td>
       <td class="button"><button onclick="submit()"> Submit </button></td>
     </tr>
   </div>
@@ -45,31 +34,21 @@ try {
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-$sql = "SELECT 	ID, GenAppID, AppType, ChemID, MonitorAcres, Rate, TotalUsed, AdjustedAmount, Date, ReconcileDate, WindSpeed, WindDirection, Humidity, Temperature, TipSize, Pressure, GroundSpeed, Other FROM appchemtable WHERE UserID = ? AND GenAppID = ?";
+$sql = "SELECT 	ID, GenAppID, AppType, AppDescription, EnteredAcres, CostPerAcre, TotalUsed, AdjustedAmount FROM appmiscentry WHERE UserID = ? AND GenAppID = ?";
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID'], $_SESSION['PrimeID']]);
 $val = $stmt->fetch(PDO::FETCH_NUM);
 $_SESSION['rowPrimaryID'] = array($val[1]);
-      newRow(1, $_SESSION['PrimeID'], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $val[12], $val[13], $val[14], $val[15], $val[16], $val[17], $val[18]);
-      function newRow($rowNm, $GenAppID, $AppType, $ChemID, $MonitorAcres, $Rate, $TotalUsed, $AdjustedAmount, $Date, $ReconcileDate, $WindSpeed, $WindDirection, $Humidity, $Temperature, $TipSize, $Pressure, $GroundSpeed, $Other) {
+      newRow(1, $_SESSION['PrimeID'], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7]);
+      function newRow($rowNm, $GenAppID, $AppType, $AppDescription, $EnteredAcres, $CostPerAcre, $TotalUsed, $AdjustedAmount) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
         echo '<td><input type="number" value="'.$AppType.'"/></td>';
-        echo '<td><input type="number" value="'.$ChemID.'"/></td>';
-        echo '<td><input type="number" id="sel'.$rowNm.'" onchange="Updat('.$rowNm.')" value="'.$MonitorAcres.'"/></td>';
-        echo '<td><input type="number" id="sel'.$rowNm."1".'" onchange="Updat('.$rowNm.')" value="'.$Rate.'"/></td>';
-        echo '<td><input type="number" id="sel'.$rowNm."2".'" value="'.$TotalUsed.'"/></td>';
+        echo '<td><input type="number" value="'.$AppDescription.'"/></td>';
+        echo '<td><input type="number" value="'.$EnteredAcres.'"/></td>';
+        echo '<td><input type="number" value="'.$CostPerAcre.'"/></td>';
+        echo '<td><input type="number" value="'.$TotalUsed.'"/></td>';
         echo '<td><input type="number" value="'.$AdjustedAmount.'"/></td>';
-        echo '<td><input placeholder="yyyy-mm-dd" type="date" value="'.$Date.'"/></td>';
-        echo '<td><input placeholder="yyyy-mm-dd" type="date" value="'.$ReconcileDate.'"/></td>';
-        echo '<td><input type="number" value="'.$WindSpeed.'"/></td>';
-        echo '<td><input type="number" value="'.$WindDirection.'"/></td>';
-        echo '<td><input type="number" value="'.$Humidity.'"/></td>';
-        echo '<td><input type="number" value="'.$Temperature.'"/></td>';
-        echo '<td><input type="number" value="'.$TipSize.'"/></td>';
-        echo '<td><input type="number" value="'.$Pressure.'"/></td>';
-        echo '<td><input type="number" value="'.$GroundSpeed.'"/></td>';
-        echo '<td><input type="number" value="'.$Other.'"/></td>';
         echo '<td background-color="white" class="img"x><img class="img" align="left" src="Xout.svg" onclick="clearRow('.$rowNm.')"/></td>';
         echo "</tr>";
         echo '</form>';
@@ -105,8 +84,7 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
            }
          }
            for (x = 0; x < (forms.length); x++){
-                 json = {Apptype : forms[x][0].value, ChemID : forms[x][1].value, MonitorAcres : forms[x][2].value, Rate : forms[x][3].value, TotalUsed : forms[x][4].value, AdjustedAmount : forms[x][5].value, Date : forms[x][6].value,
-                 ReconcileDate : forms[x][7].value, WindSpeed : forms[x][8].value, WindDirection : forms[x][9].value, Humidity : forms[x][10].value, Temperature : forms[x][11].value, TipSize : forms[x][12].value, Pressure : forms[x][13].value, GroundSpeed : forms[x][14].value, Other : forms[x][15].value, tableName : "appchemtable", length : forms.length, counter : "update"};
+                 json = {Apptype : forms[x][0].value, AppDescription : forms[x][1].value, EnteredAcres : forms[x][2].value, CostPerAcre : forms[x][3].value, TotalUsed : forms[x][4].value, AdjustedAmount : forms[x][5].value, tableName : "appmiscentry", length : forms.length, counter : "update"};
                  json = JSON.stringify(json);
                  xmlhttp.open("POST", "submit.php", false);
                  xmlhttp.send(json);

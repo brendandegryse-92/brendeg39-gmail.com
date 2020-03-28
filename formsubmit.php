@@ -86,7 +86,7 @@ foreach ($arr as $i=>$val) {
             }
           }
                   json = {Applicator : forms[x][0].value, AppType : forms[x][1].value, DateApplied : forms[x][2].value, StopTime : forms[x][3].value, Conditions : forms[x][4].value,
-                  ReconcileDate : forms[x][5].value, FieldFrom : forms[x][6].value, FieldTo : forms[x][7].value, AutoSteerHeading : forms[x][8].value, tableName : "appgenupdate", length : 2, counter : 0};
+                  ReconcileDate : forms[x][5].value, FieldFrom : forms[x][6].value, FieldTo : forms[x][7].value, AutoSteerHeading : forms[x][8].value, tableName : "appgenupdate", length : 5, counter : 0};
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);

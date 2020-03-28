@@ -86,6 +86,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             if (this.readyState == 4 && this.status == 200) {
             //alert(this.responseText);
               //myObj = JSON.parse(this.responseText);
+              //alert(this.responseText);
             }
           }
                   json = {Applicator : forms[x][0].value, AppType : forms[x][1].value, DateApplied : forms[x][2].value, StopTime : forms[x][3].value, Conditions : forms[x][4].value,

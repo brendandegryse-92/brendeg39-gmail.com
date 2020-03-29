@@ -12,10 +12,15 @@ if ($_SESSION['ID'] == "") {
 echo '<a href="login.php" class="Login">Login</a>';
 }
 else {
-$sql = "SELECT name FROM users WHERE UserID = ?";
+$sql = "SELECT name, accountType FROM users WHERE UserID = ?";
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $name = $stmt->fetch();
-echo '<a href="account.php">'.$name[0].'</a>';
+if($name[0] != "" && $name[1] == "active") {
+  echo '<a href="account.php">'.$name[0].'</a>';
+}
+else {
+  echo '<a href="renew.php">Update Your Account</a>';
+}
 }
 ?>

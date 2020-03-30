@@ -60,7 +60,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
       function newRow($rowNm, $FarmNumber, $OpID, $BusinessID, $Owner, $FarmName, $CropLand, $FSA_Farm, $FSA_Tract, $InsuranceID, $County, $Description, $RentType, $PID, $Active, $Operators) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
-          echo '<td><select id="select'.$rowNm.'">';
+          echo '<td><select class="buttons" id="select'.$rowNm.'">';
           if ($Operators) {
           foreach ($Operators as $op) {echo '<option id="'.$op[0].'"';
             if ($Owner == $op[0]) {echo ' selected';}

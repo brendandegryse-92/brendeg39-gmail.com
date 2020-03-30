@@ -12,6 +12,7 @@
 </head>
 <body>
   <div include="head.html"></div>
-  <p>Welcome to On Farm Record Keeping</p><script type="text/javascript" src="headjs.js"></script>
+  <p>Welcome to On Farm Record Keeping</p>
+  <script type="text/javascript" src="headjs.js"></script>
 </body>
 </html>

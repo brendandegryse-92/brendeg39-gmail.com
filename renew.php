@@ -6,10 +6,11 @@
 </head>
 <body>
   <button class="buttons" onclick="renew()">Renew my Account</button>
+  <input id="renewdate" type="date"></input>
 <script>
 function renew() {
 var xmlhttp = new XMLHttpRequest();
-var json = {tableName : "renew"};
+var json = {tableName : "renew", date : document.getElementById("renewdate").value};
 json = JSON.stringify(json);
 xmlhttp.open("POST", "submit.php", false);
 xmlhttp.send(json);

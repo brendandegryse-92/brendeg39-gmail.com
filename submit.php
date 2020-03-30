@@ -12,16 +12,21 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 $data = json_decode(file_get_contents("php://input"));
 
 if($data->tableName=="renew") {
-  $sql = "UPDATE users SET accountType = ? WHERE UserID = ?";
+  $sql = "UPDATE users SET accountType = ?, ExpireDate = ? WHERE UserID = ?";
   $statement = $connection->prepare($sql);
-  $statement->execute(["active",$_SESSION['ID']]);
+  $statement->execute(["active", $data->date, $_SESSION['ID']]);
 }
 
-$sql = "SELECT accountType FROM users WHERE UserID = ?;";
+$sql = "SELECT accountType, ExpireDate FROM users WHERE UserID = ?";
 $statement = $connection->prepare($sql);
-$statement->execute($_SESSION['ID']);
+$statement->execute([$_SESSION['ID']]);
 $arr = $statement->fetch(PDO::FETCH_NUM);
-if ($arr[0] = "active") {
+if (date("Y-m-d") > $arr[1]) {
+  $sql = "UPDATE users SET accountType = ? WHERE UserID = ?";
+  $statement = $connection->prepare($sql);
+  $statement->execute(["inactive", $_SESSION['ID']]);
+}
+elseif ($arr[0] == "active") {
 
 if ($data->tableName == "PrimeID") {
   $_SESSION['PrimeID'] = $_SESSION['rowPrimaryID'][$data->PrimeID];

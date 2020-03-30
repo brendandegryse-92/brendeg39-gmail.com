@@ -65,7 +65,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
-        echo '<button onclick="getPos()">Get  Current Position</button>';
+        echo '<button class="buttons" onclick="getPos()">Get  Current Position</button>';
         echo '<div id = "position">';
         function getNextRowNumber($rowIndex) {
           $rowNumber = end($rowIndex);

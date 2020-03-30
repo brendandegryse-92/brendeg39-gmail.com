@@ -29,7 +29,7 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $res = $stmt->fetchall(PDO::FETCH_NUM);
 echo "</div>";
-echo '<select onchange="showOnly()" id="select">';
+echo '<select class="buttons" onchange="showOnly()" id="select">';
 foreach($res as $result) {echo '<option id="'.$result[1].'">'.$result[0].'</option>';}
 echo "</select>";
   ?>

@@ -6,7 +6,7 @@
 </head>
 <body>
   <div include="head.html"></div>
-  <table>
+  <table style="overflow: auto;">
     <div class="toprow">
     <tr>
       <td>Name</td>

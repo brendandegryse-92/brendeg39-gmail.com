@@ -25,8 +25,15 @@ if (date("Y-m-d") > $arr[1]) {
   $sql = "UPDATE users SET accountType = ? WHERE UserID = ?";
   $statement = $connection->prepare($sql);
   $statement->execute(["inactive", $_SESSION['ID']]);
+  $arr[0] = "inactive";
 }
-elseif ($arr[0] == "active") {
+if (date("Y-m-d") < $arr[1]) {
+  $sql = "UPDATE users SET accountType = ? WHERE UserID = ?";
+  $statement = $connection->prepare($sql);
+  $statement->execute(["active", $_SESSION['ID']]);
+  $arr[0] = "active";
+}
+if ($arr[0] == "active") {
 
 if ($data->tableName == "PrimeID") {
   $_SESSION['PrimeID'] = $_SESSION['rowPrimaryID'][$data->PrimeID];

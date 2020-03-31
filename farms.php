@@ -6,6 +6,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -86,7 +87,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
-        echo '</table><a class="buttons" href="farmsplit.php">Farm Splits</a>';
+        echo '</table></div><a class="buttons" href="farmsplit.php">Farm Splits</a>';
         function getNextRowNumber($rowIndex) {
           $rowNumber = end($rowIndex);
           $rowNumber += 1;

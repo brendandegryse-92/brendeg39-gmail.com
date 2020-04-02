@@ -62,8 +62,8 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
        <script>
        function clearRow(x){
          var form = document.getElementsByTagName("form");
-         for (var i=0; i < form[x].length; i++) {
-         form[x][i].value = "";
+         for (var i=0; i < form[0].length; i++) {
+         form[0][i].value = "";
          }
        }
        function Updat(x) {

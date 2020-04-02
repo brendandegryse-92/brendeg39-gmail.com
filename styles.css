@@ -15,6 +15,7 @@ width: 100%;
 padding: 0;
 font-family: 'Abel';
 }
+table {padding-bottom: 10px;}
 .rad {
   height: 2%;
   width: 30%;

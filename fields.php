@@ -24,13 +24,13 @@ $connection = new PDO("mysql:host=$server;dbname=simplifiedtechnologyservices",$
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
-$sql = "SELECT FarmName, FarmNumber FROM farms WHERE UserID = ?";
+$sql = "SELECT FarmName FROM farms WHERE UserID = ?";
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $res = $stmt->fetchall(PDO::FETCH_NUM);
 echo "</div>";
 echo '<select class="buttons" onchange="showOnly()" id="select">';
-foreach($res as $result) {echo '<option id="'.$result[1].'">'.$result[0].'</option>';}
+foreach($res as $result) {echo '<option id="'.$result[0].'">'.$result[0].'</option>';}
 echo "</select>";
   ?>
   <div id="tabl" style="overflow: auto;">

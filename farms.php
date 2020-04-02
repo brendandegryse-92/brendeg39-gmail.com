@@ -10,9 +10,6 @@
   <table>
     <div class="toprow">
     <tr>
-      <td style="display: none;">Number</td>
-      <td style="display: none;">Operator ID</td>
-      <td style="display: none;">Buisiness ID</td>
       <td>Owner</td>
       <td>Farm Name</td>
       <td>Crop Land</td>
@@ -42,7 +39,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $_SESSION['rowPrimaryID'] = array();
   $_SESSION['counter'] = 0;
   $GLOBALS['rows'] = array(array());
-  $sql = "SELECT ID, FarmNumber, OperatorID, BusinessID, Owner, FarmName, CropLand, FSA_Farm, FSA_Tract, InsuranceID, County, Description, RentType, PID, IsActive FROM farms WHERE UserID = ? ORDER BY FarmNumber ASC";
+  $sql = "SELECT ID, Owner, FarmName, CropLand, FSA_Farm, FSA_Tract, InsuranceID, County, Description, RentType, PID, IsActive FROM farms WHERE UserID = ? ORDER BY FarmNumber ASC";
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
@@ -52,13 +49,12 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $array = $statement->fetchall(PDO::FETCH_NUM);
   foreach ($arr as $i=>$val) {
     array_push($_SESSION['rowPrimaryID'], $val[0]);
-    newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $val[12], $val[13],
-     $val[14], $array);
+    newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $array);
     $rowIndex[$i] = $i;
   }
     array_push($_SESSION['rowPrimaryID'], -1);
-      newRow(getNextRowNumber($rowIndex), null, null, null, null, null, null, null, null, null, null, null, null, null, 1, $array);
-      function newRow($rowNm, $FarmNumber, $OpID, $BusinessID, $Owner, $FarmName, $CropLand, $FSA_Farm, $FSA_Tract, $InsuranceID, $County, $Description, $RentType, $PID, $Active, $Operators) {
+      newRow(getNextRowNumber($rowIndex), null, null, null, null, null, null, null, null, null, null, 1, $array);
+      function newRow($rowNm, $Owner, $FarmName, $CropLand, $FSA_Farm, $FSA_Tract, $InsuranceID, $County, $Description, $RentType, $PID, $Active, $Operators) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
           echo '<td><select class="buttons" id="select'.$rowNm.'">';

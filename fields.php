@@ -37,8 +37,7 @@ echo "</select>";
   <table>
     <div class="toprow">
     <tr>
-      <td style="display: none;">Field Number</td>
-      <td style="display: none;">Farm Number</td>
+      <td>Farm Name</td>
       <td>Field Name</td>
       <td>Acres</td>
       <td>FSA_Farm</td>
@@ -78,22 +77,33 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $_SESSION['rowPrimaryID'] = array();
   $_SESSION['counter'] = 0;
   $GLOBALS['rows'] = array(array());
-  $sql = "SELECT ID, FieldNumber, FarmNumber, FieldName, Acres, FSA_Farm, FSA_Tract, FSA_Field, FSA_Area, InsuranceID, County, Township, FarmRange, Section, Legal, Watershed, Restriction, Slope, TRating, Location, PID, TicketTrackID, AutoSteerHeading, IsActive FROM fields WHERE UserID = ? ORDER BY FarmNumber ASC";
+  $sql = "SELECT ID, FieldNumber, FarmName, FieldName, Acres, FSA_Farm, FSA_Tract, FSA_Field, FSA_Area, InsuranceID, County, Township, FarmRange, Section, Legal, Watershed, Restriction, Slope, TRating, Location, PID, TicketTrackID, AutoSteerHeading, IsActive FROM fields WHERE UserID = ? ORDER BY FarmNumber ASC";
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
+  $sql = "SELECT FarmName FROM farms WHERE UserID = ? AND IsActive = 1";
+  $statement = $connection->prepare($sql);
+  $statement->execute([$_SESSION['ID']]);
+  $array = $statement->fetchall(PDO::FETCH_NUM);
   foreach ($arr as $i=>$val) {
     array_push($_SESSION['rowPrimaryID'], $val[0]);
-    newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $val[12], $val[13], $val[14], $val[15], $val[16], $val[17], $val[18], $val[19], $val[20], $val[21], $val[22], $val[23]);
+    newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $val[12], $val[13], $val[14], $val[15], $val[16], $val[17], $val[18], $val[19], $val[20], $val[21], $val[22], $val[23], $array);
     $rowIndex[$i] = $i;
   }
-      newRow(getNextRowNumber($rowIndex), null, "","","","","", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1);
-      function newRow($rowNm, $FieldNumber, $FarmNumber, $FieldName, $Acres, $FSA_Farm, $FSA_Tract, $FSA_Field, $FSA_Area, $InsuranceID, $County, $Township, $FarmRange, $Section, $Legal, $Watershed, $Restriction, $Slope, $TRating, $Location, $PID, $TicketTrackID, $AutoSteerHeading, $Active) {
+      newRow(getNextRowNumber($rowIndex), null, "","","","","", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, $array);
+      function newRow($rowNm, $FieldNumber, $FarmName, $FieldName, $Acres, $FSA_Farm, $FSA_Tract, $FSA_Field, $FSA_Area, $InsuranceID, $County, $Township, $FarmRange, $Section, $Legal, $Watershed, $Restriction, $Slope, $TRating, $Location, $PID, $TicketTrackID, $AutoSteerHeading, $Active, $Farms) {
         echo '<div>';
         echo '<tr id="form'.$rowNm.'" name="'.$rowNm.'">';
         echo '<form method="get" id="'.$rowNm.'" name="'.$rowNm.'">';
           //echo '<td><input name="Field Number" id="td'.$rowNm.'" type="number" value="'.$FieldNumber.'"/></td>';
-          //echo '<td><input name="Farm Number" id="td'.$rowNm.'" type="number" value="'.$FarmNumber.'"/></td>';
+            echo '<td><select class="buttons" id="selects'.$rowNm.'">';
+            if ($Farms) {
+            foreach ($Farms as $f) {echo '<option id="'.$f[0].'"';
+              if ($FarmName == $f[0]) {echo ' selected';}
+              echo '>'.$f[0].'</option>';}
+            }
+            else {echo '<option>No Farms active</option>';}
+            echo '</td></select>';
           echo '<td><input name="Field Name" id="td'.$rowNm.'" value="'.$FieldName.'"/></td>';
           echo '<td><input name="Acres" id="td'.$rowNm.'" type="number" value="'.$Acres.'"/></td>';
           echo '<td><input name="FSA_Farm" id="td'.$rowNm.'" value="'.$FSA_Farm.'"/></td>';
@@ -140,18 +150,20 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
         function showOnly() {
           var form = document.getElementsByTagName("form");
           var box = document.getElementById("select");
-          var selected = box.options[box.selectedIndex];
+          var selected = box.options[box.selectedIndex];/**
+          var box2 = document.getElementById("select" + x);
+          var selected2 = box2.options[box2.selectedIndex];**/
           for (var i=0; i < (form.length-1); i++) {
             var tr = document.getElementById("form" + form[i].id);/**
             var td = document.getElementById("td" + form[i].id);
             td.style.display = "none";**/
-            if (form[i][1].value != selected.id){
+            if (document.getElementById("selects" + i).options[document.getElementById("selects" + i).selectedIndex].id != selected.id){
               tr.style.display = "none";
               for (var x=0; x <form[i].length-1; x++){
                 form[i][x].style.display = "none";
               }
             }
-            if (form[i][1].value == selected.id){
+            if (document.getElementById("selects" + i).options[document.getElementById("selects" + i).selectedIndex].id == selected.id){
               tr.style.display = "table-row";
               for (var x=0; x <form[i].length-1; x++){
                 form[i][x].style.display = "block";
@@ -182,11 +194,11 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           }
 
             for (x = 0; x < (forms.length); x++){
-                  json = {FieldNumber : forms[x][0].value,  FarmNumber: forms[x][1].value, FieldName : forms[x][2].value, Acres : forms[x][3].value, FSA_Farm : forms[x][4].value, Active : forms[x][22].checked, FSA_Tract : forms[x][5].value, FSA_Field : forms[x][6].value,
-                    FSA_Area : forms[x][7].value, InsuranceID : forms[x][8].value, County : forms[x][9].value, Township : forms[x][10].value, FarmRange : forms[x][11].value, Section : forms[x][12].value, Legal : forms[x][13].value, Watershed : forms[x][14].value, Restriction : forms[x][15].value, Slope : forms[x][16].value, TRating : forms[x][17].value,
-                    Location : forms[x][18].value, PID : forms[x][19].value, TicketTrackID : forms[x][20].value, AutoSteerHeading : forms[x][21].value, tableName : "Fields", length : forms.length, counter : x};
-                  if (forms[x][22].checked == true) {json.Active = 1;}
-                  if (forms[x][22].checked == false) {json.Active = 0;}
+                  json = {FarmName: document.getElementById("selects" + x).options[document.getElementById("selects" + x).selectedIndex].id, FieldName : forms[x][1].value, Acres : forms[x][2].value, FSA_Farm : forms[x][3].value, Active : forms[x][21].checked, FSA_Tract : forms[x][4].value, FSA_Field : forms[x][5].value,
+                    FSA_Area : forms[x][6].value, InsuranceID : forms[x][7].value, County : forms[x][8].value, Township : forms[x][9].value, FarmRange : forms[x][10].value, Section : forms[x][11].value, Legal : forms[x][12].value, Watershed : forms[x][13].value, Restriction : forms[x][14].value, Slope : forms[x][15].value, TRating : forms[x][16].value,
+                    Location : forms[x][17].value, PID : forms[x][18].value, TicketTrackID : forms[x][19].value, AutoSteerHeading : forms[x][20].value, tableName : "Fields", length : forms.length, counter : x};
+                  if (forms[x][21].checked == true) {json.Active = 1;}
+                  if (forms[x][21].checked == false) {json.Active = 0;}
                   json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);

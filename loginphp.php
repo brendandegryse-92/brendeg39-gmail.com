@@ -19,9 +19,12 @@ if (password_verify($_REQUEST["password"], $arr[1]) && $arr[2] == "active"){
 $_SESSION['ID'] = $arr[0];
 //echo $email . $password . $_SESSION['ID']. $arr[0] . $arr[1];
 header("Location: index.php");}
-if ($arr[2] != "active"){
+elseif ($arr[2] == "inactive" || $arr[2] == null){
   header("Location: renew.php");
   $_SESSION['ID'] = $arr[0];}
+else {
+    header("Location: login.php");
+  }
 }
 catch(Exception $e){echo "failed to connect to database";}
 ?>

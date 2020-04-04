@@ -125,7 +125,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               //myObj = JSON.parse(this.responseText);
-              //alert(this.responseText);
+              alert(this.responseText);
             }
           }
             for (x = 0; x < (forms.length); x++){
@@ -137,7 +137,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);
                 }
-            location.reload(true);
+            //location.reload(true);
           };
         </script><script type="text/javascript" src="headjs.js"></script>
         <script>

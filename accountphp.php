@@ -17,10 +17,10 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $name = $stmt->fetch();
 if($name[0] != "" && $name[1] == "active") {
-  echo '<a href="account.php">'.$name[0].'</a>';
+  echo '<a href="account.php" id="accountelem">'.$name[0].'</a>';
 }
 else {
-  echo '<a href="renew.php">Update Your Account</a>';
+  echo '<a href="renew.php" id="accountelem">Update Your Account</a>';
 }
 }
 ?>

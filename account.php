@@ -26,7 +26,7 @@ $arr = $statement->fetch(PDO::FETCH_NUM);
 echo '<h3>Account expires on '.$arr[0].'</h3>';
 ?>
 <script>
-var x = "account";
+var x = "accountelem";
 document.getElementById(x).className += " activeNav";
 </script>
 </body>

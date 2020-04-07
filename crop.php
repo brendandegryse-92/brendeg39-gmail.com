@@ -6,6 +6,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -74,6 +75,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           return $rowNumber;
         }
        ?>
+     </div>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

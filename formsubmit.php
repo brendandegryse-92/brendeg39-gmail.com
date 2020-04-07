@@ -5,6 +5,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -57,6 +58,7 @@ foreach ($arr as $i=>$val) {
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
        ?>
+     </div>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

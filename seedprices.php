@@ -6,6 +6,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -45,6 +46,7 @@ if ($name[7] == 1) {echo '<td><input name="Active" type="checkbox" checked/></td
 if ($name[7] == 0) {echo '<td><input name="Active" type="checkbox"/></td>';}
 echo '<td background-color="white" class="img"x><img class="img" src="Xout.svg" onclick="clearRow(0)"/></td></tr></table>';
        ?>
+     </div>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

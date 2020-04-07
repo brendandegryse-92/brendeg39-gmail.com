@@ -13,6 +13,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <tr>
       <th>Applicator</th>

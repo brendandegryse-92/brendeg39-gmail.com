@@ -6,7 +6,8 @@
 </head>
 <body>
   <div include="head.html"></div>
-  <table style="overflow: auto;">
+  <div style="overflow: auto;">
+  <table>
     <div class="toprow">
     <tr>
       <td>Name</td>
@@ -65,7 +66,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           $rowIndex[$rowNumber]  = $rowNumber;
           return $rowNumber;
         }
-       ?>
+       ?></div>
         <script>
         var complete = false;
         function clearRow(x){

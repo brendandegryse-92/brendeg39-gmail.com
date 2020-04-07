@@ -12,6 +12,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -56,6 +57,7 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
         }
         echo "</div>";
        ?>
+     </div>
        <script>
        function clearRow(x){
          var form = document.getElementsByTagName("form");

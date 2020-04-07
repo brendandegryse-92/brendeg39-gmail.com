@@ -21,6 +21,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -76,6 +77,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   }
     array_push($_SESSION['rowPrimaryID'], -1);
        ?>
+     </div>
         <script>
         function loadprices(x) {
           var xmlhttp = new XMLHttpRequest();

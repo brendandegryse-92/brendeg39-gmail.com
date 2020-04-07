@@ -6,6 +6,7 @@
 </head>
 <body>
   <div include="head.html"></div>
+  <div style="overflow: auto;">
   <table>
     <div class="toprow">
     <tr>
@@ -37,6 +38,7 @@ echo '<td><input value=""></input></td>';
 echo '<td><input name="Active" type="checkbox" checked/></td>';
 echo '<td><input name="Active" type="checkbox" checked/></td></tr></table>';
        ?>
+     </div>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

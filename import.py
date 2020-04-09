@@ -1,8 +1,8 @@
 import pandas as pd
 import mysql.connector
 file = pd.read_csv('C:/Users/brend/Downloads/operator.csv')
-#print(file['OpName'])
-values = [
+UserID = open("C:/xampp/htdocs/UserID.txt", "r").read()
+file.fillna(0, inplace=True)
 mydb = mysql.connector.connect(
   host="localhost",
   user="client",
@@ -14,7 +14,5 @@ cursor = mydb.cursor()
 
 sql = "INSERT INTO operator (OpName, OpAddress, OpCity, OpState, OpZip, OpPhone, IsActive, UserID) Values (%s,%s,%s,%s,%s,%s,%s,%s)"
 for i in range(len(file)):
-    print((file['OpName'][i], file['OpAddress'][i], file['OpCity'][i], file['OpState'][i], file['OpZip'][i], file['OpPhone'][i], file['IsActive'][i], 22))
-    values = values.append((file['OpName'][i], file['OpAddress'][i], file['OpCity'][i], file['OpState'][i], file['OpZip'][i], file['OpPhone'][i], file['IsActive'][i], 22))
-print(values)
-cursor.execute(sql, values)
+    cursor.execute(sql, (file['OpName'][i], file['OpAddress'][i], file['OpCity'][i], file['OpState'][i], int(file['OpZip'][i]), int(file['OpPhone'][i]), int(file['IsActive'][i]), int(UserID)))
+mydb.commit()

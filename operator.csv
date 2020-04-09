@@ -1,0 +1,4 @@
+"OperatorID","OpNumber","OpName","OpAddress","OpCity","OpState","OpZip","IsActive","OpPhone","UserID"
+"85","1","Brendan Degryse","14361 Scott Rd. Bryan OH 43506","Bryan","OH","43506","1","5672396350","22"
+"92","2","Brody","14361 Scott Rd. Bryan OH 43506",,,"0","1",,"22"
+"104",NULL,"Bryan","14361 Scott Rd. Bryan OH 43506",,,"2","1",,"22"

@@ -9,7 +9,6 @@
 <h2>Need Help?</h2>
 <h3>Phone: <a href="tel:419-212-0479">(419) 212-0479</a></h3>
 <h3>Email: <a href="mailto:mcguire9@gmail.com"> mcguire9@gmail.com</a></h3>
-<h3><a href="import.php">Import Data</a></h3>
 <script type="text/javascript" src="headjs.js"></script>
 <?php
 session_start();

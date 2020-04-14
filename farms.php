@@ -83,7 +83,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
-        echo '</table></div><a class="buttons" href="farmsplit.php">Farm Splits</a>';
+        echo '</table></div><a class="buttons" href="farmsplit.php">Farm Splits</a><br/><br/><h3><a href="importFarms.php">Import</a></h3>';
         function getNextRowNumber($rowIndex) {
           $rowNumber = end($rowIndex);
           $rowNumber += 1;
@@ -125,7 +125,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               //myObj = JSON.parse(this.responseText);
-              alert(this.responseText);
+              //alert(this.responseText);
             }
           }
             for (x = 0; x < (forms.length); x++){
@@ -137,7 +137,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);
                 }
-            //location.reload(true);
+            location.reload(true);
           };
         </script><script type="text/javascript" src="headjs.js"></script>
         <script>

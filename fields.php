@@ -140,6 +140,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
         }
         echo '</div>'
        ?>
+     </table></div><h3><a href="importFields.php">Import</a></h3>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

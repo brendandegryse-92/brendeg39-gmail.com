@@ -35,12 +35,12 @@
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
   if (isset($_FILES["imfile"])) {
   $data = simplexml_load_file($_FILES["imfile"]["tmp_name"]);
-  $sql = "INSERT INTO operator (OpName, OpAddress, OpCity, OpState, OpZip, OpPhone, IsActive, UserID) Values (?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO fields (FarmName, FieldName, Acres, FSA_Farm, FSA_Tract, FSA_Field, FSA_Area, InsuranceID, County, Township, FarmRange, Section, Legal, Watershed, Restriction, Slope, TRating, Location, PID, TicketTrackID, AutoSteerHeading, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmt = $connection->prepare($sql);
-  for ($i = 0; $i < count($data->Operator); $i++) {
-    $stmt->execute([$data->Operator[$i]->OpFirstName.' '.$data->Operator[$i]->OpLastName, $data->Operator[$i]->OpAddress, $data->Operator[$i]->OpCity, $data->Operator[$i]->OpState, $data->Operator[$i]->OpZip, $data->Operator[$i]->OpPhone, $data->Operator[$i]->Active, $_SESSION['ID']]);
+  for ($i = 0; $i < count($data->Field); $i++) {
+    $stmt->execute([$data->Field[$i]->FarmNumber, $data->Field[$i]->FieldName, $data->Field[$i]->Acres, $data->Field[$i]->FSA_Farm, $data->Field[$i]->FSA_Tract, $data->Field[$i]->FSA_Field, $data->Field[$i]->FSA_Area, $data->Field[$i]->InsuranceID, $data->Field[$i]->County, $data->Field[$i]->Township, $data->Field[$i]->FarmRange, $data->Field[$i]->Section, $data->Field[$i]->Legal, $data->Field[$i]->Watershed, $data->Field[$i]->Restriction, $data->Field[$i]->Slope, $data->Field[$i]->TRating, $data->Field[$i]->Location, $data->Field[$i]->PID, $data->Field[$i]->TicketTrackID, $data->Field[$i]->AutoSteerHeading, $data->Field[$i]->Active, $_SESSION['ID']]);
   }
-  header("Location: operators.php");
+  header("Location: fields.php");
 }
   ?>
   <script type="text/javascript" src="headjs.js"></script>

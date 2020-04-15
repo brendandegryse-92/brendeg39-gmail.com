@@ -1,5 +1,5 @@
 <html>
-<title>import</title>
+<title>Import</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
   <link rel="stylesheet" href="styles.css">
@@ -38,18 +38,18 @@
   $statement->execute([$_SESSION['ID']]);
   $arr = $statement->fetch(PDO::FETCH_NUM);
   if ($arr[0] == "active") {
-  if (isset($_FILES["imfile"])) {
-  $data = simplexml_load_file($_FILES["imfile"]["tmp_name"]);
-  $sql = "INSERT INTO operator (OpName, OpAddress, OpCity, OpState, OpZip, OpPhone, IsActive, UserID) Values (?,?,?,?,?,?,?,?)";
-  $stmt = $connection->prepare($sql);
-  for ($i = 0; $i < count($data->Operator); $i++) {
-    $stmt->execute([$data->Operator[$i]->OpFirstName.' '.$data->Operator[$i]->OpLastName, $data->Operator[$i]->OpAddress, $data->Operator[$i]->OpCity, $data->Operator[$i]->OpState, $data->Operator[$i]->OpZip, $data->Operator[$i]->OpPhone, $data->Operator[$i]->Active, $_SESSION['ID']]);
+    if (isset($_FILES["imfile"])) {
+    $data = simplexml_load_file($_FILES["imfile"]["tmp_name"]);
+    $sql = "INSERT INTO crop (CropID, FieldID, Year, Description, StartDate, StopDate, Latitude, Longitude, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?,?)";
+    $stmt = $connection->prepare($sql);
+    for ($i = 0; $i < count($data->Crop); $i++) {
+      $stmt->execute([$data->Crop[$i]->CropID, $data->Crop[$i]->FieldID, $data->Crop[$i]->Year, $data->Crop[$i]->Description, $data->Crop[$i]->StartDate, $data->Crop[$i]->StopDate, $data->Crop[$i]->Latitude, $data->Crop[$i]->Longitude,$data->Crop[$i]->Active, $_SESSION['ID']]);
+    }
+    header("Location: crop.php");
   }
-  header("Location: operators.php");
-}
 }
 else {
-echo 'Account not active, cannot import';
+  echo 'Account not active, cannot import';
 }
   ?>
   <script type="text/javascript" src="headjs.js"></script>

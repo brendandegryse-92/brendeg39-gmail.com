@@ -9,6 +9,8 @@
 <h2>Need Help?</h2>
 <h3>Phone: <a href="tel:419-212-0479">(419) 212-0479</a></h3>
 <h3>Email: <a href="mailto:mcguire9@gmail.com"> mcguire9@gmail.com</a></h3>
+<h3>How do I import my data from the old program?</h3>
+<p>To import your data from the desktop program, export it from the old program as an XML. For example, if you wish to import Operators from the desktop program, right click Operators, select Export->XML File. Then go to Operators on the website, hit the import button, and select the XML file you exported.</p>
 <script type="text/javascript" src="headjs.js"></script>
 <?php
 session_start();

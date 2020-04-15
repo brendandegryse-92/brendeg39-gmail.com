@@ -20,7 +20,7 @@
 <body>
   <div include="head.html"></div>
   <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post" enctype="multipart/form-data">
-    <input type="file" name="imfile" id="imfile"></input>
+    <input type="file" name="imfile" accept=".xml" id="imfile"></input>
     <input type="submit" class="buttons"></input>
   </form>
   <?php
@@ -33,6 +33,11 @@
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();}
+  $sql = "SELECT accountType FROM users WHERE UserID = ?";
+  $statement = $connection->prepare($sql);
+  $statement->execute([$_SESSION['ID']]);
+  $arr = $statement->fetch(PDO::FETCH_NUM);
+  if ($arr[0] == "active") {
   if (isset($_FILES["imfile"])) {
   $data = simplexml_load_file($_FILES["imfile"]["tmp_name"]);
   $sql = "INSERT INTO farms (Owner, FarmName, CropLand, FSA_Farm, FSA_Tract, InsuranceID, County, Description, RentType, PID, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -41,6 +46,10 @@
     $stmt->execute([$data->Farm[$i]->Owner, $data->Farm[$i]->FarmName,$data->Farm[$i]->CropLand, $data->Farm[$i]->FSA_Farm, $data->Farm[$i]->FSA_Tract, $data->Farm[$i]->InsuranceID, $data->Farm[$i]->County, $data->Farm[$i]->Description, $data->Farm[$i]->RentType, $data->Farm[$i]->PID, $data->Farm[$i]->Active, $_SESSION['ID']]);
   }
   header("Location: farms.php");
+}
+}
+else {
+echo 'Account not active, cannot import';
 }
   ?>
   <script type="text/javascript" src="headjs.js"></script>

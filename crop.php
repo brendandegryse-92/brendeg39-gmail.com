@@ -99,6 +99,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           var myObj;
           var x=0;
+          var sjon;
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             //alert(this.responseText);
@@ -109,8 +110,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                   json = {CropID : forms[x][0].value, FieldID : forms[x][1].value, Year : forms[x][2].value, Description : forms[x][3].value, StartDate : forms[x][4].value, StopDate : forms[x][5].value, Latitude : forms[x][6].value,
                   Longitude : forms[x][7].value, IsActive : forms[x][8].checked, tableName : "crop", length : forms.length, counter : x};
                   if (forms[x][8].checked == true) {json.IsActive = 1;}
-                  if (forms[x][8].checked == false) {json.IsActive = 0;}
-                  json = JSON.stringify(json);
+                  if (forms[x][8].checked == false) {json.IsActive = 0;}json = JSON.stringify(json);
                   xmlhttp.open("POST", "submit.php", false);
                   xmlhttp.send(json);
                 }

@@ -18,7 +18,7 @@
   <table>
     <div class="toprow">
     <tr>
-      <th>Seed</th>
+      <th>Crop</th>
       <th>Variety</th>
       <th>Seeds Per Unit</th>
       <th>Entered Unit</th>
@@ -68,7 +68,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     echo '<td class="noshadow"><a class="buttons" onclick="loadprices('.$i.')">Prices</a></td>';
     echo '</tr>';
     if ($i == count($arr)-1) {
-      echo '</table><a href="seedpricesnew.php" class="buttons">New Row</a>';
+      echo '</table></div><a href="seedpricesnew.php" class="buttons">New Row</a>';
     }
   }
     array_push($_SESSION['rowPrimaryID'], -1);

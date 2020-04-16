@@ -72,7 +72,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     echo '<td class="noshadow"><a class="buttons" onclick="loadprices('.$i.')">Prices</a></td>';
     echo '</tr>';
     if ($i == count($arr)-1) {
-      echo '</table><a href="fertilizerpricesnew.php" class="buttons">New Row</a>';
+      echo '</table></div><a href="fertilizerpricesnew.php" class="buttons">New Row</a>';
     }
   }
     array_push($_SESSION['rowPrimaryID'], -1);

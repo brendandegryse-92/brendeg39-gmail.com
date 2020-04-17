@@ -89,15 +89,22 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           var myObj;
           var x=0;
+          var jsonAccumulated = [];
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              //myObj = JSON.parse(this.responseText);
+              //alert(this.responseText);
+            }
+          }
 
             for (x = 0; x < (forms.length); x++){
-                  json = {OpName : forms[x][0].value, OpAddress : forms[x][1].value, OpCity : forms[x][2].value, OpState : forms[x][3].value, Active : forms[x][6].checked, OpZip : forms[x][4].value, OpPhone : forms[x][5].value, tableName : "operator", length : forms.length, counter : x};
-                  if (forms[x][6].checked == true) {json.Active = 1;}
-                  if (forms[x][6].checked == false) {json.Active = 0;}
-                  json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
-                  xmlhttp.send(json);
+                  jsonAccumulated.push({OpName : forms[x][0].value, OpAddress : forms[x][1].value, OpCity : forms[x][2].value, OpState : forms[x][3].value, Active : forms[x][6].checked, OpZip : forms[x][4].value, OpPhone : forms[x][5].value, tableName : "operator", length : forms.length, counter : x});
+                  if (forms[x][6].checked == true) {jsonAccumulated[x].Active = 1;}
+                  if (forms[x][6].checked == false) {jsonAccumulated[x].Active = 0;}
                 }
+                json = JSON.stringify(jsonAccumulated);
+                xmlhttp.open("POST", "submit.php", false);
+                xmlhttp.send(json);
                 location.reload(true);
           }
         </script><script type="text/javascript" src="headjs.js"></script>

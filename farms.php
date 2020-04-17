@@ -122,6 +122,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           var myObj;
           var x=0;
+          var jsonAccumulated = [];
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               //myObj = JSON.parse(this.responseText);
@@ -129,15 +130,15 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
             for (x = 0; x < (forms.length); x++){
-                  json = {Owner : document.getElementById("select" + x).options[document.getElementById("select" + x).selectedIndex].value, FarmName : forms[x][1].value, CropLand : forms[x][2].value, FSA_Farm : forms[x][3].value,
-                  FSA_Tract : forms[x][4].value, InsuranceID : forms[x][5].value, County : forms[x][6].value, Description : forms[x][7].value, RentType : forms[x][8].value, PID : forms[x][9].value, Active : forms[x][10].checked, tableName : "Farms", length : forms.length, counter : x};
-                  if (forms[x][10].checked == true) {json.Active = 1;}
-                  if (forms[x][10].checked == false) {json.Active = 0;}
-                  json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
-                  xmlhttp.send(json);
+                  jsonAccumulated.push({Owner : document.getElementById("select" + x).options[document.getElementById("select" + x).selectedIndex].value, FarmName : forms[x][1].value, CropLand : forms[x][2].value, FSA_Farm : forms[x][3].value,
+                  FSA_Tract : forms[x][4].value, InsuranceID : forms[x][5].value, County : forms[x][6].value, Description : forms[x][7].value, RentType : forms[x][8].value, PID : forms[x][9].value, Active : forms[x][10].checked, tableName : "Farms", length : forms.length, counter : x});
+                  if (forms[x][10].checked == true) {jsonAccumulated[x].Active = 1;}
+                  if (forms[x][10].checked == false) {jsonAccumulated[x].Active = 0;}
                 }
-            location.reload(true);
+                json = JSON.stringify(jsonAccumulated);
+                xmlhttp.open("POST", "submit.php", false);
+                xmlhttp.send(json);
+                location.reload(true);
           };
         </script><script type="text/javascript" src="headjs.js"></script>
         <script>

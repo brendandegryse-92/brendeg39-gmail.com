@@ -67,6 +67,7 @@ function getNextRowNumber($rowIndex) {
    var xmlhttp = new XMLHttpRequest();
    var myObj;
    var x=0;
+   var jsonAccumulated = [];
    xmlhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
        //myObj = JSON.parse(this.responseText);
@@ -75,12 +76,12 @@ function getNextRowNumber($rowIndex) {
    }
 
      for (x = 0; x < (forms.length); x++){
-     json = {FarmNumber : forms[x][0].value, Operator : forms[x][1].value, SplitPercent : forms[x][2].value, SplitGroup : forms[x][3].value, tableName : "split", length : forms.length, counter : x};
-           json = JSON.stringify(json);
-           xmlhttp.open("POST", "submit.php", false);
-           xmlhttp.send(json);
+     jsonAccumulated.push({FarmNumber : forms[x][0].value, Operator : forms[x][1].value, SplitPercent : forms[x][2].value, SplitGroup : forms[x][3].value, tableName : "split", length : forms.length, counter : x});
          }
-     location.reload(true);
+         json = JSON.stringify(jsonAccumulated);
+         xmlhttp.open("POST", "submit.php", false);
+         xmlhttp.send(json);
+         location.reload(true);
    };
  </script><script type="text/javascript" src="headjs.js"></script>
  <script>

@@ -187,6 +187,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           var myObj;
           var x=0;
+          var jsonAccumulated = [];
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               //myObj = JSON.parse(this.responseText);
@@ -195,16 +196,16 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           }
 
             for (x = 0; x < (forms.length); x++){
-                  json = {FarmName: document.getElementById("selects" + x).options[document.getElementById("selects" + x).selectedIndex].id, FieldName : forms[x][1].value, Acres : forms[x][2].value, FSA_Farm : forms[x][3].value, Active : forms[x][21].checked, FSA_Tract : forms[x][4].value, FSA_Field : forms[x][5].value,
+                  jsonAccumulated.push({FarmName: document.getElementById("selects" + x).options[document.getElementById("selects" + x).selectedIndex].id, FieldName : forms[x][1].value, Acres : forms[x][2].value, FSA_Farm : forms[x][3].value, Active : forms[x][21].checked, FSA_Tract : forms[x][4].value, FSA_Field : forms[x][5].value,
                     FSA_Area : forms[x][6].value, InsuranceID : forms[x][7].value, County : forms[x][8].value, Township : forms[x][9].value, FarmRange : forms[x][10].value, Section : forms[x][11].value, Legal : forms[x][12].value, Watershed : forms[x][13].value, Restriction : forms[x][14].value, Slope : forms[x][15].value, TRating : forms[x][16].value,
-                    Location : forms[x][17].value, PID : forms[x][18].value, TicketTrackID : forms[x][19].value, AutoSteerHeading : forms[x][20].value, tableName : "Fields", length : forms.length, counter : x};
-                  if (forms[x][21].checked == true) {json.Active = 1;}
-                  if (forms[x][21].checked == false) {json.Active = 0;}
-                  json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
-                  xmlhttp.send(json);
+                    Location : forms[x][17].value, PID : forms[x][18].value, TicketTrackID : forms[x][19].value, AutoSteerHeading : forms[x][20].value, tableName : "Fields", length : forms.length, counter : x});
+                  if (forms[x][21].checked == true) {jsonAccumulated[x].Active = 1;}
+                  if (forms[x][21].checked == false) {jsonAccumulated[x].Active = 0;}
                 }
-            location.reload(true);
+                json = JSON.stringify(jsonAccumulated);
+                xmlhttp.open("POST", "submit.php", false);
+                xmlhttp.send(json);
+                location.reload(true);
           };
         </script><script type="text/javascript" src="headjs.js"></script>
         <script>

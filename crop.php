@@ -99,7 +99,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           var myObj;
           var x=0;
-          var sjon;
+          var jsonAccumulated = [];
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             //alert(this.responseText);
@@ -107,13 +107,14 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
             for (x = 0; x < (forms.length); x++){
-                  json = {CropID : forms[x][0].value, FieldID : forms[x][1].value, Year : forms[x][2].value, Description : forms[x][3].value, StartDate : forms[x][4].value, StopDate : forms[x][5].value, Latitude : forms[x][6].value,
-                  Longitude : forms[x][7].value, IsActive : forms[x][8].checked, tableName : "crop", length : forms.length, counter : x};
-                  if (forms[x][8].checked == true) {json.IsActive = 1;}
-                  if (forms[x][8].checked == false) {json.IsActive = 0;}json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
-                  xmlhttp.send(json);
+                  jsonAccumulated.push({CropID : forms[x][0].value, FieldID : forms[x][1].value, Year : forms[x][2].value, Description : forms[x][3].value, StartDate : forms[x][4].value, StopDate : forms[x][5].value, Latitude : forms[x][6].value,
+                  Longitude : forms[x][7].value, IsActive : forms[x][8].checked, tableName : "crop", length : forms.length, counter : x});
+                  if (forms[x][8].checked == true) {jsonAccumulated[x].IsActive = 1;}
+                  if (forms[x][8].checked == false) {jsonAccumulated[x].IsActive = 0;}
                 }
+                json = JSON.stringify(jsonAccumulated);
+                xmlhttp.open("POST", "submit.php", false);
+                xmlhttp.send(json);
             location.reload(true);
           }
           function getPos() {

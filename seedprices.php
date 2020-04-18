@@ -10,7 +10,7 @@
   <table>
     <div class="toprow">
     <tr>
-      <td>Seed</td>
+      <td>Crop</td>
       <td>Variety</td>
       <td>Seeds Per Unit</td>
       <td>Entered Unit</td>
@@ -65,7 +65,7 @@ echo '<td background-color="white" class="img"x><img class="img" src="Xout.svg" 
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               //myObj = JSON.parse(this.responseText);
-              alert(this.responseText);
+              //alert(this.responseText);
             }
           }
             for (x = 0; x < (forms.length); x++){

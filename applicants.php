@@ -1,5 +1,5 @@
 <html>
-<title></title>
+<title>Applications</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
   <link rel="stylesheet" href="styles.css">
@@ -86,7 +86,6 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var x=0;
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-            //alert(this.responseText);
               //myObj = JSON.parse(this.responseText);
               //alert(this.responseText);
             }

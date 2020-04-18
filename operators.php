@@ -96,7 +96,6 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
               //alert(this.responseText);
             }
           }
-
             for (x = 0; x < (forms.length); x++){
                   jsonAccumulated.push({OpName : forms[x][0].value, OpAddress : forms[x][1].value, OpCity : forms[x][2].value, OpState : forms[x][3].value, Active : forms[x][6].checked, OpZip : forms[x][4].value, OpPhone : forms[x][5].value, tableName : "operator", length : forms.length, counter : x});
                   if (forms[x][6].checked == true) {jsonAccumulated[x].Active = 1;}

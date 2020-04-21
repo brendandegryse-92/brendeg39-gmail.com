@@ -46,6 +46,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
+  if (count($arr) > 0) {
   foreach ($arr as $i=>$val) {
     foreach ($val as $key => $value) {
       if ($value == "") {
@@ -66,10 +67,14 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     if ($val[7] == 1) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" checked/></td>';}
     if ($val[7] == 0) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" /></td>';}
     echo '<td class="noshadow"><a class="buttons" onclick="loadprices('.$i.')">Prices</a></td>';
-    echo '</tr>';
-    if ($i == count($arr)-1) {
-      echo '</table></div><a href="seedpricesnew.php" class="buttons">New Row</a>';
-    }
+    echo '</tr>';}
+      if ($i == count($arr)-1) {
+        echo '</table></div><a href="seedpricesnew.php" class="buttons">New Row</a>';
+      }
+  }
+  else {
+    echo '<tr><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td></tr>';
+    echo '</table></div><a href="seedpricesnew.php" class="buttons">New Row</a>';
   }
     array_push($_SESSION['rowPrimaryID'], -1);
        ?>

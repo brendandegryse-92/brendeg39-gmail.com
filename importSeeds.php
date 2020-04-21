@@ -44,18 +44,19 @@
   $cost = simplexml_load_file($_FILES["imfile2"]["tmp_name"]);
   $sql = "INSERT INTO seeds (Name, Variety, SeedsPerUnit, EnteredUnit, PurchasedUnits, ShowOnReport, IsActive, UserID) Values (?,?,?,?,?,?,?,?)";
   $stmt = $connection->prepare($sql);
+  $sequel = "INSERT INTO seedsyears (DateFrom, DateTo, Price, CropGroup, UserID) Values (?,?,?,?,?)";
+  $statement = $connection->prepare($sequel);
   for ($i = 0; $i < count($data->LstSeed); $i++) {
     $stmt->execute([$data->LstSeed[$i]->Crop, $data->LstSeed[$i]->Variety, $data->LstSeed[$i]->SeedsPerUnit, $data->LstSeed[$i]->EnteredUnits, $data->LstSeed[$i]->PurchasedUnits, $data->LstSeed[$i]->ShowOnReport, $data->LstSeed[$i]->Active, $_SESSION['ID']]);
     $LastID = $connection->lastInsertId();
-    for ($m = 0; $m < count($cost->LstSeedCost); $m++) {
+   for ($m = 0; $m < count($cost->LstSeedCost); $m++) {
+     echo var_dump($data->LstSeed[$i]->SeedId)." + ".var_dump($cost->LstSeedCost[$m]->SeedId)."<br/>"."+";
       //if ($data->LstSeed[$i]->SeedId == $cost->LstSeedCost[$m]->SeedId) {
-        $sql = "INSERT INTO seedsyears (DateFrom, DateTo, Price, CropGroup, UserID) Values (?,?,?,?,?)";
-        $stmt = $connection->prepare($sql);
-        $stmt->execute([$cost->LstSeedCost[$m]->StartDate, $cost->LstSeedCost[$m]->EndDate, $cost->LstSeedCost[$m]->Cost, $LastID, $_SESSION['ID']]);
+        $statement->execute([$cost->LstSeedCost[$m]->StartDate, $cost->LstSeedCost[$m]->EndDate, $cost->LstSeedCost[$m]->Cost, $LastID, $_SESSION['ID']]);
       //}
     }
   }
-  header("Location: seeds.php");
+  //header("Location: seeds.php");
 }
 }
 else {

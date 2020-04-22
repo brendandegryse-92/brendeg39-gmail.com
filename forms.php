@@ -41,6 +41,7 @@ $sql = 'SELECT GenAppID, Applicator, AppType, DateApplied, StopTime, Conditions,
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
+if (count($arr) > 0) {
 $_SESSION['rowPrimaryID'] = array();
 foreach ($arr as $i=>$val) {
   array_push($_SESSION['rowPrimaryID'], $val[0]);
@@ -64,6 +65,10 @@ foreach ($arr as $i=>$val) {
   echo '<td class="noshadow">'.$val[8].'</td>';
   echo '<td class="noshadow">'.$val[9].'</td>';
   echo '</tr>';
+}
+}
+else {
+  echo '<tr><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td></tr>';
 }
 ?>
 <script>

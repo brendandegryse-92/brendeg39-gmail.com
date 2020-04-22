@@ -77,7 +77,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     }
   }
   else {
-    echo '<tr><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td></tr>';
+    echo '<tr><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td><td>Empty</td></tr>';
     echo '</table></div><a href="fertilizerpricesnew.php" class="buttons">New Row</a>';
   }
     array_push($_SESSION['rowPrimaryID'], -1);

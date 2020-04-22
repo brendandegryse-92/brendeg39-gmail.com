@@ -20,8 +20,8 @@
 <body>
   <div include="head.html"></div>
   <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post" enctype="multipart/form-data">
-    Choose LstChem: <input type="file" name="imfile" accept=".xml" id="imfile"></input><br>
-    Choose LstChemCost: <input type="file" name="imfile2" accept=".xml" id="imfile2"></input><br>
+    Choose LstFert: <input type="file" name="imfile" accept=".xml" id="imfile"></input><br>
+    Choose LstFertCost: <input type="file" name="imfile2" accept=".xml" id="imfile2"></input><br>
     <input type="submit" class="buttons"></input>
   </form>
   <?php
@@ -42,20 +42,20 @@
   if (isset($_FILES["imfile"]) && isset($_FILES["imfile2"])) {
   $data = simplexml_load_file($_FILES["imfile"]["tmp_name"]);
   $cost = simplexml_load_file($_FILES["imfile2"]["tmp_name"]);
-  $sql = "INSERT INTO chemicals (Name, EnteredUnits, PurchasedUnits, Ratio, ShowOnReport, IsActive, UserID) Values (?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO fertilizers (Name, EnteredUnits, PurchasedUnits, Ratio, ShowOnReport, IsActive, UserID) Values (?,?,?,?,?,?,?)";
   $stmt = $connection->prepare($sql);
-  $sequel = "INSERT INTO chemicalyears (DateFrom, DateTo, Price, CropGroup, UserID) Values (?,?,?,?,?)";
+  $sequel = "INSERT INTO fertilizeryears (DateFrom, DateTo, Price, CropGroup, UserID) Values (?,?,?,?,?)";
   $statement = $connection->prepare($sequel);
-  for ($i = 0; $i < count($data->LstChem); $i++) {
-    $stmt->execute([$data->LstChem[$i]->ChemName, $data->LstChem[$i]->EnteredUnits, $data->LstChem[$i]->PurchasedUnits, $data->LstChem[$i]->Ratio, $data->LstChem[$i]->ShowOnReport, $data->LstChem[$i]->Active, $_SESSION['ID']]);
+  for ($i = 0; $i < count($data->LstFert); $i++) {
+    $stmt->execute([$data->LstFert[$i]->FertName, $data->LstFert[$i]->EnteredUnits, $data->LstFert[$i]->PurchasedUnits, $data->LstFert[$i]->Ratio, $data->LstFert[$i]->ShowOnReport, $data->LstFert[$i]->Active, $_SESSION['ID']]);
     $LastID = $connection->lastInsertId();
-   for ($m = 0; $m < count($cost->LstChemCost); $m++) {
-      if ($data->LstChem[$i]->ChemId->value == $cost->LstChemCost[$m]->ChemId->value) {
-        $statement->execute([$cost->LstChemCost[$m]->StartDate, $cost->LstChemCost[$m]->EndDate, $cost->LstChemCost[$m]->Cost, $LastID, $_SESSION['ID']]);
+   for ($m = 0; $m < count($cost->LstFertCost); $m++) {
+      if ($data->LstFert[$i]->FertId->value == $cost->LstFertCost[$m]->FertId->value) {
+        $statement->execute([$cost->LstFertCost[$m]->DateFrom, $cost->LstFertCost[$m]->DateTo, $cost->LstFertCost[$m]->Price, $_SESSION['PrimeID'], $_SESSION['ID']]);
       }
     }
   }
-  header("Location: seeds.php");
+  header("Location: fertilizers.php");
 }
 }
 else {

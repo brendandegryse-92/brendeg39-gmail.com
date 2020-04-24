@@ -55,7 +55,7 @@
       }
     }
   }
-  header("Location: seeds.php");
+  header("Location: chemicals.php");
 }
 }
 else {

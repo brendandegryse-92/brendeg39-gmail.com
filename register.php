@@ -15,12 +15,12 @@
   <div include="head.html"></div>
   <div class="form">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <p>Name: <input  name="name"/></p>
-    <p>Phone: <input  name="phone" type="number"/></p>
+    <p>Name: <input  name="name" required/></p>
+    <p>Phone: <input  name="phone" type="number" required/></p>
   <p>Email:
-    <input name = "email"/></p>
+    <input name = "email" required/></p>
   <p>Password:
-    <input name = "password" type="password"/></p>
+    <input name = "password" minlength="8" type="password" required/></p>
   <input type="submit"/>
   </form>
 </div>

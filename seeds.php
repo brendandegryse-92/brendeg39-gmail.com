@@ -62,10 +62,10 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     echo '<td onclick="load('.$i.')" class="noshadow">'.$val[3].'</td>';
     echo '<td onclick="load('.$i.')" class="noshadow">'.$val[4].'</td>';
     echo '<td onclick="load('.$i.')" class="noshadow">'.$val[5].'</td>';
-    if ($val[6] == 1) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" checked/></td>';}
-    if ($val[6] == 0) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" /></td>';}
-    if ($val[7] == 1) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" checked/></td>';}
-    if ($val[7] == 0) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" /></td>';}
+    if ($val[6] == 1) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" checked disabled/></td>';}
+    if ($val[6] == 0) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" disabled/></td>';}
+    if ($val[7] == 1) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" checked disabled/></td>';}
+    if ($val[7] == 0) {echo '<td onclick="load('.$i.')"><input onclick="load('.$i.')" name="Active" type="checkbox" disabled/></td>';}
     echo '<td class="noshadow"><a class="buttons" onclick="loadprices('.$i.')">Prices</a></td>';
     echo '</tr>';}
       if ($i == count($arr)-1) {

@@ -52,7 +52,7 @@ foreach ($arr as $i=>$val) {
         echo '<td><input type="number" value="'.$FieldTo.'"/></td>';
         echo '<td><input value="'.$AutoSteerHeading.'"/></td>';
         echo '<p id="type" style="display: none;">'.$Type.'</p>';
-          echo '<td background-color="white" class="img"x><img class="img" align="left" src="Xout.svg" onclick="clearRow('.$rowNm.')"/></td>';
+          echo '<td background-color="white" class="img"x><img class="img" align="left" src="Xout.svg" style="display: block;" onclick="clearRow('.$rowNm.')"/></td>';
           echo "</tr>";
           echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));

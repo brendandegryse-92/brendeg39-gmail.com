@@ -50,7 +50,7 @@
     $stmt->execute([$data->LstSeed[$i]->Crop, $data->LstSeed[$i]->Variety, $data->LstSeed[$i]->SeedsPerUnit, $data->LstSeed[$i]->EnteredUnits, $data->LstSeed[$i]->PurchasedUnits, $data->LstSeed[$i]->ShowOnReport, $data->LstSeed[$i]->Active, $_SESSION['ID']]);
     $LastID = $connection->lastInsertId();
    for ($m = 0; $m < count($cost->LstSeedCost); $m++) {
-      if ($data->LstSeed[$i]->SeedId->value == $cost->LstSeedCost[$m]->SeedId->value) {
+      if (get_object_vars($data->LstSeed[$i]->SeedId) == get_object_vars($cost->LstSeedCost[$m]->SeedId)) {
         $statement->execute([$cost->LstSeedCost[$m]->StartDate, $cost->LstSeedCost[$m]->EndDate, $cost->LstSeedCost[$m]->Cost, $LastID, $_SESSION['ID']]);
       }
     }

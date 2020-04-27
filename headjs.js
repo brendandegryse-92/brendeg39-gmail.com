@@ -18,7 +18,7 @@ for (i = 0; i < z.length; i++) {
         includeHTML();
       }
     }
-    xhttp.open("POST", file, false);
+    xhttp.open("POST", file, true);
     xhttp.send();
     /* Exit the function: */
     return;
@@ -30,5 +30,5 @@ xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
 if (this.status == 200) {document.getElementById("account").innerHTML = this.responseText;}
 }
-xhttp.open("POST", "accountphp.php", false);
+xhttp.open("POST", "accountphp.php", true);
 xhttp.send();

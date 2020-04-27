@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Welcome to On Farm Record Keeping">
 <html>
 <title>Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

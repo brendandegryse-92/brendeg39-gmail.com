@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Crops">
 <html>
 <title>Crop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

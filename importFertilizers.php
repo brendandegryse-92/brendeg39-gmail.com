@@ -50,7 +50,7 @@
     $stmt->execute([$data->LstFert[$i]->FertName, $data->LstFert[$i]->EnteredUnits, $data->LstFert[$i]->PurchasedUnits, $data->LstFert[$i]->Ratio, $data->LstFert[$i]->ShowOnReport, $data->LstFert[$i]->Active, $_SESSION['ID']]);
     $LastID = $connection->lastInsertId();
    for ($m = 0; $m < count($cost->LstFertCost); $m++) {
-      if ($data->LstFert[$i]->FertId->value == $cost->LstFertCost[$m]->FertId->value) {
+      if (get_object_vars($data->LstFert[$i]->FertId) == get_object_vars($cost->LstFertCost[$m]->FertId)) {
         $statement->execute([$cost->LstFertCost[$m]->DateFrom, $cost->LstFertCost[$m]->DateTo, $cost->LstFertCost[$m]->Price, $_SESSION['PrimeID'], $_SESSION['ID']]);
       }
     }

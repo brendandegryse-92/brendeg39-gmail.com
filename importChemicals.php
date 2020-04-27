@@ -50,7 +50,7 @@
     $stmt->execute([$data->LstChem[$i]->ChemName, $data->LstChem[$i]->EnteredUnits, $data->LstChem[$i]->PurchasedUnits, $data->LstChem[$i]->Ratio, $data->LstChem[$i]->ShowOnReport, $data->LstChem[$i]->Active, $_SESSION['ID']]);
     $LastID = $connection->lastInsertId();
    for ($m = 0; $m < count($cost->LstChemCost); $m++) {
-      if ($data->LstChem[$i]->ChemId->value == $cost->LstChemCost[$m]->ChemId->value) {
+      if (get_object_vars($data->LstChem[$i]->ChemId)[0] == get_object_vars($cost->LstChemCost[$m]->ChemId)[0]) {
         $statement->execute([$cost->LstChemCost[$m]->StartDate, $cost->LstChemCost[$m]->EndDate, $cost->LstChemCost[$m]->Cost, $LastID, $_SESSION['ID']]);
       }
     }

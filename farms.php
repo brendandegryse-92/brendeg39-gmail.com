@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Farms">
 <html>
 <title>Farms</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

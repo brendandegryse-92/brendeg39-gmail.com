@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Applications">
 <html>
 <title>Farm Split</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +81,7 @@ function getNextRowNumber($rowIndex) {
      jsonAccumulated.push({FarmNumber : forms[x][0].value, Operator : forms[x][1].value, SplitPercent : forms[x][2].value, SplitGroup : forms[x][3].value, tableName : "split", length : forms.length, counter : x});
          }
          json = JSON.stringify(jsonAccumulated);
-         xmlhttp.open("POST", "submit.php", false);
+         xmlhttp.open("POST", "submit.php", true);
          xmlhttp.send(json);
          location.reload(true);
    };

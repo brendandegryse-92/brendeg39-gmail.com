@@ -75,7 +75,7 @@ echo '<td background-color="white" class="img"x><img class="img" src="Xout.svg" 
                   if (forms[x][4].checked == true) {json.ShowOnReport = 1;}
                   if (forms[x][4].checked == false) {json.ShowOnReport = 0;}
                   json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
+                  xmlhttp.open("POST", "submit.php", true);
                   xmlhttp.send(json);
                 }
             location.href= "chemicals.php";

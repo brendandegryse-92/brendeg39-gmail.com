@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Applications">
 <html>
 <title>Fertilizer Form</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +48,7 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
             function newRow($rowNm, $GenAppID, $AppType, $FertID, $MonitorAcres, $Rate, $TotalUsed, $AdjustedAmount, $Date, $ReconcileDate) {
               echo '<tr name="'.$rowNm.'">';
               echo '<form method="get" id="form" name="'.$rowNm.'">';
-              echo '<td><input type="number" value="'.$AppType.'"/></td>';
+              echo '<td><input value="'.$AppType.'"/></td>';
               echo '<td><input type="number" value="'.$FertID.'"/></td>';
               echo '<td><input type="number" id="sel'.$rowNm.'" onchange="Updat('.$rowNm.')" value="'.$MonitorAcres.'"/></td>';
               echo '<td><input type="number" id="sel'.$rowNm."1".'" onchange="Updat('.$rowNm.')" value="'.$Rate.'"/></td>';
@@ -92,7 +94,7 @@ $_SESSION['rowPrimaryID'] = array($val[1]);
                  json = {Apptype : forms[x][0].value, FertID : forms[x][1].value, MonitorAcres : forms[x][2].value, Rate : forms[x][3].value, TotalUsed : forms[x][4].value, AdjustedAmount : forms[x][5].value, Date : forms[x][6].value,
                  ReconcileDate : forms[x][7].value, tableName : "appferttable", length : forms.length, counter : "update"};
                  json = JSON.stringify(json);
-                 xmlhttp.open("POST", "submit.php", false);
+                 xmlhttp.open("POST", "submit.php", true);
                  xmlhttp.send(json);
                }
            location.href = "forms.php";

@@ -11,7 +11,7 @@
   <table>
     <div class="toprow">
     <tr>
-      <td>FertAppID</td>
+      <td style="display: none;">FertAppID</td>
       <td>AppType</td>
       <td>FertID</td>
       <td>MonitorAcres</td>
@@ -37,8 +37,8 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
       function newRow($rowNm, $GenAppID, $FertAppID, $AppType, $FertID, $MonitorAcres, $Rate, $TotalUsed, $AdjustedAmount, $Date, $ReconcileDate) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';
-        echo '<td><input type="number" value="'.$FertAppID.'"/></td>';
-        echo '<td><input type="number" value="'.$AppType.'"/></td>';
+        echo '<td style="display: none;"><input type="number" style="display: none;" value="'.$FertAppID.'"/></td>';
+        echo '<td><input value="'.$AppType.'"/></td>';
         echo '<td><input type="number" value="'.$FertID.'"/></td>';
         echo '<td><input type="number" id="sel'.$rowNm.'" onchange="Updat('.$rowNm.')" value="'.$MonitorAcres.'"/></td>';
         echo '<td><input type="number" id="sel'.$rowNm."1".'" onchange="Updat('.$rowNm.')" value="'.$Rate.'"/></td>';
@@ -92,7 +92,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                   json = {FertAppID : forms[x][0].value, Apptype : forms[x][1].value, FertID : forms[x][2].value, MonitorAcres : forms[x][3].value, Rate : forms[x][4].value, TotalUsed : forms[x][5].value, AdjustedAmount : forms[x][6].value, Date : forms[x][7].value,
                   ReconcileDate : forms[x][8].value, tableName : "appferttable", length : forms.length, counter : "new"};
                   json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
+                  xmlhttp.open("POST", "submit.php", true);
                   xmlhttp.send(json);
                 }
             location.href = "applicants.php";

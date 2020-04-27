@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Fields">
 <html>
 <title>Fields</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -203,7 +205,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                   if (forms[x][21].checked == false) {jsonAccumulated[x].Active = 0;}
                 }
                 json = JSON.stringify(jsonAccumulated);
-                xmlhttp.open("POST", "submit.php", false);
+                xmlhttp.open("POST", "submit.php", true);
                 xmlhttp.send(json);
                 location.reload(true);
           };

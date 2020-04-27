@@ -138,7 +138,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
                   if (forms[x][10].checked == false) {jsonAccumulated[x].Active = 0;}
                 }
                 json = JSON.stringify(jsonAccumulated);
-                xmlhttp.open("POST", "submit.php", false);
+                xmlhttp.open("POST", "submit.php", true);
                 xmlhttp.send(json);
                 location.reload(true);
           };

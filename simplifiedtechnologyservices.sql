@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2020 at 08:25 PM
+-- Generation Time: Apr 28, 2020 at 08:29 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -61,7 +61,8 @@ INSERT INTO `appchemtable` (`ID`, `GenAppID`, `ChemAppID`, `AppType`, `ChemID`, 
 (3, 12, 231, 651, 323, 2313, 2165, 5007645, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, 0, 0, 0, '', 22),
 (4, 17, 0, 1, 2, 3, 4, 5, 5, '0000-00-00', '0000-00-00', 0, '0', 0, 0, 0, 0, 0, '0', 22),
 (5, 21, 0, 5, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, 0, 0, 0, '', 22),
-(6, 21, 0, 3, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, 0, 0, 0, '', 22);
+(6, 21, 0, 3, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, 0, 0, 0, '', 22),
+(7, 27, 0, 10, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 0, '', 0, 0, 0, 0, 0, '', 22);
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,8 @@ INSERT INTO `appferttable` (`ID`, `FertAppID`, `GenAppID`, `AppType`, `FertID`, 
 (1, 2, 3, '3', 5, 5, 10, 2, 2, '2020-02-25', '2020-02-19', 22),
 (2, 654, 8, '', 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 22),
 (3, 3216, 12, '0231', 216, 26, 651, 16926, 0, '0000-00-00', '0000-00-00', 22),
-(4, 0, 22, '22221', 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 22);
+(4, 0, 22, '22223', 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', 22),
+(5, 0, 28, 'App1', 1, 156, 0.25, 39, 0, '2020-04-27', '2020-04-28', 22);
 
 -- --------------------------------------------------------
 
@@ -103,8 +105,8 @@ INSERT INTO `appferttable` (`ID`, `FertAppID`, `GenAppID`, `AppType`, `FertID`, 
 CREATE TABLE `appgeninfo` (
   `GenAppID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `Applicator` int(11) NOT NULL,
-  `AppType` int(11) NOT NULL,
+  `Applicator` varchar(255) NOT NULL,
+  `AppType` varchar(255) NOT NULL,
   `DateApplied` date NOT NULL,
   `StopTime` time NOT NULL,
   `Conditions` varchar(255) NOT NULL,
@@ -120,13 +122,16 @@ CREATE TABLE `appgeninfo` (
 --
 
 INSERT INTO `appgeninfo` (`GenAppID`, `UserID`, `Applicator`, `AppType`, `DateApplied`, `StopTime`, `Conditions`, `ReconcileDate`, `FieldFrom`, `FieldTo`, `Type`, `AutoSteerHeading`) VALUES
-(10, 21, 0, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, '', 0),
-(14, 22, 222222, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'chemical', 0),
-(17, 22, 15, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'chemical', 0),
-(18, 22, 31541, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'fertilizer', 0),
-(20, 22, 2147483647, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'fertilizer', 0),
-(22, 22, 22222222, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'fertilizer', 0),
-(25, 22, 404, 0, '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'misc', 0);
+(10, 21, '0', '0', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, '', 0),
+(14, 22, '222222', '0', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'chemical', 0),
+(17, 22, '15', '0', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'chemical', 0),
+(18, 22, '31541', '0', '0000-00-00', '00:00:00', 'kjhg', '0000-00-00', 0, 0, 'fertilizer', 0),
+(20, 22, '2147483647', '0', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'fertilizer', 0),
+(22, 22, '22222222', '0', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'fertilizer', 0),
+(25, 22, '404', '0', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 'misc', 0),
+(26, 22, '0', '1354987', '2020-04-21', '00:00:00', '', '0000-00-00', 0, 0, 'misc', 0),
+(27, 22, '10', '10', '2020-04-18', '00:00:00', '', '0000-00-00', 0, 0, 'chemical', 0),
+(28, 22, 'App1', 'App1', '2020-04-27', '00:00:00', '', '0000-00-00', 0, 0, 'fertilizer', 0);
 
 -- --------------------------------------------------------
 
@@ -152,7 +157,8 @@ CREATE TABLE `appmiscentry` (
 --
 
 INSERT INTO `appmiscentry` (`ID`, `AppMiscEntryID`, `GenAppID`, `AppType`, `AppDescription`, `EnteredAcres`, `CostPerAcre`, `TotalUsed`, `AdjustedAmount`, `UserID`) VALUES
-(5, 5, 25, 404, '', 0, 0, 0, 0, 22);
+(5, 5, 25, 404, '', 0, 0, 0, 0, 22),
+(6, 0, 26, 4659, '', 0, 0, 0, 0, 22);
 
 -- --------------------------------------------------------
 
@@ -195,10 +201,85 @@ CREATE TABLE `chemicals` (
 --
 
 INSERT INTO `chemicals` (`ID`, `UserID`, `Name`, `EnteredUnits`, `PurchasedUnits`, `Ratio`, `ShowOnReport`, `IsActive`) VALUES
-(1, 22, 'DDT', '', '', '0', 1, 1),
-(2, 22, 'Corn', '', '', '0', 1, 1),
-(3, 22, 'Corn', '', '', '0', 1, 1),
-(4, 22, 'kjlh', '1', '', '0', 1, 1);
+(953, 22, 'RoundUp  PM', 'Ounces', 'Gallons', '0', 0, 1),
+(954, 22, '2,4-D', 'Pint', 'Gallons', '0', 1, 1),
+(955, 22, 'Select', 'Ounces', 'Gallons', '0', 0, 1),
+(956, 22, 'Crop Oil', 'Ounces', 'Gallons', '0', 0, 0),
+(957, 22, 'AMS (Water treatment)', 'Pounds', 'Pounds', '1', 0, 0),
+(958, 22, 'Warrior', 'Ounces', 'Ounces', '1', 0, 1),
+(959, 22, 'Improve', 'Pints', 'Gallons', '0', 0, 0),
+(960, 22, 'Headline', 'Ounces', 'Gallons', '0', 0, 0),
+(961, 22, 'Extreme', 'Pints', 'Gallons', '0', 0, 0),
+(962, 22, 'Gaurdsmanmax', 'Quarts', 'Gallons', '0', 0, 0),
+(963, 22, 'Simazine', 'Quarts', 'Gallons', '0', 0, 1),
+(964, 22, 'Aspa80', 'Ounces', 'Gallons', '0', 1, 1),
+(965, 22, 'Status', 'Ounces', 'Ounces', '1', 0, 1),
+(966, 22, 'Option', 'Ounces', 'Ounces', '1', 0, 1),
+(967, 22, 'Destiny', 'Pints', 'Gallons', '0', 0, 0),
+(968, 22, 'Max-in', 'Quarts', 'Gallons', '0', 0, 1),
+(969, 22, 'Fotress', 'Pounds', 'Pounds', '1', 0, 0),
+(970, 22, 'Radius', 'Ounces', 'Gallons', '0', 0, 1),
+(971, 22, 'Atrazine4L', 'Quarts', 'Gallons', '0', 0, 0),
+(972, 22, 'Dimethoate', 'Pint', 'Gallons', '0', 0, 0),
+(973, 22, 'Superb HC', 'Pint', 'Gallons', '0', 0, 1),
+(974, 22, 'Preference', 'Pint', 'Galoons', '0', 0, 1),
+(975, 22, 'Manganese', 'Quart', 'Gallons', '0', 0, 1),
+(976, 22, 'Equipt', '0unces', 'Ounces', '1', 0, 0),
+(977, 22, 'Interlock', 'Ounces', 'Gallons', '0', 0, 0),
+(978, 22, 'Cornerstone', 'Ounces', 'Gallons', '0', 0, 0),
+(979, 22, 'NANOBOOST', 'OUNCES', 'GALLONS', '0', 0, 1),
+(980, 22, 'Corvus', 'Ounces', 'ounces', '1', 0, 0),
+(981, 22, 'Bucceneer', 'Ounces', 'Gallons', '0', 0, 0),
+(982, 22, 'Boundry', 'Pints', 'Gallons', '0', 0, 0),
+(983, 22, 'Request', 'Quarts', 'Gallons', '0', 0, 1),
+(984, 22, 'Touchdown', 'Ounces', 'Gallons', '0', 0, 1),
+(985, 22, 'x99 Surfactant', 'Ounces', 'Gallons', '0', 0, 1),
+(986, 22, 'Border 250', 'Ounces', 'Pounds', '0', 0, 0),
+(987, 22, 'Control', 'Ounces', 'Quarts', '0', 0, 0),
+(988, 22, 'Baythroid', 'Ounces', 'Ounces', '1', 0, 0),
+(989, 22, 'Halex GT', 'Pints', 'Gallons', '0', 0, 0),
+(990, 22, 'Citron', 'Pounds', 'Pounds', '1', 0, 0),
+(991, 22, 'Flex Star GT', 'Pints', 'Gallons', '0', 0, 0),
+(992, 22, 'Prosaro', 'Ounces', 'Gallons', '0', 0, 1),
+(993, 22, 'Clarity', 'Ounces', 'Gallons', '0', 0, 1),
+(994, 22, 'Perc Plus', 'Ounces', 'Gallons', '0', 0, 1),
+(995, 22, 'Liberty', 'Ounces', 'Gallons', '0', 0, 0),
+(996, 22, 'Quadris', 'Ounces', 'Gallons', '0', 0, 1),
+(997, 22, 'Qujilt XL', 'Ounces', 'Gallons', '0', 0, 1),
+(998, 22, 'Peak', 'Ounces', 'Ounces', '1', 0, 1),
+(999, 22, 'Fusalade', 'Ounces', 'Gallons', '0', 0, 0),
+(1000, 22, 'Resource', 'Ounces', 'Gallon', '0', 0, 1),
+(1001, 22, 'Autum', 'Ounces', 'Ounces', '1', 0, 0),
+(1002, 22, 'Sencor', 'Ounces', 'Pounds', '0', 0, 1),
+(1003, 22, 'Primary', 'Ounces', 'Gallons', '0', 0, 1),
+(1004, 22, 'Outlaw', 'Ounces', 'Gallon', '0', 0, 1),
+(1005, 22, 'Grow 7', 'Gallons', 'Gallons', '1', 0, 0),
+(1006, 22, 'Gramaxzone', 'Ounnces', 'Gallons', '0', 0, 0),
+(1007, 22, 'Dual Magnum', 'Pints', 'Gallons', '0', 0, 0),
+(1008, 22, 'Endigo', 'Ounces', 'Gallons', '0', 0, 0),
+(1009, 22, 'Approach', 'Ounces', 'Gallons', '0', 0, 0),
+(1010, 22, 'Envive', 'Ounces', 'Ounces', '1', 0, 0),
+(1011, 22, 'Glory', 'Ounces', 'Pounds', '0', 0, 0),
+(1012, 22, 'Burndown', 'Gallon', 'Gallon', '1', 0, 0),
+(1013, 22, 'Abundnt', 'Ounces', 'Gallons', '0', 0, 0),
+(1014, 22, 'Array', 'Pounds', 'Pounds', '1', 0, 0),
+(1015, 22, 'Instigate', 'Ounces', 'Ounces', '1', 0, 1),
+(1016, 22, 'Cinch', 'Quart', 'Gallons', '0', 0, 0),
+(1017, 22, 'Approach Prima', 'Ounces', 'Gallons', '0', 1, 1),
+(1018, 22, 'Sharpen', 'Ounces', 'Ounces', '1', 0, 1),
+(1019, 22, 'Agrimek', 'Ounces', 'Gallons', '0', 0, 0),
+(1020, 22, 'Lorsban', 'Ounces', 'Gallons', '0', 0, 0),
+(1021, 22, 'Govern', 'Ounces', 'Gallons', '0', 0, 0),
+(1022, 22, 'Pilot', 'Ounces', 'Gallons', '0', 0, 1),
+(1023, 22, 'Weedmaster', 'Quarts', 'Gallons', '0', 0, 1),
+(1024, 22, 'MONTYS FOLIAR 2', 'GALLONS', 'GALLONS', '1', 0, 1),
+(1025, 22, 'Northstar', 'Ounces', 'Ounces', '1', 0, 1),
+(1026, 22, 'Calisto', 'Ounces', 'Gallons', '0', 0, 0),
+(1027, 22, 'Brawl', 'Pint', 'Gallons', '0', 0, 0),
+(1028, 22, 'Fexapan', 'Ounces', 'Gallons', '0', 0, 0),
+(1029, 22, 'Rresicore', 'Quarts', 'Gallons', '0', 0, 1),
+(1030, 22, 'Province II', 'Ounces', 'Ounces', '1', 0, 1),
+(1031, 22, '', '', '', '0', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -214,6 +295,107 @@ CREATE TABLE `chemicalyears` (
   `Price` double NOT NULL,
   `CropGroup` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chemicalyears`
+--
+
+INSERT INTO `chemicalyears` (`ID`, `UserID`, `DateFrom`, `DateTo`, `Price`, `CropGroup`) VALUES
+(7700, 22, '2008-01-01', '2008-12-31', 25.31, 953),
+(7701, 22, '2008-01-01', '2008-12-31', 25.31, 953),
+(7702, 22, '2008-01-01', '2008-12-31', 12.33, 954),
+(7703, 22, '2008-01-01', '2020-12-31', 50, 955),
+(7704, 22, '2008-01-01', '2008-12-31', 0, 956),
+(7705, 22, '2008-01-01', '2008-12-31', 0.15, 957),
+(7706, 22, '2008-01-01', '2008-12-31', 0.15, 957),
+(7707, 22, '2008-01-01', '2008-12-31', 0.15, 957),
+(7708, 22, '2008-01-01', '2008-12-31', 236, 958),
+(7709, 22, '2008-01-01', '2008-12-31', 18, 959),
+(7710, 22, '2008-01-01', '2008-12-31', 202.37, 960),
+(7711, 22, '2008-01-01', '2008-12-31', 25.74, 961),
+(7712, 22, '2008-01-01', '2008-12-31', 25.74, 961),
+(7713, 22, '2008-01-01', '2008-12-31', 29, 962),
+(7714, 22, '2008-01-01', '2020-12-31', 12.75, 963),
+(7715, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7716, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7717, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7718, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7719, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7720, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7721, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7722, 22, '2008-01-01', '2008-12-31', 24.41, 964),
+(7723, 22, '2008-01-01', '2008-12-31', 2.3, 965),
+(7724, 22, '2008-01-01', '2008-12-31', 10.65, 966),
+(7725, 22, '2008-01-01', '2008-12-31', 14, 967),
+(7726, 22, '2008-01-01', '2008-12-31', 12, 968),
+(7727, 22, '2008-01-01', '2008-12-31', 3.88, 969),
+(7728, 22, '2008-01-01', '2008-12-31', 0, 970),
+(7729, 22, '2008-01-01', '2008-12-31', 0, 971),
+(7730, 22, '2008-01-01', '2008-12-31', 0, 971),
+(7731, 22, '2008-01-01', '2008-12-31', 0, 971),
+(7732, 22, '2008-01-01', '2008-12-31', 0, 972),
+(7733, 22, '2008-01-01', '2008-12-31', 0, 973),
+(7734, 22, '2008-01-01', '2008-12-31', 0, 974),
+(7735, 22, '2008-01-01', '2008-12-31', 0, 975),
+(7736, 22, '2008-01-01', '2008-12-31', 0, 975),
+(7737, 22, '2008-01-01', '2008-12-31', 0, 976),
+(7738, 22, '2008-01-01', '2008-12-31', 0, 977),
+(7739, 22, '2008-01-01', '2008-12-31', 0, 978),
+(7740, 22, '2008-01-01', '2008-12-31', 0, 978),
+(7741, 22, '2008-01-01', '2008-12-31', 0, 979),
+(7742, 22, '2008-01-01', '2008-12-31', 0, 980),
+(7743, 22, '2008-01-01', '2008-12-31', 0, 980),
+(7744, 22, '2008-01-01', '2008-12-31', 0, 981),
+(7745, 22, '2008-01-01', '2008-12-31', 0, 981),
+(7746, 22, '2008-01-01', '2008-12-31', 0, 982),
+(7747, 22, '2008-01-01', '2008-12-31', 0, 983),
+(7748, 22, '2008-01-01', '2008-12-31', 0, 984),
+(7749, 22, '2008-01-01', '2008-12-31', 0, 985),
+(7750, 22, '2008-01-01', '2008-12-31', 0, 986),
+(7751, 22, '2008-01-01', '2008-12-31', 0, 987),
+(7752, 22, '2008-01-01', '2008-12-31', 0, 988),
+(7753, 22, '2008-01-01', '2008-12-31', 0, 989),
+(7754, 22, '2008-01-01', '2008-12-31', 0, 990),
+(7755, 22, '2008-01-01', '2008-12-31', 0, 991),
+(7756, 22, '2008-01-01', '2008-12-31', 0, 992),
+(7757, 22, '2008-01-01', '2008-12-31', 0, 993),
+(7758, 22, '2008-01-01', '2008-12-31', 0, 994),
+(7759, 22, '2008-01-01', '2008-12-31', 0, 995),
+(7760, 22, '2008-01-01', '2008-12-31', 0, 996),
+(7761, 22, '2008-01-01', '2008-12-31', 0, 997),
+(7762, 22, '2008-01-01', '2008-12-31', 0, 998),
+(7763, 22, '2008-01-01', '2008-12-31', 0, 999),
+(7764, 22, '2008-01-01', '2008-12-31', 0, 1000),
+(7765, 22, '2008-01-01', '2008-12-31', 0, 1001),
+(7766, 22, '2008-01-01', '2008-12-31', 0, 1002),
+(7767, 22, '2008-01-01', '2008-12-31', 0, 1003),
+(7768, 22, '2008-01-01', '2008-12-31', 0, 1004),
+(7769, 22, '2008-01-01', '2008-12-31', 0, 1005),
+(7770, 22, '2008-01-01', '2008-12-31', 0, 1006),
+(7771, 22, '2008-01-01', '2008-12-31', 0, 1007),
+(7772, 22, '2008-01-01', '2008-12-31', 0, 1008),
+(7773, 22, '2008-01-01', '2008-12-31', 0, 1009),
+(7774, 22, '2008-01-01', '2008-12-31', 0, 1010),
+(7775, 22, '2008-01-01', '2008-12-31', 0, 1011),
+(7776, 22, '2008-01-01', '2008-12-31', 0, 1012),
+(7777, 22, '2008-01-01', '2008-12-31', 0, 1013),
+(7778, 22, '2008-01-01', '2008-12-31', 0, 1014),
+(7779, 22, '2008-01-01', '2008-12-31', 0, 1015),
+(7780, 22, '2008-01-01', '2008-12-31', 0, 1016),
+(7781, 22, '2008-01-01', '2008-12-31', 0, 1017),
+(7782, 22, '2008-01-01', '2008-12-31', 0, 1018),
+(7783, 22, '2008-01-01', '2008-12-31', 0, 1019),
+(7784, 22, '2008-01-01', '2008-12-31', 0, 1020),
+(7785, 22, '2008-01-01', '2008-12-31', 0, 1021),
+(7786, 22, '2008-01-01', '2008-12-31', 0, 1022),
+(7787, 22, '2008-01-01', '2008-12-31', 0, 1023),
+(7788, 22, '2008-01-01', '2008-12-31', 0, 1024),
+(7789, 22, '2008-01-01', '2008-12-31', 0, 1025),
+(7790, 22, '2008-01-01', '2008-12-31', 0, 1026),
+(7791, 22, '2008-01-01', '2008-12-31', 0, 1027),
+(7792, 22, '2008-01-01', '2008-12-31', 0, 1028),
+(7793, 22, '2008-01-01', '2008-12-31', 0, 1029),
+(7794, 22, '2008-01-01', '2008-12-31', 0, 1030);
 
 -- --------------------------------------------------------
 
@@ -240,11 +422,10 @@ CREATE TABLE `crop` (
 --
 
 INSERT INTO `crop` (`ID`, `UserID`, `CropID`, `FieldID`, `Year`, `Description`, `StartDate`, `StopDate`, `Latitude`, `Longitude`, `IsActive`) VALUES
-(1, 22, 2, 1, 2020, '', '2020-02-11', '2020-12-31', 42.422, -84.5537, 1),
-(31, 22, 3, 2, 2030, '', '0000-00-00', '0000-00-00', 0, 0, 1),
 (62, 22, 1, 1, 2019, 'Corn', '2019-01-01', '2019-12-31', 0, 0, 1),
 (63, 22, 2, 3, 2019, 'Corn', '2019-01-01', '2019-12-31', 0, 0, 1),
-(64, 22, 3, 2, 2019, 'Soybeans', '2019-01-01', '2019-12-31', 0, 0, 1);
+(65, 22, 3, 2, 2019, 'Corn', '2020-04-22', '0000-00-00', 0, 0, 1),
+(66, 22, 4, 4, 2020, '', '0000-00-00', '0000-00-00', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -277,12 +458,12 @@ CREATE TABLE `farms` (
 
 INSERT INTO `farms` (`ID`, `UserID`, `FarmNumber`, `OperatorID`, `BusinessID`, `Owner`, `FarmName`, `CropLand`, `FSA_Farm`, `FSA_Tract`, `InsuranceID`, `County`, `Description`, `RentType`, `PID`, `IsActive`) VALUES
 (1, 21, 1, 1, 1, 'Brendan', 'Brendan\'s Farm', 0, 'FSA_Farm', 'Tract', '1', 'OH', 'Excellent', '2', 1, 1),
-(7, 22, NULL, NULL, NULL, 'Bryan', 'Brendan\'s Farm', 1, 'FSA_Farm', 'Tract', '1', 'Defiance', 'Excellent', '2', 0, 1),
+(7, 22, NULL, NULL, NULL, 'Gary', 'Brendan\'s Farm', 1, 'FSA_Farm', 'Tract', '1', 'Defiance', 'Excellent', '2', 0, 1),
 (8, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Bre Farm', 0, '', '', '', '', '', '', 0, 1),
-(9, 22, NULL, NULL, NULL, 'Brendan Degryse', 'asdf', 0, '', '', '', '', '', '', 0, 1),
-(10, 22, NULL, NULL, NULL, '', 'Farm 1', 0, '', '', '', '', '', '', 0, 1),
-(11, 22, NULL, NULL, NULL, '', 'Brendans Farm', 0, '', '', '', '', '', '', 0, 1),
-(12, 22, NULL, NULL, NULL, '', 'Test Farm', 0, '', '', '', '', '', '', 0, 1);
+(9, 22, NULL, NULL, NULL, 'Bryan', 'asdf', 0, '', '', '', '', '', '', 0, 1),
+(10, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Farm 1', 0, '', '', '', '', '', '', 0, 1),
+(11, 22, NULL, NULL, NULL, 'Gary', 'Brendans Farm', 0, '', '', '', '', '', '', 0, 1),
+(12, 22, NULL, NULL, NULL, 'Ben', 'Test Farm', 0, '', '', '', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -306,9 +487,59 @@ CREATE TABLE `fertilizers` (
 --
 
 INSERT INTO `fertilizers` (`ID`, `UserID`, `Name`, `EnteredUnits`, `PurchasedUnits`, `Ratio`, `IsActive`, `ShowOnReport`) VALUES
-(1, 22, 'Night', '', '', '0', 1, 1),
-(3, 22, 'Beans', '', '', '0', 1, 1),
-(5, 22, 'asdf', '1', 'sdf', '1', 1, 1);
+(64, 22, '28%', 'Gallons', 'Tons', '0', 1, 0),
+(65, 22, 'AMS 21-00-00', 'Pounds', 'Tons', '0', 0, 0),
+(66, 22, 'DAP 18-46-00', 'Pounds', 'Tons', '0', 0, 0),
+(67, 22, 'POTASH 00-00-60', 'Pounds', 'Tons', '0', 0, 0),
+(68, 22, 'TSP 00-45-00', 'Pounds', 'Tons', '0', 0, 0),
+(69, 22, 'Ele. Sulfur', 'Pounds', 'Tons', '0', 0, 0),
+(70, 22, 'Cave Lime', 'Tons', 'Tons', '1', 0, 0),
+(71, 22, '10-34-0', 'Gallons', 'Tons', '0', 0, 0),
+(72, 22, '32%', 'Gallons', 'Tons', '0', 0, 0),
+(73, 22, 'llo', 'Pounds', 'Tons', '0', 0, 0),
+(74, 22, 'MAP 11-52-00', 'Pounds', 'Tons', '0', 0, 0),
+(75, 22, 'Sulfur Mag.', 'Pounds', 'Tons', '0', 0, 0),
+(76, 22, 'Dolomite Lime', 'Tons', 'Tons', '1', 0, 0),
+(77, 22, 'Anhydrous 82%', 'Pounds', 'Tons', '0', 0, 0),
+(78, 22, 'Zinc Starter', 'Pints', 'Gallons', '0', 0, 0),
+(79, 22, 'Carbon', 'Quarts', 'Gallons', '0', 1, 0),
+(80, 22, 'Biomate', 'Ounces', 'Gallons', '0', 0, 0),
+(81, 22, 'Manure', 'Acres', 'Acres', '1', 0, 0),
+(82, 22, 'Hose Charge', 'feet', 'feet', '1', 0, 0),
+(83, 22, 'Alfalfa Mix', 'Gallons', 'Gallons', '1', 0, 0),
+(84, 22, '9-18-9', 'Gallons', 'Gallons', '1', 0, 0),
+(85, 22, 'Corn mix', 'Ounces', 'Gallons', '0', 0, 0),
+(86, 22, '8-16-8', 'Ounces', 'Gallons', '0', 0, 0),
+(87, 22, 'Bean Mix', 'Gallons', 'Gallons', '1', 1, 0),
+(88, 22, 'Boron', 'Ounces', 'Gallons', '0', 0, 0),
+(89, 22, 'Liquid Urea', 'Gallons', 'Gallons', '1', 0, 0),
+(90, 22, '4-15-12', 'Ounces', 'Gallons', '0', 0, 0),
+(91, 22, '3-20-15', 'Gallons', 'Gallons', '1', 0, 0),
+(92, 22, 'Agrihance S', 'Quarts', 'Gallons', '0', 0, 0),
+(93, 22, '0-0-25-17', 'Gallon', 'Gallon', '1', 0, 0),
+(94, 22, 'Agrihance V', 'Quarts', 'Gallons', '0', 0, 0),
+(95, 22, 'Agrihance R', 'Quarts', 'Gallons', '0', 0, 0),
+(96, 22, 'Manure', 'Applications', 'Applications', '1', 0, 0),
+(97, 22, 'Enhance', 'Gallons', 'Gallons', '1', 1, 0),
+(98, 22, 'Liberate', 'Quarts', 'Gallons', '0', 0, 0),
+(99, 22, 'Crop Carb', 'Quarts', 'Gallons', '0', 0, 0),
+(100, 22, 'Manganeese', 'Quarts', 'Gallons', '0', 0, 0),
+(101, 22, 'Micro 500', 'Quarts', 'Gallons', '0', 0, 0),
+(102, 22, 'Wheat Foliar', 'Gallons', 'Gallons', '1', 1, 0),
+(103, 22, 'Versa Max Corn', 'Ounces', 'Gallons', '0', 0, 0),
+(104, 22, 'Versa Max Soy', 'Quarts', 'Gallon', '0', 0, 0),
+(105, 22, 'Nutri Pellets', 'Tons', 'Tons', '1', 0, 0),
+(106, 22, 'N-Response', 'Gallons', 'Gallons', '1', 1, 0),
+(107, 22, 'Humitill', 'Quarts', 'Gallons', '0', 0, 0),
+(108, 22, 'Pro Germ', 'Gallons', 'Gallons', '1', 0, 0),
+(109, 22, 'High NRG N', 'Gallons', 'Gallons', '1', 0, 0),
+(110, 22, 'Access', 'Gallons', 'Gallons', '1', 0, 0),
+(111, 22, 'Corn Popup', 'Gallons', 'Gallons', '1', 1, 0),
+(112, 22, 'Thy-Sol', 'Galllons', 'Gallons', '1', 0, 0),
+(113, 22, 'Microhance', 'Quarts', 'Gallons', '0', 1, 0),
+(114, 22, 'Sulfer Plus', 'Quarts', 'Gallons', '0', 1, 0),
+(115, 22, 'Montys Foliar', 'Gallons', 'Gallons', '1', 1, 0),
+(116, 22, 'Corn Sidedress', 'Gallons', 'Gallons', '1', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -334,8 +565,6 @@ CREATE TABLE `fertilizeryears` (
 CREATE TABLE `fields` (
   `ID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `FieldNumber` int(11) DEFAULT NULL,
-  `FarmNumber` int(11) DEFAULT NULL,
   `FieldName` varchar(255) DEFAULT NULL,
   `Acres` int(11) DEFAULT NULL,
   `FSA_Farm` varchar(255) DEFAULT NULL,
@@ -365,12 +594,12 @@ CREATE TABLE `fields` (
 -- Dumping data for table `fields`
 --
 
-INSERT INTO `fields` (`ID`, `UserID`, `FieldNumber`, `FarmNumber`, `FieldName`, `Acres`, `FSA_Farm`, `FSA_Tract`, `FSA_Field`, `FSA_Area`, `InsuranceID`, `County`, `Township`, `FarmRange`, `Section`, `Legal`, `Watershed`, `Restriction`, `Slope`, `TRating`, `Location`, `PID`, `TicketTrackID`, `AutoSteerHeading`, `IsActive`, `farmID`, `FarmName`) VALUES
-(1, 22, NULL, NULL, 'Brendan\'s Farm', 0, '1', '1', '', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '1', '0', '0', '1', 1, '1', '0', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
-(2, 22, NULL, NULL, 'Brendan\'s Farm', 0, '0', '', '', '', '', '', '', '', '0', '0', '0', '0', 0, '0', '0', 0, 0, 0, 1, NULL, NULL),
-(3, 22, NULL, NULL, 'Field 1', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, ''),
-(4, 22, NULL, NULL, 'Field2', 75, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, ''),
-(5, 22, NULL, NULL, 'Field1', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, '');
+INSERT INTO `fields` (`ID`, `UserID`, `FieldName`, `Acres`, `FSA_Farm`, `FSA_Tract`, `FSA_Field`, `FSA_Area`, `InsuranceID`, `County`, `Township`, `FarmRange`, `Section`, `Legal`, `Watershed`, `Restriction`, `Slope`, `TRating`, `Location`, `PID`, `TicketTrackID`, `AutoSteerHeading`, `IsActive`, `farmID`, `FarmName`) VALUES
+(1, 22, '', 0, '1', '1', '', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '1', '0', '0', '1', 1, '1', '0', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
+(2, 22, 'Brendan', 0, '0', '', '', '', '', '', '', '', '0', '0', '0', '0', 0, '0', '0', 0, 0, 0, 1, NULL, 'asdf'),
+(3, 22, '', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
+(4, 22, '', 75, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
+(5, 22, '', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Brendan\'s Farm');
 
 -- --------------------------------------------------------
 
@@ -392,7 +621,7 @@ CREATE TABLE `fieldsplit` (
 --
 
 INSERT INTO `fieldsplit` (`ID`, `UserID`, `FarmNumber`, `Operator`, `SplitPercent`, `SplitGroup`) VALUES
-(1, 22, 1, 'Brendan', 50, 1),
+(1, 22, 1, 'Brendan', 40, 1),
 (2, 22, 1, 'Dave', 50, 1);
 
 -- --------------------------------------------------------
@@ -421,9 +650,10 @@ CREATE TABLE `operator` (
 INSERT INTO `operator` (`OperatorID`, `OpNumber`, `OpName`, `OpAddress`, `OpCity`, `OpState`, `OpZip`, `IsActive`, `OpPhone`, `UserID`) VALUES
 (84, 1, 'Brendan Degryse', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 0, '5672396350', 21),
 (85, 1, 'Brendan Degryse', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 1, '5672396350', 22),
-(92, 2, 'Brody', '14361 Scott Rd. Bryan OH 43506', '', '', 0, 1, '', 22),
 (104, NULL, 'Bryan', '14361 Scott Rd. Bryan OH 43506', '', '', 2, 1, '', 22),
-(105, NULL, 'Brendan Degryse', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 1, '5672396350', NULL);
+(105, NULL, 'Brendan Degryse', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 1, '5672396350', NULL),
+(158, NULL, 'Gary', '', '', '', 0, 1, '', 22),
+(159, NULL, 'Ben', '', '', '', 0, 1, '', 22);
 
 -- --------------------------------------------------------
 
@@ -448,9 +678,35 @@ CREATE TABLE `seeds` (
 --
 
 INSERT INTO `seeds` (`ID`, `UserID`, `Name`, `Variety`, `SeedsPerUnit`, `EnteredUnit`, `PurchasedUnits`, `ShowOnReport`, `IsActive`) VALUES
-(2, 22, 'Corn', '', 0, '', '', 1, 1),
-(9, 22, 'jhb', 'jg', 654, 'hfjjg', 'jhgf', 1, 1),
-(10, 22, 'laskd', 'asdf', 0, 'asdf', 'adf', 1, 1);
+(1175, 22, 'Wheat', 'Wheat', 1, 'Pounds', 'poundsl', 1, 1),
+(1176, 22, 'Corn', 'corn', 80000, 'Seeds', 'bags', 1, 1),
+(1177, 22, 'Soybeans', 'beans', 140000, 'SEEDS', 'Bags', 1, 1),
+(1178, 22, 'Rye', 'Rye', 1, 'Units', 'Units', 1, 0),
+(1179, 22, 'Corn', '33H29(HXXRR2)', 80000, 'Seeds', 'Bags', 1, 0),
+(1180, 22, 'Corn', '31G70(HXXRR2', 80000, 'Seeds', 'Bags', 1, 0),
+(1181, 22, 'Corn', '8T215', 80000, 'Seeds', 'Bags', 1, 0),
+(1182, 22, 'Corn', '76485 vt3', 80000, 'Seeds', 'Bags', 1, 0),
+(1183, 22, 'Corn', '2545', 80000, 'Seeds', 'Bags', 1, 0),
+(1184, 22, 'Corn', '2640', 80000, 'Seeds', 'Bags', 1, 0),
+(1185, 22, 'Corn', '2552', 80000, 'Seeds', 'Bags', 1, 0),
+(1186, 22, 'Corn', '2600', 80000, 'Seeds', 'Bags', 1, 0),
+(1187, 22, 'Corn', '2605', 80000, 'Seeds', 'Bags', 1, 0),
+(1188, 22, 'Corn', '2625', 80000, 'Seeds', 'Bags', 1, 0),
+(1189, 22, 'Corn', '2627', 80000, 'Seeds', 'Bags', 1, 0),
+(1190, 22, 'Corn', '2727', 80000, 'Seeds', 'Bags', 1, 0),
+(1191, 22, 'TILLAGE ROOTMAX', ' RYE', 1, 'Seeds', 'Bags', 1, 0),
+(1192, 22, 'CC Blend', 'blend', 1, 'Seeds', 'Bags', 1, 0),
+(1193, 22, 'Corn', 'corn', 80000, 'Seeds', 'Bags', 1, 1),
+(1194, 22, 'Peak blend', 'corn', 1, 'Seeds', 'Bags', 1, 1),
+(1195, 22, 'Soybeans', 'LG 3031', 2500, '', '', 1, 0),
+(1196, 22, 'Soybeans', 'LG 3500', 2500, '', '', 1, 0),
+(1197, 22, 'Soybeans', 'LG2985', 2500, '', '', 1, 0),
+(1198, 22, 'Soybeans', 'LG 2777', 2500, '', '', 1, 0),
+(1199, 22, 'Soybeans', 'replant beans', 140000, '', '', 1, 1),
+(1200, 22, 'Soybeans', 'LG2731', 1, '', '', 1, 0),
+(1201, 22, 'Soybeans', 'MW GR3190', 1, '', '', 1, 0),
+(1202, 22, 'Soybeans', 'LG3445', 1, '', '', 1, 0),
+(1203, 22, 'Soybeans Double crop', 'DOUBLE CROP BEANS', 140000, '', 'Ba', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -466,13 +722,6 @@ CREATE TABLE `seedsyears` (
   `Price` double NOT NULL,
   `CropGroup` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `seedsyears`
---
-
-INSERT INTO `seedsyears` (`ID`, `UserID`, `DateFrom`, `DateTo`, `Price`, `CropGroup`) VALUES
-(8, 22, '2020-03-17', '2020-03-18', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -618,25 +867,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appchemtable`
 --
 ALTER TABLE `appchemtable`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `appferttable`
 --
 ALTER TABLE `appferttable`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `appgeninfo`
 --
 ALTER TABLE `appgeninfo`
-  MODIFY `GenAppID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `GenAppID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `appmiscentry`
 --
 ALTER TABLE `appmiscentry`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `appseedtable`
@@ -648,19 +897,19 @@ ALTER TABLE `appseedtable`
 -- AUTO_INCREMENT for table `chemicals`
 --
 ALTER TABLE `chemicals`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1032;
 
 --
 -- AUTO_INCREMENT for table `chemicalyears`
 --
 ALTER TABLE `chemicalyears`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7795;
 
 --
 -- AUTO_INCREMENT for table `crop`
 --
 ALTER TABLE `crop`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `farms`
@@ -672,13 +921,13 @@ ALTER TABLE `farms`
 -- AUTO_INCREMENT for table `fertilizers`
 --
 ALTER TABLE `fertilizers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `fertilizeryears`
 --
 ALTER TABLE `fertilizeryears`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `fields`
@@ -696,19 +945,19 @@ ALTER TABLE `fieldsplit`
 -- AUTO_INCREMENT for table `operator`
 --
 ALTER TABLE `operator`
-  MODIFY `OperatorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `OperatorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `seeds`
 --
 ALTER TABLE `seeds`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1204;
 
 --
 -- AUTO_INCREMENT for table `seedsyears`
 --
 ALTER TABLE `seedsyears`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4887;
 
 --
 -- AUTO_INCREMENT for table `users`

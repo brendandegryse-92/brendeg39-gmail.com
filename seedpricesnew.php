@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Seed Prices">
 <html>
 <title>Seed Prices</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,7 +69,7 @@ echo '<td><input name="Active" type="checkbox" checked/></td></tr></table>';
                   if (forms[x][5].checked == true) {json.ShowOnReport = 1;}
                   if (forms[x][5].checked == false) {json.ShowOnReport = 0;}
                   json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
+                  xmlhttp.open("POST", "submit.php", true);
                   xmlhttp.send(json);
                 }
             location.href= "seeds.php";

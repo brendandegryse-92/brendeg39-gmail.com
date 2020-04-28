@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Seeds Prices">
 <html>
 <title>Seed Prices</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +85,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             for (x = 0; x < (forms.length); x++){
                   json = {DateFrom : forms[x][0].value, DateTo : forms[x][1].value, Price : forms[x][2].value, tableName : "SeedPrices", length : forms.length, counter : x};
                   json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
+                  xmlhttp.open("POST", "submit.php", true);
                   xmlhttp.send(json);
                 }
             location.reload(true);

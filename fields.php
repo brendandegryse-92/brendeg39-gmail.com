@@ -79,7 +79,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $_SESSION['rowPrimaryID'] = array();
   $_SESSION['counter'] = 0;
   $GLOBALS['rows'] = array(array());
-  $sql = "SELECT ID, FieldNumber, FarmName, FieldName, Acres, FSA_Farm, FSA_Tract, FSA_Field, FSA_Area, InsuranceID, County, Township, FarmRange, Section, Legal, Watershed, Restriction, Slope, TRating, Location, PID, TicketTrackID, AutoSteerHeading, IsActive FROM fields WHERE UserID = ? ORDER BY FarmNumber ASC";
+  $sql = "SELECT ID, FarmName, FieldName, Acres, FSA_Farm, FSA_Tract, FSA_Field, FSA_Area, InsuranceID, County, Township, FarmRange, Section, Legal, Watershed, Restriction, Slope, TRating, Location, PID, TicketTrackID, AutoSteerHeading, IsActive FROM fields WHERE UserID = ? ORDER BY FarmName ASC";
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
@@ -89,15 +89,14 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   $array = $statement->fetchall(PDO::FETCH_NUM);
   foreach ($arr as $i=>$val) {
     array_push($_SESSION['rowPrimaryID'], $val[0]);
-    newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $val[12], $val[13], $val[14], $val[15], $val[16], $val[17], $val[18], $val[19], $val[20], $val[21], $val[22], $val[23], $array);
+    newRow($i, $val[1], $val[2], $val[3], $val[4], $val[5], $val[6], $val[7], $val[8], $val[9], $val[10], $val[11], $val[12], $val[13], $val[14], $val[15], $val[16], $val[17], $val[18], $val[19], $val[20], $val[21], $val[22], $array);
     $rowIndex[$i] = $i;
   }
-      newRow(getNextRowNumber($rowIndex), null, "","","","","", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, $array);
-      function newRow($rowNm, $FieldNumber, $FarmName, $FieldName, $Acres, $FSA_Farm, $FSA_Tract, $FSA_Field, $FSA_Area, $InsuranceID, $County, $Township, $FarmRange, $Section, $Legal, $Watershed, $Restriction, $Slope, $TRating, $Location, $PID, $TicketTrackID, $AutoSteerHeading, $Active, $Farms) {
+      newRow(getNextRowNumber($rowIndex), null, "","","","","", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1, $array);
+      function newRow($rowNm, $FarmName, $FieldName, $Acres, $FSA_Farm, $FSA_Tract, $FSA_Field, $FSA_Area, $InsuranceID, $County, $Township, $FarmRange, $Section, $Legal, $Watershed, $Restriction, $Slope, $TRating, $Location, $PID, $TicketTrackID, $AutoSteerHeading, $Active, $Farms) {
         echo '<div>';
         echo '<tr id="form'.$rowNm.'" name="'.$rowNm.'">';
         echo '<form method="get" id="'.$rowNm.'" name="'.$rowNm.'">';
-          //echo '<td><input name="Field Number" id="td'.$rowNm.'" type="number" value="'.$FieldNumber.'"/></td>';
             echo '<td><select class="buttons" id="selects'.$rowNm.'">';
             if ($Farms) {
             foreach ($Farms as $f) {echo '<option id="'.$f[0].'"';

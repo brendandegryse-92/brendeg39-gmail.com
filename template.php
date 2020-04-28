@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="">
 <html>
 <title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,6 +83,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           var myObj;
           var x=0;
+          var jsonAccumulated = [];
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               //myObj = JSON.parse(this.responseText);
@@ -88,14 +91,14 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
             }
           }
             for (x = 0; x < (forms.length); x++){
-                  json = {FarmNumber : forms[x][0].value, OpID : forms[x][1].value, BusinessID : forms[x][3].value, Owner : forms[x][4].value, FarmName : forms[x][5].value, CropLand : forms[x][6].value, FSA_Farm : forms[x][7].value,
-                  FSA_Tract : forms[x][8].value, InsuranceID : forms[x][9].value, County : forms[x][10].value, Description : forms[x][11].value, RentType : forms[x][12].value, PID : forms[x][13].value, Active : forms[x][1].checked, tableName : "change", length : forms.length, counter : x};
+                  jsonAccumulated.push({FarmNumber : forms[x][0].value, OpID : forms[x][1].value, BusinessID : forms[x][3].value, Owner : forms[x][4].value, FarmName : forms[x][5].value, CropLand : forms[x][6].value, FSA_Farm : forms[x][7].value,
+                  FSA_Tract : forms[x][8].value, InsuranceID : forms[x][9].value, County : forms[x][10].value, Description : forms[x][11].value, RentType : forms[x][12].value, PID : forms[x][13].value, Active : forms[x][1].checked, tableName : "change", length : forms.length, counter : x});
                   if (forms[x][1].checked == true) {json.Active = 1;}
                   if (forms[x][1].checked == false) {json.Active = 0;}
-                  json = JSON.stringify(json);
-                  xmlhttp.open("POST", "submit.php", false);
-                  xmlhttp.send(json);
                 }
+                json = JSON.stringify(jsonAccumulated);
+                xmlhttp.open("POST", "submit.php", true);
+                xmlhttp.send(json);
             //location.reload(true);
           };
         </script><script type="text/javascript" src="headjs.js"></script>

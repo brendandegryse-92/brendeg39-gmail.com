@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Renew">
 <html>
 <title>Renew</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +14,7 @@ function renew() {
 var xmlhttp = new XMLHttpRequest();
 var json = {tableName : "renew", date : document.getElementById("renewdate").value};
 json = JSON.stringify(json);
-xmlhttp.open("POST", "submit.php", false);
+xmlhttp.open("POST", "submit.php", true);
 xmlhttp.send(json);
 location.href= "index.php";}
 </script>

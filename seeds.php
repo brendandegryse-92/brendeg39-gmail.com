@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta name="description" content="Seeds Prices">
 <html>
 <title>Seed Prices</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +87,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           json = {tableName : "PrimeID", PrimeID : x};
           json = JSON.stringify(json);
-          xmlhttp.open("POST", "submit.php", false);
+          xmlhttp.open("POST", "submit.php", true);
           xmlhttp.send(json);
           location.href = "seedpriceyears.php";
         };
@@ -93,7 +95,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           var xmlhttp = new XMLHttpRequest();
           json = {tableName : "PrimeID", PrimeID : x};
           json = JSON.stringify(json);
-          xmlhttp.open("POST", "submit.php", false);
+          xmlhttp.open("POST", "submit.php", true);
           xmlhttp.send(json);
           location.href = "seedprices.php";
         };

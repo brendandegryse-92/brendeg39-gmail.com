@@ -56,8 +56,15 @@ echo 'Account not active, cannot import';
   ?>
   <script type="text/javascript" src="headjs.js"></script>
         <script>
-        var x = "account";
+        highlight();
+        function highlight() {
+        var x = "operators";
+        try {
         document.getElementById(x).className += " activeNav";
+          }
+        catch(err) {window.setTimeout(highlight, 100);
+            }
+        }
         </script>
 </body>
 </html>

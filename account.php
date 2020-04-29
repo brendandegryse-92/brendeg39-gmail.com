@@ -31,8 +31,15 @@ $arr = $statement->fetch(PDO::FETCH_NUM);
 echo '<h3>Account expires on '.$arr[0].'</h3>';
 ?>
 <script>
+highlight();
+function highlight() {
 var x = "accountelem";
+try {
 document.getElementById(x).className += " activeNav";
+  }
+catch(err) {window.setTimeout(highlight, 100);
+    }
+}
 </script>
 </body>
 </HTML>

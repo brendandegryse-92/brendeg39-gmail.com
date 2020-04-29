@@ -56,8 +56,15 @@ else {
   ?>
   <script type="text/javascript" src="headjs.js"></script>
         <script>
-        var x = "account";
+        highlight();
+        function highlight() {
+        var x = "crop";
+        try {
         document.getElementById(x).className += " activeNav";
+          }
+        catch(err) {window.setTimeout(highlight, 100);
+            }
+        }
         </script>
 </body>
 </html>

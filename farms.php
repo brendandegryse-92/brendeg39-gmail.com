@@ -96,7 +96,6 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");
-          form[x][0].value = "";
           form[x][1].value = "";
           form[x][2].value = "";
           form[x][3].value = "";
@@ -107,9 +106,6 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           form[x][8].value = "";
           form[x][9].value = "";
           form[x][10].value = "";
-          form[x][11].value = "";
-          form[x][12].value = "";
-          form[x][13].value = "";
         }/**
         function setOpID(x) {
           var form = document.getElementsByTagName("form");

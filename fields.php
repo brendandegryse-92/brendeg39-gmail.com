@@ -146,7 +146,9 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
         function clearRow(x){
           var form = document.getElementsByTagName("form");
           for (var i=0; i < form[x].length; i++) {
+            if (i!=0) {
           form[x][i].value = "";
+        }
           }
         }
         function showOnly() {

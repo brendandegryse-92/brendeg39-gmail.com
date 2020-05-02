@@ -69,7 +69,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
         echo '<button class="buttons" onclick="getPos()">Get  Current Position</button>';
-        echo '<div id = "position">';
+        echo '<div id = "position"></div>';
         function getNextRowNumber($rowIndex) {
           $rowNumber = end($rowIndex);
           $rowNumber += 1;

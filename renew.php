@@ -12,11 +12,17 @@
 <script>
 function renew() {
 var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.status == 200) {
+    //alert(this.responseText);
+  }
+}
 var json = {tableName : "renew", date : document.getElementById("renewdate").value};
 json = JSON.stringify(json);
 xmlhttp.open("POST", "submit.php", true);
 xmlhttp.send(json);
-location.href= "index.php";}
+location.href= "index.php";
+}
 </script>
 </body>
 </html>

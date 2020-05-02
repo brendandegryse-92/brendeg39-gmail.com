@@ -26,9 +26,16 @@ for (i = 0; i < z.length; i++) {
 }
 }
 includeHTML();
+var once = 0;
 xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
-if (this.status == 200) {document.getElementById("account").innerHTML = this.responseText;}
+  if (this.status == 200) {
+    document.getElementById("account").innerHTML = this.responseText;
+    if (this.responseText == '<a href="renew.php" id="accountelem">Update Your Account</a>' && once == 0) {
+      alert("Your account has expired.");
+      once += 1;
+    }
+  }
 }
 xhttp.open("POST", "accountphp.php", true);
 xhttp.send();

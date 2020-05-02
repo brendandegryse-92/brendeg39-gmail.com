@@ -14,7 +14,7 @@ $data = json_decode(file_get_contents("php://input"));
 if($data->tableName=="renew") {
   $sql = "UPDATE users SET accountType = ?, ExpireDate = ? WHERE UserID = ?";
   $statement = $connection->prepare($sql);
-  $statement->execute(["active", $data[$arraylen]->date, $_SESSION['ID']]);
+  $statement->execute(["active", $data->date, $_SESSION['ID']]);
 }
 
 $sql = "SELECT accountType, ExpireDate FROM users WHERE UserID = ?";

@@ -85,7 +85,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           echo '</form>';
           //array_push($GLOBALS['rows'], array($rowNm, $OpID, $Name, $Address, $City, $State, $Zip, $Phone));
         }
-        echo '</table></div><a class="buttons" href="farmsplit.php">Farm Splits</a><br/><br/><h3><a href="importFarms.php">Import</a></h3>';
+        echo '</table></div><a class="buttons" href="farmsplit.php">Farm Splits</a><br/><br/></div><a class="buttons" href="importFarms.php">Import</a>';
         function getNextRowNumber($rowIndex) {
           $rowNumber = end($rowIndex);
           $rowNumber += 1;

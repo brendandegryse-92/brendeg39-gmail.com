@@ -85,7 +85,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     array_push($_SESSION['rowPrimaryID'], -1);
        ?>
      </div>
-     <br/><a href="importChemicals.php">Import</a>
+     <br/><br><a class="buttons" href="importChemicals.php">Import</a>
         <script>
         function loadprices(x) {
           var xmlhttp = new XMLHttpRequest();

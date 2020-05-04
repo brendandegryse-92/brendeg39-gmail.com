@@ -68,8 +68,8 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           $rowIndex[$rowNumber]  = $rowNumber;
           return $rowNumber;
         }
-       ?></div></table>
-       <h3><a href="importOperator.php">Import</a></h3>
+       ?></div></table></div>
+       <a class="buttons" href="importOperator.php">Import</a>
         <script>
         var complete = false;
         function clearRow(x){

@@ -78,7 +78,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
         }
        ?>
      </div>
-   </table><h3><a href="importCrops.php">Import</a></h3>
+   </table></div><br><a class="buttons" href="importCrops.php">Import</a>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

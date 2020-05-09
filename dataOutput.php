@@ -6,9 +6,8 @@
 <head>
   <link rel="stylesheet" href="styles.css">
   <style>
-    td {
-    text-decoration-style: dotted;
-  }
+    tr:nth-child(even) {
+    background-color: #f2f2f2;}
     </style>
 </head>
 <body>

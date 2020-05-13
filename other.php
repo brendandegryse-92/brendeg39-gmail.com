@@ -2,7 +2,7 @@
 <head>
 </head>
 <body>
-  <a href = "#field.php">Field</a>
+  <a href="#field.php">Field</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     First Name:<input type="text" name="FirstName"></input>
     Middle Initial:<input type="text" name="MI"></input>
@@ -28,24 +28,31 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT * FROM grower';
+$sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower';
 $stmt = $connection->prepare($sql);
 $stmt->execute();
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
+if (count($arr)>0) {
+  echo '<table><tr><th>First Name</th><th>MI</th><th>Last Name</th><th>Company Name</th><th>Mailing Address</th><th>City</th><th>State</th><th>ZIP</th><th>Home Phone</th><th>Mobile Phone</th><th>Email</th></tr>';
 foreach ($arr as $i=>$val) {
   array_push($_SESSION['rowPrimaryID'], $val[0]);
+  echo '<tr onclick="edit()">';
   foreach ($val as $key => $value) {
-    echo $value;
+    echo '<td>'.$value.'</td>';
   }
-  echo '<br>';
-  echo 'alert';
+  echo '</tr>';
+}
+}
   if (isset($_POST['FirstName'])) {
-  echo '<script>alert("sdlf");</script>';
   $sql = 'INSERT INTO grower (FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email']]);
   }
-}
 ?>
+<script>
+function edit() {
+  location.href = "#edit.php";
+}
+</script>
 </body>
 </html>

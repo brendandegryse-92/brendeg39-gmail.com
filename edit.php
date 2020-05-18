@@ -2,7 +2,6 @@
 <head>
 </head>
 <body>
-  <a href="#field.php">Field</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -15,7 +14,7 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower WHERE ID = 48';
+$sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower WHERE ID = ?';
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeID']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
@@ -32,7 +31,7 @@ echo '
   Mobile Phone:<input type="phone" value="'.$arr[9].'" name="Mobile"></input>
   Email:<input type="email" value="'.$arr[10].'" name="Email"></input>
   <input type="submit"></input>
-</form>';
+</form><a href="otherfield.php">fields</a>';
   if (isset($_POST['FirstName'])) {
   $sql = 'UPDATE grower SET FirstName = ?, MI = ?, LastName = ?, CompanyName = ?, MailingAddress = ?, City = ?, State = ?, Zip = ?, HomePhone = ?, MobilePhone = ?, Email = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);

@@ -2,7 +2,6 @@
 <head>
 </head>
 <body>
-  <a href="otherfield.php">Field</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     First Name:<input type="text" name="FirstName"></input>
     Middle Initial:<input type="text" name="MI"></input>
@@ -35,7 +34,6 @@ $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
   echo '<table><tr><th>First Name</th><th>MI</th><th>Last Name</th><th>Company Name</th><th>Mailing Address</th><th>City</th><th>State</th><th>ZIP</th><th>Home Phone</th><th>Mobile Phone</th><th>Email</th></tr>';
 foreach ($arr as $i=>$val) {
-  array_push($_SESSION['rowPrimaryID'], $val[0]);
   echo '<tr onclick="edit('.$val[0].')">';
   foreach ($val as $key => $value) {
     if ($key > 0) {
@@ -45,7 +43,7 @@ foreach ($arr as $i=>$val) {
   echo '</tr>';
 }
 }
-  if (isset($_POST['FirstName'])) {
+  if ($_POST['FirstName'] != "") {
   $sql = 'INSERT INTO grower (FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email']]);

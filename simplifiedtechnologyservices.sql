@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2020 at 08:29 PM
+-- Generation Time: May 18, 2020 at 07:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -422,9 +422,9 @@ CREATE TABLE `crop` (
 --
 
 INSERT INTO `crop` (`ID`, `UserID`, `CropID`, `FieldID`, `Year`, `Description`, `StartDate`, `StopDate`, `Latitude`, `Longitude`, `IsActive`) VALUES
-(62, 22, 1, 1, 2019, 'Corn', '2019-01-01', '2019-12-31', 0, 0, 1),
-(63, 22, 2, 3, 2019, 'Corn', '2019-01-01', '2019-12-31', 0, 0, 1),
-(65, 22, 3, 2, 2019, 'Corn', '2020-04-22', '0000-00-00', 0, 0, 1),
+(62, 22, 1, 1, 2020, 'Corn', '2019-01-01', '2019-12-31', 41.4155, -84.5513, 1),
+(63, 22, 2, 3, 2020, 'Corn', '2019-01-01', '2019-12-31', 41.4135, 0, 1),
+(65, 22, 3, 2, 2020, 'Corn', '2020-04-22', '2020-05-17', 0, 0, 1),
 (66, 22, 4, 4, 2020, '', '0000-00-00', '0000-00-00', 0, 0, 1);
 
 -- --------------------------------------------------------
@@ -458,12 +458,10 @@ CREATE TABLE `farms` (
 
 INSERT INTO `farms` (`ID`, `UserID`, `FarmNumber`, `OperatorID`, `BusinessID`, `Owner`, `FarmName`, `CropLand`, `FSA_Farm`, `FSA_Tract`, `InsuranceID`, `County`, `Description`, `RentType`, `PID`, `IsActive`) VALUES
 (1, 21, 1, 1, 1, 'Brendan', 'Brendan\'s Farm', 0, 'FSA_Farm', 'Tract', '1', 'OH', 'Excellent', '2', 1, 1),
-(7, 22, NULL, NULL, NULL, 'Gary', 'Brendan\'s Farm', 1, 'FSA_Farm', 'Tract', '1', 'Defiance', 'Excellent', '2', 0, 1),
-(8, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Bre Farm', 0, '', '', '', '', '', '', 0, 1),
-(9, 22, NULL, NULL, NULL, 'Bryan', 'asdf', 0, '', '', '', '', '', '', 0, 1),
-(10, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Farm 1', 0, '', '', '', '', '', '', 0, 1),
-(11, 22, NULL, NULL, NULL, 'Gary', 'Brendans Farm', 0, '', '', '', '', '', '', 0, 1),
-(12, 22, NULL, NULL, NULL, 'Ben', 'Test Farm', 0, '', '', '', '', '', '', 0, 1);
+(13, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Farm 1', 0, '', '', '', '', '', '', 0, 1),
+(14, 22, NULL, NULL, NULL, 'Gary', 'Brendans Farm', 0, '', '', '', '', '', '', 0, 1),
+(15, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Test Farm', 0, '', '', '', '', '', '', 0, 1),
+(16, 22, NULL, NULL, NULL, 'Ben', 'Ben\'s Farm', 0, '', '', '', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -539,7 +537,8 @@ INSERT INTO `fertilizers` (`ID`, `UserID`, `Name`, `EnteredUnits`, `PurchasedUni
 (113, 22, 'Microhance', 'Quarts', 'Gallons', '0', 1, 0),
 (114, 22, 'Sulfer Plus', 'Quarts', 'Gallons', '0', 1, 0),
 (115, 22, 'Montys Foliar', 'Gallons', 'Gallons', '1', 1, 0),
-(116, 22, 'Corn Sidedress', 'Gallons', 'Gallons', '1', 1, 0);
+(116, 22, 'Corn Sidedress', 'Gallons', 'Gallons', '1', 1, 0),
+(117, 22, 'Fert1', '', '', '0', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -595,11 +594,11 @@ CREATE TABLE `fields` (
 --
 
 INSERT INTO `fields` (`ID`, `UserID`, `FieldName`, `Acres`, `FSA_Farm`, `FSA_Tract`, `FSA_Field`, `FSA_Area`, `InsuranceID`, `County`, `Township`, `FarmRange`, `Section`, `Legal`, `Watershed`, `Restriction`, `Slope`, `TRating`, `Location`, `PID`, `TicketTrackID`, `AutoSteerHeading`, `IsActive`, `farmID`, `FarmName`) VALUES
-(1, 22, '', 0, '1', '1', '', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '1', '0', '0', '1', 1, '1', '0', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
-(2, 22, 'Brendan', 0, '0', '', '', '', '', '', '', '', '0', '0', '0', '0', 0, '0', '0', 0, 0, 0, 1, NULL, 'asdf'),
-(3, 22, '', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
-(4, 22, '', 75, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Brendan\'s Farm'),
-(5, 22, '', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Brendan\'s Farm');
+(1, 22, '', 0, '1', '1', '', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '1', '0', '0', '1', 1, '1', '0', 0, 0, 0, 1, NULL, 'Farm 1'),
+(2, 22, '', 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Farm 1'),
+(3, 22, '', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Test Farm'),
+(4, 22, 'Ben\'s Field', 75, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Ben\'s Farm'),
+(5, 22, '', 50, '', '', '', '0', '', '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, 1, NULL, 'Farm 1');
 
 -- --------------------------------------------------------
 
@@ -745,7 +744,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`UserID`, `email`, `name`, `phone`, `password`, `accountType`, `ExpireDate`) VALUES
 (21, 'brendandegryse@yahoo.com', 'Brendan Degryse', '5672396350', '$2y$10$HZNJQ0FFyx1PsZ2krNe6du792To.TXpgZ41mN76ldzBdlDgEHbxsu', 'active', '2020-04-01'),
-(22, 'brendeg39@gmail.com', 'Brendan Degryse', '5672396350', '$2y$10$zK2/7Yv0jGgh6pizpusms.dzBwrHjHsto.gU4sJ8Ys.j9MtlfENHu', 'active', '2020-04-30');
+(22, 'brendeg39@gmail.com', 'Brendan Degryse', '5672396350', '$2y$10$zK2/7Yv0jGgh6pizpusms.dzBwrHjHsto.gU4sJ8Ys.j9MtlfENHu', 'active', '2020-05-28');
 
 --
 -- Indexes for dumped tables
@@ -915,13 +914,13 @@ ALTER TABLE `crop`
 -- AUTO_INCREMENT for table `farms`
 --
 ALTER TABLE `farms`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `fertilizers`
 --
 ALTER TABLE `fertilizers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `fertilizeryears`

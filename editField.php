@@ -39,7 +39,7 @@ echo '
   How Was It Killed:<input type="text" value="'.$arr[19].'" name="HowKilled"></input>
   Date:<input type="date" value="'.$arr[20].'" name="DateKilled"></input>
   <input type="submit"></input>
-</form><a href="otherfield.php">fields</a>';
+</form><a href="manure.php">Manure</a>';
   if (isset($_POST['FieldName'])) {
   $sql = 'UPDATE field SET FieldName = ?,  Acres = ?,  County = ?,  Township = ?,  Section = ?,  Quarter = ?,  Tillage = ?,  Plantingdate = ?,  LastYearCrop = ?,  YearsCorn = ?,  Irrigated = ?,  Rotational = ?,  CropYear = ?,  CoverCrop = ?,  DateSeeded = ?,  How = ?,  Ncredits = ?,  HowKilled = ?,  DateKilled = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);

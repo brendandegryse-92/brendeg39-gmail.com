@@ -9,7 +9,7 @@
     County:<input type="text"name="County"></input>
     Township:<input type="text" name="Township"></input>
     Section:<input type="text" name="Section"></input>
-    Quarter:<input type="text" name="Quarter"></input>
+    Quarter:<input type="radio" name="Quarter" value="0">NE</input><input type="radio" name="Quarter" value="1">SE</input><input type="radio" name="Quarter" value="2">NW</input><input type="radio" name="Quarter" value="3">SW</input>
     Tillage:<input type="text" name="Tillage"></input>
     Planting Date:<input type="date" name="Plantingdate"></input>
     2019 Crop:<input type="text" name="LastYearCrop"></input>
@@ -38,7 +38,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 }
 $sql = 'SELECT * FROM field WHERE GrowerID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeID']]);
+$stmt->execute([$_COOKIE['PrimeIDGrower']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
   echo '<table><tr><th>Field Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
@@ -46,7 +46,14 @@ foreach ($arr as $i=>$val) {
   echo '<tr onclick="edit('.$val[0].')">';
   foreach ($val as $key => $value) {
     if ($key > 1) {
-    echo '<td>'.$value.'</td>';
+      if ($key != 7) {
+    echo '<td>'.$value.'</td>';}
+    else {
+      if ($value == 0) {echo '<td>NE</td>';}
+      if ($value == 1) {echo '<td>SE</td>';}
+      if ($value == 2) {echo '<td>NW</td>';}
+      if ($value == 3) {echo '<td>SW</td>';}
+    }
   }
   }
   echo '</tr>';
@@ -55,12 +62,12 @@ foreach ($arr as $i=>$val) {
   if ($_POST['FieldName'] != "") {
   $sql = 'INSERT INTO  field (GrowerID ,  FieldName ,  Acres ,  County ,  Township ,  Section ,  Quarter ,  Tillage ,  Plantingdate,  LastYearCrop ,  YearsCorn ,  Irrigated ,  Rotational ,  CropYear ,  CoverCrop ,  DateSeeded ,  How ,  Ncredits ,  HowKilled ,  DateKilled ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeID'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled']]);
+  $stmt->execute([$_COOKIE['PrimeIDGrower'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled']]);
   }
 ?>
 <script>
 function edit(x) {
-  document.cookie="PrimeID=" + x;
+  document.cookie="PrimeIDField=" + x;
   location.href = "editField.php";
 }
 </script>

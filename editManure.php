@@ -16,7 +16,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 }
 $sql = 'SELECT * FROM manure WHERE ID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeID']]);
+$stmt->execute([$_COOKIE['PrimeIDManure']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '
     Manure:<input type="text" value="'.$arr[2].'" name="Manure"></input>
@@ -31,7 +31,7 @@ echo '
   if (isset($_POST['Manure'])) {
   $sql = 'UPDATE manure SET Manure = ?, AppType = ?, Time = ?, Availability = ?, AppTiming = ?, AmountPerAcre = ?, NPK = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);
-  $stmt->execute([$_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['NPK'], $_COOKIE['PrimeID']]);
+  $stmt->execute([$_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['NPK'], $_COOKIE['PrimeIDManure']]);
   header("Location: other.php");
   }
 ?>

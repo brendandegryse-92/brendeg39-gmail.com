@@ -51,7 +51,7 @@ foreach ($arr as $i=>$val) {
 ?>
 <script>
 function edit(x) {
-  document.cookie="PrimeID=" + x;
+  document.cookie="PrimeIDGrower=" + x;
   location.href = "edit.php";
 }
 </script>

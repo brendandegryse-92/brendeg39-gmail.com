@@ -16,7 +16,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 }
 $sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower WHERE ID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeID']]);
+$stmt->execute([$_COOKIE['PrimeIDGrower']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '
   First Name:<input type="text" value="'.$arr[0].'" name="FirstName"></input>
@@ -35,7 +35,7 @@ echo '
   if (isset($_POST['FirstName'])) {
   $sql = 'UPDATE grower SET FirstName = ?, MI = ?, LastName = ?, CompanyName = ?, MailingAddress = ?, City = ?, State = ?, Zip = ?, HomePhone = ?, MobilePhone = ?, Email = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);
-  $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_COOKIE['PrimeID']]);
+  $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_COOKIE['PrimeIDGrower']]);
   header("Location: other.php");
   }
 ?>

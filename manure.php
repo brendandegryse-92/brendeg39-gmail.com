@@ -25,7 +25,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 }
 $sql = 'SELECT * FROM manure WHERE FieldID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeID']]);
+$stmt->execute([$_COOKIE['PrimeIDField']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
   echo '<table><tr><th>Manure</th><th>AppType</th><th>Time</th><th>Availability</th><th>AppTiming</th><th>AmountPerAcre</th><th>NPK</th></tr>';
@@ -42,12 +42,12 @@ foreach ($arr as $i=>$val) {
   if ($_POST['Manure'] != "") {
   $sql = 'INSERT INTO manure (FieldID, Manure,	AppType,	Time,	Availability,	AppTiming,	AmountPerAcre, NPK) VALUES (?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeID'], $_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['NPK']]);
+  $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['NPK']]);
   }
 ?>
 <script>
 function edit(x) {
-  document.cookie="PrimeID=" + x;
+  document.cookie="PrimeIDManure=" + x;
   location.href = "editManure.php";
 }
 </script>

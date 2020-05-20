@@ -16,7 +16,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 }
 $sql = 'SELECT * FROM field WHERE ID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeID']]);
+$stmt->execute([$_COOKIE['PrimeIDField']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '
   Field Name:<input type="text" value="'.$arr[2].'" name="FieldName"></input>
@@ -24,7 +24,8 @@ echo '
   County:<input type="text" value="'.$arr[4].'" name="County"></input>
   Township:<input type="text" value="'.$arr[5].'" name="Township"></input>
   Section:<input type="text" value="'.$arr[6].'" name="Section"></input>
-  Quarter:<input type="text" value="'.$arr[7].'" name="Quarter"></input>
+  Quarter:<input type="radio" name="Quarter" value="0"'; if ($arr[7] == 0) {echo ' checked';} echo '>NE</input><input type="radio" name="Quarter" value="1"'; if ($arr[7] == 1) {echo ' checked';} echo '>SE</input>
+  <input type="radio" name="Quarter" value="2"'; if ($arr[7] == 2) {echo ' checked';} echo '>NW</input><input type="radio" name="Quarter" value="3"'; if ($arr[7] == 3) {echo ' checked';} echo '>SW</input>
   Tillage:<input type="text" value="'.$arr[8].'" name="Tillage"></input>
   Planting Date:<input type="date" value="'.$arr[9].'" name="Plantingdate"></input>
   2019 Crop:<input type="text" value="'.$arr[10].'" name="LastYearCrop"></input>
@@ -43,7 +44,7 @@ echo '
   if (isset($_POST['FieldName'])) {
   $sql = 'UPDATE field SET FieldName = ?,  Acres = ?,  County = ?,  Township = ?,  Section = ?,  Quarter = ?,  Tillage = ?,  Plantingdate = ?,  LastYearCrop = ?,  YearsCorn = ?,  Irrigated = ?,  Rotational = ?,  CropYear = ?,  CoverCrop = ?,  DateSeeded = ?,  How = ?,  Ncredits = ?,  HowKilled = ?,  DateKilled = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);
-  $stmt->execute([$_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_COOKIE['PrimeID']]);
+  $stmt->execute([$_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_COOKIE['PrimeIDField']]);
   header("Location: other.php");
   }
 ?>

@@ -61,9 +61,9 @@ elseif ($data[$arraylen]->tableName == "Farms") {
     $data[$arraylen]->counter = $data[$arraylen]->length+10;
   }
  if ($data[$arraylen]->counter < $data[$arraylen]->length-1) {
-$sql = "UPDATE farms SET Owner = ?, FarmName = ?, FSA_Farm = ?, FSA_Tract = ?, InsuranceID = ?, County = ?, Description = ?, RentType = ?, PID = ?, IsActive = ? WHERE ID = ? AND UserID = ?";
+$sql = "UPDATE farms SET Owner = ?, CropLand = ?, FarmName = ?, FSA_Farm = ?, FSA_Tract = ?, InsuranceID = ?, County = ?, Description = ?, RentType = ?, PID = ?, IsActive = ? WHERE ID = ? AND UserID = ?";
 $stmt = $connection->prepare($sql);
-$stmt->execute([$data[$arraylen]->Owner, $data[$arraylen]->FarmName, $data[$arraylen]->FSA_Farm, $data[$arraylen]->FSA_Tract, $data[$arraylen]->InsuranceID, $data[$arraylen]->County, $data[$arraylen]->Description, $data[$arraylen]->RentType, $data[$arraylen]->PID, $data[$arraylen]->Active, $_SESSION['rowPrimaryID'][$data[$arraylen]->counter], $_SESSION['ID']]);}
+$stmt->execute([$data[$arraylen]->Owner, $data[$arraylen]->CropLand, $data[$arraylen]->FarmName, $data[$arraylen]->FSA_Farm, $data[$arraylen]->FSA_Tract, $data[$arraylen]->InsuranceID, $data[$arraylen]->County, $data[$arraylen]->Description, $data[$arraylen]->RentType, $data[$arraylen]->PID, $data[$arraylen]->Active, $_SESSION['rowPrimaryID'][$data[$arraylen]->counter], $_SESSION['ID']]);}
 if (($data[$arraylen]->counter == $data[$arraylen]->length-1) && ($data[$arraylen]->FarmName != "")) {
     $sql = "INSERT INTO farms (Owner, FarmName, CropLand, FSA_Farm, FSA_Tract, InsuranceID, County, Description, RentType, PID, IsActive, UserID) Values (?,?,?,?,?,?,?,?,?,?,?,?)";
     $stmt = $connection->prepare($sql);

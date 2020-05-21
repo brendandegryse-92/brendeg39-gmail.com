@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -26,14 +27,23 @@ echo '
     App Timing:<input type="text" value="'.$arr[6].'" name="AppTiming"></input>
     Amount Per Acre:<input type="number" value="'.$arr[7].'" name="AmountPerAcre"></input>
     NPK:<input type="number" value="'.$arr[8].'" name="NPK"></input>
-    <input type="submit"></input>
+    <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
   </form>';
   if (isset($_POST['Manure'])) {
+  if ($_POST['delete'] == "on") {
+    $sql = "DELETE FROM manure WHERE ID = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDManure']]);
+    $_POST['delete'] == "off";
+    header("Location: other.php");
+  }
+  else {
   $sql = 'UPDATE manure SET Manure = ?, AppType = ?, Time = ?, Availability = ?, AppTiming = ?, AmountPerAcre = ?, NPK = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['NPK'], $_COOKIE['PrimeIDManure']]);
   header("Location: other.php");
   }
+}
 ?>
 <script>
 </script>

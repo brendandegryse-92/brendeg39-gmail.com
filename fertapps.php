@@ -4,7 +4,7 @@
 <body>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    First Name:<input type="text" name="FirstName"></input>
+    Recieved Variable Rate N, P, K?:<input type="checkbox" name="VariableRate"></input>
     Middle Initial:<input type="text" name="MI"></input>
     Last Name:<input type="text" name="LastName"></input>
     Company Name:<input type="text" name="CompanyName"></input>

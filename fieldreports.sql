@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2020 at 07:38 PM
+-- Generation Time: May 21, 2020 at 08:35 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -50,7 +50,6 @@ CREATE TABLE `field` (
   `Quarter` int(11) NOT NULL,
   `Tillage` int(11) NOT NULL,
   `Plantingdate` date NOT NULL,
-  `Variety` varchar(255) NOT NULL,
   `LastYearCrop` varchar(255) NOT NULL,
   `YearsCorn` int(11) NOT NULL,
   `Irrigated` tinyint(1) NOT NULL,
@@ -68,8 +67,11 @@ CREATE TABLE `field` (
 -- Dumping data for table `field`
 --
 
-INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `Variety`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`) VALUES
-(15, 58, 'Brendan\'s Field', 0, '', '0', '0', 0, 0, '0000-00-00', '', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00');
+INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`) VALUES
+(16, 58, 'Brendan\'s Field', 15, '', '', '', 1, 0, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 2, '2020-05-22'),
+(17, 58, 'Brendan\'s Field', 15, 'Defiance', 'Washington', 'asdf', 2, 0, '0000-00-00', '', 0, 0, 0, 2000, '2000', '0000-00-00', '0000-00-00', 0, 1, '0000-00-00'),
+(18, 58, 'Brendan\'s Field', 0, '', '', '', 3, 0, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 3, '0000-00-00'),
+(19, 58, 'Brendan\'s Field', 3, 'Defiance', 'Washington', 'asdf', 1, 0, '2020-05-20', 'Corn', 6, 0, 0, 2020, 'Alfalfa', '2020-05-22', 'SD', 10, 2, '2020-05-24');
 
 -- --------------------------------------------------------
 
@@ -97,8 +99,7 @@ CREATE TABLE `grower` (
 --
 
 INSERT INTO `grower` (`ID`, `FirstName`, `MI`, `LastName`, `CompanyName`, `MailingAddress`, `City`, `State`, `Zip`, `HomePhone`, `MobilePhone`, `Email`) VALUES
-(58, 'Brendan', '', 'Degryse', '', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com'),
-(59, 'Brendan', '', 'Degryse', '', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com');
+(58, 'Brendan', '', 'Degryse', '', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,7 @@ ALTER TABLE `grower`
 --
 ALTER TABLE `manure`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FieldConstraintManure` (`FieldID`);
+  ADD KEY `Manure` (`FieldID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -163,7 +164,7 @@ ALTER TABLE `fertilizerapps`
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `grower`
@@ -175,29 +176,7 @@ ALTER TABLE `grower`
 -- AUTO_INCREMENT for table `manure`
 --
 ALTER TABLE `manure`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `fertilizerapps`
---
-ALTER TABLE `fertilizerapps`
-  ADD CONSTRAINT `GrowerFert` FOREIGN KEY (`GrowerID`) REFERENCES `field` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Constraints for table `field`
---
-ALTER TABLE `field`
-  ADD CONSTRAINT `Grower` FOREIGN KEY (`GrowerID`) REFERENCES `grower` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Constraints for table `manure`
---
-ALTER TABLE `manure`
-  ADD CONSTRAINT `FieldConstraintManure` FOREIGN KEY (`FieldID`) REFERENCES `manure` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

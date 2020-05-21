@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -37,16 +38,26 @@ echo '
   Date Seeded:<input type="date" value="'.$arr[16].'" name="DateSeeded"></input>
   How Was It Seeded:<input type="text" value="'.$arr[17].'" name="HowSeeded"></input>
   Ncredits:<input type="number" value="'.$arr[18].'" name="Ncredits"></input>
-  How Was It Killed:<input type="text" value="'.$arr[19].'" name="HowKilled"></input>
+  How Was It Killed:<input type="radio" name="HowKilled" value="0"'; if ($arr[19] == 0) {echo ' checked';} echo '>Chemical burn down</input><input type="radio" name="HowKilled" value="1"'; if ($arr[19] == 1) {echo ' checked';} echo '>Plowed or Disked under</input>
+  <input type="radio" name="HowKilled" value="2"'; if ($arr[19] == 2) {echo ' checked';} echo '>Harvested</input><input type="radio" name="HowKilled" value="3"'; if ($arr[19] == 3) {echo ' checked';} echo '>Other</input>
   Date:<input type="date" value="'.$arr[20].'" name="DateKilled"></input>
-  <input type="submit"></input>
-</form><a href="manure.php">Manure</a>';
+  <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
+</form><a href="manure.php">Manure</a><br><a href="fertapps.php">Fertilizer Applications</a>';
   if (isset($_POST['FieldName'])) {
+  if ($_POST['delete'] == "on") {
+    $sql = "DELETE FROM field WHERE ID = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDField']]);
+    $_POST['delete'] == "off";
+    header("Location: other.php");
+  }
+  else {
   $sql = 'UPDATE field SET FieldName = ?,  Acres = ?,  County = ?,  Township = ?,  Section = ?,  Quarter = ?,  Tillage = ?,  Plantingdate = ?,  LastYearCrop = ?,  YearsCorn = ?,  Irrigated = ?,  Rotational = ?,  CropYear = ?,  CoverCrop = ?,  DateSeeded = ?,  How = ?,  Ncredits = ?,  HowKilled = ?,  DateKilled = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_COOKIE['PrimeIDField']]);
   header("Location: other.php");
   }
+}
 ?>
 <script>
 </script>

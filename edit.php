@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -30,14 +31,23 @@ echo '
   Home Phone:<input type="phone" value="'.$arr[8].'" name="Home"></input>
   Mobile Phone:<input type="phone" value="'.$arr[9].'" name="Mobile"></input>
   Email:<input type="email" value="'.$arr[10].'" name="Email"></input>
-  <input type="submit"></input>
+  <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
 </form><a href="otherfield.php">fields</a>';
   if (isset($_POST['FirstName'])) {
+  if ($_POST['delete'] == "on") {
+    $sql = "DELETE FROM grower WHERE ID = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDGrower']]);
+    $_POST['delete'] == "off";
+    header("Location: other.php");
+  }
+  else {
   $sql = 'UPDATE grower SET FirstName = ?, MI = ?, LastName = ?, CompanyName = ?, MailingAddress = ?, City = ?, State = ?, Zip = ?, HomePhone = ?, MobilePhone = ?, Email = ? WHERE ID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_COOKIE['PrimeIDGrower']]);
   header("Location: other.php");
-  }
+}
+}
 ?>
 <script>
 </script>

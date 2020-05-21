@@ -2,7 +2,7 @@
 <head>
 </head>
 <body>
-  <a href="other.php">Grower</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Field Name:<input type="text" name="FieldName"></input>
     Acres:<input type="number" name="Acres"></input>
@@ -21,7 +21,7 @@
     Date Seeded:<input type="date" name="DateSeeded"></input>
     How Was It Seeded:<input type="text" name="HowSeeded"></input>
     Ncredits:<input type="number" name="Ncredits"></input>
-    How Was It Killed:<input type="text" name="HowKilled"></input>
+    How Was It Killed:<input type="radio" name="HowKilled" value="0">Chemical burn down</input><input type="radio" name="HowKilled" value="1">Plowed or Disked under</input><input type="radio" name="HowKilled" value="2">Harvested</input><input type="radio" name="HowKilled" value="3">Other</input>
     Date:<input type="date" name="DateKilled"></input>
     <input type="submit"></input>
   </form>
@@ -41,18 +41,24 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDGrower']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
-  echo '<table><tr><th>Field Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
+  echo '<table><tr><th>Field Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
 foreach ($arr as $i=>$val) {
   echo '<tr onclick="edit('.$val[0].')">';
   foreach ($val as $key => $value) {
     if ($key > 1) {
-      if ($key != 7) {
+      if ($key != 7 && $key != 19) {
     echo '<td>'.$value.'</td>';}
-    else {
+    elseif ($key == 7) {
       if ($value == 0) {echo '<td>NE</td>';}
       if ($value == 1) {echo '<td>SE</td>';}
       if ($value == 2) {echo '<td>NW</td>';}
       if ($value == 3) {echo '<td>SW</td>';}
+    }
+    elseif ($key == 19) {
+      if ($value == 0) {echo '<td>Chemical burn down</td>';}
+      if ($value == 1) {echo '<td>Plowed or Disked under</td>';}
+      if ($value == 2) {echo '<td>Harvested</td>';}
+      if ($value == 3) {echo '<td>Other</td>';}
     }
   }
   }

@@ -2,7 +2,7 @@
 <head>
 </head>
 <body>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Field Name:<input type="text" name="FieldName"></input>
     Acres:<input type="number" name="Acres"></input>

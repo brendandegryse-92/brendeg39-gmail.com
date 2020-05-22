@@ -2,7 +2,7 @@
 <head>
 </head>
 <body>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Manure:<input type="text" name="Manure"></input>
     App Type:<input type="text" name="AppType"></input>
@@ -10,7 +10,7 @@
     Availability:<input type="text" name="Availability"></input>
     App Timing:<input type="text" name="AppTiming"></input>
     Amount Per Acre:<input type="number" name="AmountPerAcre"></input>
-    NPK:<input type="number" name="NPK"></input>
+    NPK:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="NPK"></input>
     <input type="submit"></input>
   </form>
 <?php

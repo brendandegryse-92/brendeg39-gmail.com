@@ -55,7 +55,9 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
     $rowIndex[$i] = $i;
   }
     array_push($_SESSION['rowPrimaryID'], -1);
-      newRow(getNextRowNumber($rowIndex), null, null, null, null, null, null, null, null, null, null, 1, $array);
+    if (count($arr)>0) {
+      newRow(getNextRowNumber($rowIndex), null, null, null, null, null, null, null, null, null, null, 1, $array);}
+      else {newRow(0, null, null, null, null, null, null, null, null, null, null, 1, $array);}
       function newRow($rowNm, $Owner, $FarmName, $CropLand, $FSA_Farm, $FSA_Tract, $InsuranceID, $County, $Description, $RentType, $PID, $Active, $Operators) {
         echo '<tr name="'.$rowNm.'">';
         echo '<form method="get" id="form" name="'.$rowNm.'">';

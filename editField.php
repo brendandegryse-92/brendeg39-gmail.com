@@ -27,7 +27,8 @@ echo '
   Section:<input type="text" value="'.$arr[6].'" name="Section"></input>
   Quarter:<input type="radio" name="Quarter" value="0"'; if ($arr[7] == 0) {echo ' checked';} echo '>NE</input><input type="radio" name="Quarter" value="1"'; if ($arr[7] == 1) {echo ' checked';} echo '>SE</input>
   <input type="radio" name="Quarter" value="2"'; if ($arr[7] == 2) {echo ' checked';} echo '>NW</input><input type="radio" name="Quarter" value="3"'; if ($arr[7] == 3) {echo ' checked';} echo '>SW</input>
-  Tillage:<input type="text" value="'.$arr[8].'" name="Tillage"></input>
+  Tillage:<input type="radio" name="Tillage" value="0"'; if ($arr[8] == 0) {echo ' checked';} echo '>No Till</input><input type="radio" name="Tillage" value="1"'; if ($arr[8] == 1) {echo ' checked';} echo '>Minimum Till</input>
+  <input type="radio" name="Tillage" value="2"'; if ($arr[8] == 2) {echo ' checked';} echo '>Fall</input><input type="radio" name="Tillage" value="3"'; if ($arr[8] == 3) {echo ' checked';} echo '>Spring</input><input type="radio" name="Tillage" value="4"'; if ($arr[8] == 4) {echo ' checked';} echo '>Strip Till</input>
   Planting Date:<input type="date" value="'.$arr[9].'" name="Plantingdate"></input>
   2019 Crop:<input type="text" value="'.$arr[10].'" name="LastYearCrop"></input>
   How Many Years Corn:<input type="number" value="'.$arr[11].'" name="YearsCorn"></input>

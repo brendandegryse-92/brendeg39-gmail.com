@@ -48,6 +48,8 @@ foreach ($arr as $i=>$val) {
   $sql = 'INSERT INTO grower (FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email']]);
+  $_POST['FirstName'] = "";
+  header("Location: other.php");
   }
 ?>
 <script>

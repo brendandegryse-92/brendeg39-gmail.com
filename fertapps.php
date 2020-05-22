@@ -5,11 +5,11 @@
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Recieved Variable Rate N, P, K?:<input type="checkbox" name="VariableRate"></input>
-    Middle Initial:<input type="text" name="MI"></input>
-    Last Name:<input type="text" name="LastName"></input>
-    Company Name:<input type="text" name="CompanyName"></input>
-    Mailing Address:<input type="text" name="MailAdd"></input>
-    City:<input type="text" name="City"></input>
+    Fall N:<input type="text" name="MI"></input>
+    Proplant N:<input type="text" name="LastName"></input>
+    Pre-emerge N:<input type="text" name="CompanyName"></input>
+    Starter:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="MailAdd"></input>
+    Sidedress N:<input type="text" name="City"></input>
     State:<input type="text" name="State"></input>
     ZIP:<input type="number" name="ZIP"></input>
     Home Phone:<input type="phone" name="Home"></input>

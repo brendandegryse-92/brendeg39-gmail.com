@@ -44,6 +44,8 @@ foreach ($arr as $i=>$val) {
   $sql = 'INSERT INTO manure (FieldID, Manure,	AppType,	Time,	Availability,	AppTiming,	AmountPerAcre, NPK) VALUES (?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['NPK']]);
+  $_POST['Manure'] = "";
+  header("Location: manure.php");
   }
 ?>
 <script>

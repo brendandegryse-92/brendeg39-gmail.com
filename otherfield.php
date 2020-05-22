@@ -10,7 +10,7 @@
     Township:<input type="text" name="Township"></input>
     Section:<input type="text" name="Section"></input>
     Quarter:<input type="radio" name="Quarter" value="0">NE</input><input type="radio" name="Quarter" value="1">SE</input><input type="radio" name="Quarter" value="2">NW</input><input type="radio" name="Quarter" value="3">SW</input>
-    Tillage:<input type="text" name="Tillage"></input>
+    Tillage:<input type="radio" name="Tillage" value="0">No Till</input><input type="radio" name="Tillage" value="1">Minimum Till</input><input type="radio" name="Tillage" value="2">Fall</input><input type="radio" name="Tillage" value="3">Spring</input><input type="radio" name="Tillage" value="4">Strip Till</input>
     Planting Date:<input type="date" name="Plantingdate"></input>
     2019 Crop:<input type="text" name="LastYearCrop"></input>
     How Many Years Corn:<input type="number" name="YearsCorn"></input>
@@ -46,7 +46,7 @@ foreach ($arr as $i=>$val) {
   echo '<tr onclick="edit('.$val[0].')">';
   foreach ($val as $key => $value) {
     if ($key > 1) {
-      if ($key != 7 && $key != 19) {
+      if ($key != 7 && $key != 19 && $key != 8) {
     echo '<td>'.$value.'</td>';}
     elseif ($key == 7) {
       if ($value == 0) {echo '<td>NE</td>';}
@@ -60,6 +60,13 @@ foreach ($arr as $i=>$val) {
       if ($value == 2) {echo '<td>Harvested</td>';}
       if ($value == 3) {echo '<td>Other</td>';}
     }
+    elseif ($key == 8) {
+      if ($value == 0) {echo '<td>No Till</td>';}
+      if ($value == 1) {echo '<td>Minimum Till</td>';}
+      if ($value == 2) {echo '<td>Fall</td>';}
+      if ($value == 3) {echo '<td>Spring</td>';}
+      if ($value == 4) {echo '<td>Strip Till</td>';}
+    }
   }
   }
   echo '</tr>';
@@ -69,6 +76,8 @@ foreach ($arr as $i=>$val) {
   $sql = 'INSERT INTO  field (GrowerID ,  FieldName ,  Acres ,  County ,  Township ,  Section ,  Quarter ,  Tillage ,  Plantingdate,  LastYearCrop ,  YearsCorn ,  Irrigated ,  Rotational ,  CropYear ,  CoverCrop ,  DateSeeded ,  How ,  Ncredits ,  HowKilled ,  DateKilled ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDGrower'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled']]);
+  $_POST['FieldName'] = "";
+  header("Location: otherfield.php");
   }
 ?>
 <script>

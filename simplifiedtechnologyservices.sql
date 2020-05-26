@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2020 at 07:39 PM
+-- Generation Time: May 26, 2020 at 06:04 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -458,10 +458,8 @@ CREATE TABLE `farms` (
 
 INSERT INTO `farms` (`ID`, `UserID`, `FarmNumber`, `OperatorID`, `BusinessID`, `Owner`, `FarmName`, `CropLand`, `FSA_Farm`, `FSA_Tract`, `InsuranceID`, `County`, `Description`, `RentType`, `PID`, `IsActive`) VALUES
 (1, 21, 1, 1, 1, 'Brendan', 'Brendan\'s Farm', 0, 'FSA_Farm', 'Tract', '1', 'OH', 'Excellent', '2', 1, 1),
-(13, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Farm 1', 0, '', '', '', '', '', '', 0, 1),
-(14, 22, NULL, NULL, NULL, 'Gary', 'Brendans Farm', 0, '', '', '', '', '', '', 0, 1),
-(15, 22, NULL, NULL, NULL, 'Brendan Degryse', 'Test Farm', 0, '', '', '', '', '', '', 0, 1),
-(16, 22, NULL, NULL, NULL, 'Ben', 'Ben\'s Farm', 0, '', '', '', '', '', '', 0, 1);
+(29, 22, NULL, NULL, NULL, 'Brendan Degryse', 'United States', 0, 'United States', '', '', '', '', '', 0, 1),
+(30, 22, NULL, NULL, NULL, 'Brendan Degryse', 'United States', 0, 'United States', 'United States', 'United States', 'OH', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -914,7 +912,7 @@ ALTER TABLE `crop`
 -- AUTO_INCREMENT for table `farms`
 --
 ALTER TABLE `farms`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `fertilizers`

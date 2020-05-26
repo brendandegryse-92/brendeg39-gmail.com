@@ -33,13 +33,17 @@ if (count($arr)>0) {
 foreach ($arr as $i=>$val) {
   echo '<tr onclick="edit('.$val[0].')">';
   foreach ($val as $key => $value) {
-    if ($key > 1) {
+    if ($key > 1 && $key != 8) {
+    echo '<td>'.$value.'</td>';
+  }
+  elseif ($key == 8) {
     echo '<td>'.$value.'</td>';
   }
   }
   echo '</tr>';
 }
 }
+str_replace("%","",$_POST['NPK']);
   if ($_POST['Manure'] != "") {
   $sql = 'INSERT INTO manure (FieldID, Manure,	AppType,	Time,	Availability,	AppTiming,	AmountPerAcre, NPK) VALUES (?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);

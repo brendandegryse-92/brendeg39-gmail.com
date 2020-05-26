@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2020 at 08:35 PM
+-- Generation Time: May 26, 2020 at 06:04 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -30,8 +30,40 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `fertilizerapps` (
   `ID` int(11) NOT NULL,
-  `GrowerID` int(11) NOT NULL
+  `FieldID` int(11) NOT NULL,
+  `VariableRate` tinyint(1) DEFAULT NULL,
+  `FallN` int(11) DEFAULT NULL,
+  `FallOther` varchar(255) DEFAULT NULL,
+  `FallLbs` int(11) DEFAULT NULL,
+  `FallInc` tinyint(1) DEFAULT NULL,
+  `PreN` int(11) DEFAULT NULL,
+  `PreOther` varchar(255) DEFAULT NULL,
+  `PreLbs` int(11) DEFAULT NULL,
+  `PreInc` tinyint(4) DEFAULT NULL,
+  `PreEmergeN` int(11) DEFAULT NULL,
+  `PreEmergeOther` varchar(255) DEFAULT NULL,
+  `PreEmergeLbs` int(11) DEFAULT NULL,
+  `PreEmergeInc` tinyint(4) DEFAULT NULL,
+  `StarterNPK` text DEFAULT NULL,
+  `StarterRate` varchar(255) DEFAULT NULL,
+  `SidedressN` int(11) DEFAULT NULL,
+  `SidedressInc` tinyint(4) DEFAULT NULL,
+  `SidedressNFarmer` int(11) DEFAULT NULL,
+  `SidedressNFarmerInc` int(11) DEFAULT NULL,
+  `SidedressN75` int(11) DEFAULT NULL,
+  `SidedressN75Inc` int(11) DEFAULT NULL,
+  `StabilizerUsed` tinyint(1) DEFAULT NULL,
+  `StabilizerProduct` varchar(255) DEFAULT NULL,
+  `LbsNfromUAN` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fertilizerapps`
+--
+
+INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOther`, `FallLbs`, `FallInc`, `PreN`, `PreOther`, `PreLbs`, `PreInc`, `PreEmergeN`, `PreEmergeOther`, `PreEmergeLbs`, `PreEmergeInc`, `StarterNPK`, `StarterRate`, `SidedressN`, `SidedressInc`, `SidedressNFarmer`, `SidedressNFarmerInc`, `SidedressN75`, `SidedressN75Inc`, `StabilizerUsed`, `StabilizerProduct`, `LbsNfromUAN`) VALUES
+(7, 18, 0, 4567848, '', 0, 1, 0, '', 0, 2, 0, '', 0, 1, '', NULL, 0, 2, 0, NULL, 0, NULL, 1, '', 0),
+(8, 18, 1, 4565, '', 0, 2, 0, '', 0, 2, 0, '', 0, 1, '', NULL, 0, 1, 0, 1, 0, 1, 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -68,10 +100,9 @@ CREATE TABLE `field` (
 --
 
 INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`) VALUES
-(16, 58, 'Brendan\'s Field', 15, '', '', '', 1, 0, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 2, '2020-05-22'),
-(17, 58, 'Brendan\'s Field', 15, 'Defiance', 'Washington', 'asdf', 2, 0, '0000-00-00', '', 0, 0, 0, 2000, '2000', '0000-00-00', '0000-00-00', 0, 1, '0000-00-00'),
-(18, 58, 'Brendan\'s Field', 0, '', '', '', 3, 0, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 3, '0000-00-00'),
-(19, 58, 'Brendan\'s Field', 3, 'Defiance', 'Washington', 'asdf', 1, 0, '2020-05-20', 'Corn', 6, 0, 0, 2020, 'Alfalfa', '2020-05-22', 'SD', 10, 2, '2020-05-24');
+(18, 58, 'Brendan\'s Field', 0, '', '', '', 3, 2, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 3, '0000-00-00'),
+(19, 58, 'Brendan\'s Field', 3, 'Defiance', 'Washington', 'asdf', 1, 0, '2020-05-20', 'Corn', 6, 0, 0, 2020, 'Alfalfa', '2020-05-22', 'SD', 10, 2, '2020-05-24'),
+(20, 58, 'Brendan\'s Field', 456, 'Defiance', 'Washington', 'asdf', 3, 2, '2020-05-19', 'Corn', 7, 0, 0, 2020, 'Alfalfa', '2020-05-25', 'SD', 1, 1, '2020-05-27');
 
 -- --------------------------------------------------------
 
@@ -116,7 +147,7 @@ CREATE TABLE `manure` (
   `Availability` int(11) NOT NULL,
   `AppTiming` int(11) NOT NULL,
   `AmountPerAcre` int(11) NOT NULL,
-  `NPK` int(11) NOT NULL
+  `NPK` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -128,7 +159,7 @@ CREATE TABLE `manure` (
 --
 ALTER TABLE `fertilizerapps`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `GrowerFert` (`GrowerID`);
+  ADD KEY `Fert` (`FieldID`);
 
 --
 -- Indexes for table `field`
@@ -158,25 +189,47 @@ ALTER TABLE `manure`
 -- AUTO_INCREMENT for table `fertilizerapps`
 --
 ALTER TABLE `fertilizerapps`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `grower`
 --
 ALTER TABLE `grower`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `manure`
 --
 ALTER TABLE `manure`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `fertilizerapps`
+--
+ALTER TABLE `fertilizerapps`
+  ADD CONSTRAINT `Fert` FOREIGN KEY (`FieldID`) REFERENCES `field` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `field`
+--
+ALTER TABLE `field`
+  ADD CONSTRAINT `Field` FOREIGN KEY (`GrowerID`) REFERENCES `grower` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `manure`
+--
+ALTER TABLE `manure`
+  ADD CONSTRAINT `Manure` FOREIGN KEY (`FieldID`) REFERENCES `field` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -35,7 +35,7 @@ echo '
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_COOKIE['PrimeIDManure']]);
     $_POST['delete'] == "off";
-    header("Location: other.php");
+    header("Location: manure.php");
   }
   else {
   $sql = 'UPDATE manure SET Manure = ?, AppType = ?, Time = ?, Availability = ?, AppTiming = ?, AmountPerAcre = ?, NPK = ? WHERE ID = ?';

@@ -1,7 +1,23 @@
 <html>
 <head>
 </head>
-<body>
+<body><h1><?php
+session_start();
+$server = "localhost";
+$uname = "client";
+$pword = "Pass";
+try {
+$connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
+}
+catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
+}
+$sql = 'SELECT FieldName FROM field WHERE ID = ?';
+$stmt = $connection->prepare($sql);
+$stmt->execute([$_COOKIE['PrimeIDField']]);
+$arr = $stmt->fetchAll(PDO::FETCH_NUM);
+echo $arr[0][0];
+?></h1>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Manure:<input onclick="stop()" type="radio" name="Manure" value="Swine">Swine</input><input onclick="stop()" type="radio" name="Manure" value="Beef">Beef</input><input onclick="stop()" type="radio" name="Manure" value="Dairy">Dairy</input><input onclick="stop()" type="radio" name="Manure" value="Layer">Layer</input><input onclick="stop()" type="radio" name="Manure" value="Broiler">Broiler</input><input onclick="stop()" type="radio" name="Manure" value="Turkey">Turkey</input><input type="radio" onclick="stop()" name="Manure" value="Layer Pullet">Layer Pullet</input>

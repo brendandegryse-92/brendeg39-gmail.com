@@ -19,7 +19,7 @@
   <div style="overflow: auto;">
   <table>
     <div class="toprow">
-    <tr>
+    <tr style="position: sticky;">
       <th>Crop</th>
       <th>Variety</th>
       <th>Seeds Per Unit</th>

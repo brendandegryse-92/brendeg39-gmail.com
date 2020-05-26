@@ -13,6 +13,9 @@
     color: white;
     background-color: #3d3c38;
   }
+  .toprow {
+    position: fixed;
+  }
     tr:nth-child(even) {
     background-color: #f2f2f2;}
 
@@ -27,12 +30,12 @@
   <table>
     <div class="toprow">
     <tr>
-        <th>Chemicals</th>
-        <th>EnteredUnits</th>
-        <th>PurchasedUnits</th>
-        <th>Ratio</th>
-        <th>ShowOnReport</th>
-        <th>Active</th>
+        <th style="position: sticky;">Chemicals</th>
+        <th style="position: sticky;">EnteredUnits</th>
+        <th style="position: sticky;">PurchasedUnits</th>
+        <th style="position: sticky;">Ratio</th>
+        <th style="position: sticky;">ShowOnReport</th>
+        <th style="position: sticky;">Active</th>
     </tr>
   </div>
   <?php

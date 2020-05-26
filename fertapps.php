@@ -41,9 +41,9 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT * FROM fertilizerapps';
+$sql = 'SELECT * FROM fertilizerapps WHERE FieldID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute();
+$stmt->execute([$_COOKIE['PrimeIDField']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
   echo '<table><tr><th>Recieved Variable Rate N, P, K?</th><th>Fall N</th><th>Fall Other</th><th>Fall Lbs</th><th>Fall Incorporated</th><th>Preplant N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Pre-emerge N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Starter</th><th>Starter Rate</th><th>Sidedress N</th><th>Sidedress Inc</th><th>Sidedress NFarmer</th><th>SidedressNFarmerInc</th><th>Sidedress N75</th><th>SidedressN75Inc</th><th>Was Stabilizer Used?</th><th>Stabilizer Product?</th><th>Lbs From Uan</th></tr>';

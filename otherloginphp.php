@@ -11,7 +11,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
 
 $email = $_REQUEST["email"];
 $password = $_REQUEST["password"];
-$sql = "SELECT ID, password FROM users WHERE email = ?;";
+$sql = "SELECT ID, password FROM users WHERE email = ?;";  g
 $statement = $connection->prepare($sql);
 $statement->execute([$email]);
 $arr = $statement->fetch(PDO::FETCH_NUM);

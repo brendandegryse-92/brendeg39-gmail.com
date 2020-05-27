@@ -53,7 +53,7 @@ echo '
     $stmt = $connection->prepare($sql);
     $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
     $_POST['delete'] == "off";
-    header("Location: other.php");
+    header("Location: otherfield.php");
   }
   else {
   $sql = 'UPDATE field SET FieldName = ?,  Acres = ?,  County = ?,  Township = ?,  Section = ?,  Quarter = ?,  Tillage = ?,  Plantingdate = ?,  LastYearCrop = ?,  YearsCorn = ?,  Irrigated = ?,  Rotational = ?,  CropYear = ?,  CoverCrop = ?,  DateSeeded = ?,  How = ?,  Ncredits = ?,  HowKilled = ?,  DateKilled = ? WHERE ID = ? AND UserID = ?';

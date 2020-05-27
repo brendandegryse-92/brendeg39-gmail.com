@@ -9,8 +9,8 @@
     County:<input type="text"name="County"></input>
     Township:<input type="text" name="Township"></input>
     Section:<input type="text" name="Section"></input>
-    Quarter:<input type="radio" name="Quarter" value="0">NE</input><input type="radio" name="Quarter" value="1">SE</input><input type="radio" name="Quarter" value="2">NW</input><input type="radio" name="Quarter" value="3">SW</input>
-    Tillage:<input type="radio" name="Tillage" value="0">No Till</input><input type="radio" name="Tillage" value="1">Minimum Till</input><input type="radio" name="Tillage" value="2">Fall</input><input type="radio" name="Tillage" value="3">Spring</input><input type="radio" name="Tillage" value="4">Strip Till</input>
+    Quarter:<input type="radio" name="Quarter" id="Quarter1" value="0"><label for="Quarter1">NE</label></input><input type="radio" name="Quarter" id="Quarter2" value="1"><label for="Quarter2">SE</label></input><input type="radio" name="Quarter" id="Quarter3" value="2"><label for="Quarter3">NW</label></input><input type="radio" name="Quarter" id="Quarter4" value="3"><label for="Quarter4">SW</label></input>
+    Tillage:<input type="radio" name="Tillage" id="Tillage1" value="0"><label for="Tillage1">No Till</label></input><input type="radio" name="Tillage" id="Tillage2" value="1"><label for="Tillage2">Minimum Till</label></input><input type="radio" name="Tillage" id="Tillage3" value="2"><label for="Tillage3">Fall</label></input><input type="radio" name="Tillage" id="Tillage4" value="3"><label for="Tillage4">Spring</label></input><input type="radio" name="Tillage" id="Tillage5" value="4"><label for="Tillage5">Strip Till</label></input>
     Planting Date:<input type="date" name="Plantingdate"></input>
     2019 Crop:<input type="text" name="LastYearCrop"></input>
     How Many Years Corn:<input type="number" name="YearsCorn"></input>
@@ -21,10 +21,10 @@
     Date Seeded:<input type="date" name="DateSeeded"></input>
     How Was It Seeded:<input type="text" name="HowSeeded"></input>
     Ncredits:<input type="number" name="Ncredits"></input>
-    How Was It Killed:<input type="radio" name="HowKilled" value="0">Chemical burn down</input><input type="radio" name="HowKilled" value="1">Plowed or Disked under</input><input type="radio" name="HowKilled" value="2">Harvested</input><input type="radio" name="HowKilled" value="3">Other</input>
+    How Was It Killed:<input type="radio" name="HowKilled" id="How1" value="0"><label for="How1">Chemical burn down</label></input><input type="radio" name="HowKilled" id="How2" value="1"><label for="How2">Plowed or Disked under</label></input><input type="radio" name="HowKilled" id="How3" value="2"><label for="How3">Harvested</label></input><input type="radio" name="HowKilled" id="How4" value="3"><label for="How4">Other</label></input>
     Date:<input type="date" name="DateKilled"></input>
     Number of years in the last 5 manure was applied:<input type="text" name="Last5"></input>
-    Received manure 8 of last 10 years:<input type="radio" name="8of10" value="0">Yes</input><input type="radio" name="8of10" value="1">No</input><input type="radio" name="8of10" value="1">Don't Know</input>
+    Received manure 8 of last 10 years:<input type="radio" name="8of10" id="8of101" value="0"><label for="8of101">Yes</label></input><input type="radio" name="8of10" id="8of102" value="1"><label for="8of102">No</label></input><input type="radio" name="8of10" id="8of103" value="1"><label for="8of103">Don't Know</label></input>
     <input type="submit"></input>
   </form>
 <?php

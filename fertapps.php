@@ -20,28 +20,28 @@ echo $arr[0][0];
 ?></h1>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" value="0">Yes</input><input type="radio" name="VariableRate" value="1">No</input>
+    Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" id="RVR1" value="0"><label for="RVR1">Yes</label></input><input type="radio" name="VariableRate" id="RVR2" value="1"><label for="RVR2">No</label></input>
     Fall N:<input type="number" name="FallN"></input>
     Fall Other:<input type="number" name="FallOther"></input>
     Fall Lbs:<input type="number" name="FallLbs"></input>
-    Fall Incorporated:<input type="radio" name="FallInc" value="0">Yes</input><input type="radio" name="FallInc" value="1">No</input>
+    Fall Incorporated:<input type="radio" name="FallInc" id="FI1" value="0"><label for="FI1">Yes</label></input><input type="radio" name="FallInc" id="FI2" value="1"><label for="FI2">No</label></input>
     Preplant N:<input type="number" name="PreN"></input>
     Preplant Other:<input type="number" name="PreOther"></input>
     Preplant Lbs:<input type="number" name="PreLbs"></input>
-    Preplant Incorporated:<input type="radio" name="PreInc" value="0">No</input><input type="radio" name="PreInc" value="1">Incorporated</input><input type="radio" name="PreInc" value="2">Dribble</input>
+    Preplant Incorporated:<input type="radio" name="PreInc" id="PI1" value="0"><label for="PI1">No</label></input><input type="radio" id="PI2" name="PreInc" value="1"><label for="PI2">Incorporated</label></input><input type="radio" id="PI3" name="PreInc" value="2"><label for="PI3">Dribble</label></input>
     Pre-emerge N:<input type="number" name="PreEmergeN"></input>
     Preplant Other:<input type="number" name="PreEmergeOther"></input>
     Preplant Lbs:<input type="number" name="PreEmergeLbs"></input>
-    Preplant Incorporated:<input type="radio" name="PreEmergeInc" value="0">No</input><input type="radio" name="PreEmergeInc" value="1">Incorporated</input><input type="radio" name="PreEmergeInc" value="2">Dribble</input>
+    Preplant Incorporated:<input type="radio" name="PreEmergeInc" id="PE1" value="0"><label for="PE1">No</label></input><input type="radio" name="PreEmergeInc" id="PE2" value="1"><label for="PE2">Incorporated</label></input><input type="radio" name="PreEmergeInc" id="PE3" value="2"><label for="PE3">Dribble</label></input>
     Starter:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="StarterNPK"></input>
     Starter Rate:<input type="number" name="StarterRate"></input>
     Sidedress N:<input type="number" name="SidedressN"></input>
-    Sidedress Inc:<input type="radio" name="SidedressInc" value="0">No</input><input type="radio" name="SidedressInc" value="1">Incorporated</input><input type="radio" name="SidedressInc" value="2">Dribble</input>
+    Sidedress Inc:<input type="radio" name="SidedressInc" id="SI1" value="0"><label for="SI1">No</label></input><input type="radio" name="SidedressInc" id="SI2" value="1"><label for="SI2">Incorporated</label></input><input type="radio" name="SidedressInc" id="SI3" value="2"><label for="SI3">Dribble</label></input>
     Sidedress NFarmer:<input type="number" name="SidedressNFarmer"></input>
-    SidedressNFarmerInc:<input type="radio" name="SidedressNFarmerInc" value="0">No</input><input type="radio" name="SidedressNFarmerInc" value="1">Incorporated</input><input type="radio" name="SidedressNFarmerInc" value="2">Dribble</input>
+    SidedressNFarmerInc:<input type="radio" name="SidedressNFarmerInc" id="SN1" value="0"><label for="SN1">No</label></input><input type="radio" name="SidedressNFarmerInc" id="SN2" value="1"><label for="SN2">Incorporated</label></input><input type="radio" name="SidedressNFarmerInc" id="SN3" value="2"><label for="SN3">Dribble</label></input>
     Sidedress N75:<input type="number" name="SidedressN75"></input>
-    SidedressN75Inc:<input type="radio" name="SidedressN75Inc" value="0">No</input><input type="radio" name="SidedressN75Inc" value="1">Incorporated</input><input type="radio" name="SidedressN75Inc" value="2">Dribble</input>
-    Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" value="0">Yes</input><input type="radio" name="StabilizerUsed" value="1">No</input>
+    SidedressN75Inc:<input type="radio" name="SidedressN75Inc" id="SN751" value="0"><label for="SN751">No</label></input><input type="radio" name="SidedressN75Inc" id="SN752" value="1"><label for="SN752">Incorporated</label></input><input type="radio" name="SidedressN75Inc" id="SN753" value="2"><label for="SN753">Dribble</label></input>
+    Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"><label for="SU2">No</label></input>
     Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
     <input type="submit"></input>
   </form>

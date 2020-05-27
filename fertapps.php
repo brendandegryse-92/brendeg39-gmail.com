@@ -12,9 +12,9 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT FieldName FROM field WHERE ID = ?';
+$sql = 'SELECT FieldName FROM field WHERE ID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeIDField']]);
+$stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
@@ -43,7 +43,6 @@ echo $arr[0][0];
     SidedressN75Inc:<input type="radio" name="SidedressN75Inc" value="0">No</input><input type="radio" name="SidedressN75Inc" value="1">Incorporated</input><input type="radio" name="SidedressN75Inc" value="2">Dribble</input>
     Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" value="0">Yes</input><input type="radio" name="StabilizerUsed" value="1">No</input>
     Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
-    Lbs From Uan:<input type="number" name="LbsNfromUAN"></input>
     <input type="submit"></input>
   </form>
 <?php
@@ -57,9 +56,9 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT * FROM fertilizerapps WHERE FieldID = ?';
+$sql = 'SELECT * FROM fertilizerapps WHERE FieldID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeIDField']]);
+$stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
   echo '<table><tr><th>Recieved Variable Rate N, P, K?</th><th>Fall N</th><th>Fall Other</th><th>Fall Lbs</th><th>Fall Incorporated</th><th>Preplant N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Pre-emerge N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Starter</th><th>Starter Rate</th><th>Sidedress N</th><th>Sidedress Inc</th><th>Sidedress NFarmer</th><th>SidedressNFarmerInc</th><th>Sidedress N75</th><th>SidedressN75Inc</th><th>Was Stabilizer Used?</th><th>Stabilizer Product?</th><th>Lbs From Uan</th></tr>';
@@ -112,10 +111,10 @@ foreach ($arr as $i=>$val) {
 }
 }
   if ($_POST['FallN'] != "") {
-  $sql = 'INSERT INTO fertilizerapps (FieldID, VariableRate, FallN, FallOther, FallLbs, FallInc, PreN, PreOther, PreLbs, PreInc, PreEmergeN, PreEmergeOther, PreEmergeLbs, PreEmergeInc, StarterNPK, SidedressN, SidedressInc, SidedressNFarmer, SidedressNFarmerInc, SidedressN75, SidedressN75Inc, StabilizerUsed, StabilizerProduct, LbsNfromUAN) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+  $sql = 'INSERT INTO fertilizerapps (FieldID, VariableRate, FallN, FallOther, FallLbs, FallInc, PreN, PreOther, PreLbs, PreInc, PreEmergeN, PreEmergeOther, PreEmergeLbs, PreEmergeInc, StarterNPK, SidedressN, SidedressInc, SidedressNFarmer, SidedressNFarmerInc, SidedressN75, SidedressN75Inc, StabilizerUsed, StabilizerProduct, LbsNfromUAN, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['VariableRate'],$_POST['FallN'],$_POST['FallOther'],$_POST['FallLbs'],$_POST['FallInc'],$_POST['PreN'],$_POST['PreOther'],$_POST['PreLbs'],$_POST['PreInc'],$_POST['PreEmergeN'],$_POST['PreEmergeOther'],
-  $_POST['PreEmergeLbs'],$_POST['PreEmergeInc'],$_POST['StarterNPK'],$_POST['SidedressN'],$_POST['SidedressInc'],$_POST['SidedressNFarmer'],$_POST['SidedressNFarmerInc'],$_POST['SidedressN75'],$_POST['SidedressN75Inc'],$_POST['StabilizerUsed'],$_POST['StabilizerProduct'],$_POST['LbsNfromUAN']]);
+  $_POST['PreEmergeLbs'],$_POST['PreEmergeInc'],$_POST['StarterNPK'],$_POST['SidedressN'],$_POST['SidedressInc'],$_POST['SidedressNFarmer'],$_POST['SidedressNFarmerInc'],$_POST['SidedressN75'],$_POST['SidedressN75Inc'],$_POST['StabilizerUsed'],$_POST['StabilizerProduct'],$_POST['LbsNfromUAN'], $_SESSION['ID']]);
   $_POST['FallN'] = "";
   header("Location: fertapps.php");
   }

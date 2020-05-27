@@ -12,9 +12,9 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT FieldName FROM field WHERE ID = ?';
+$sql = 'SELECT FieldName FROM field WHERE ID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeIDField']]);
+$stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
@@ -31,9 +31,9 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT * FROM fertilizerapps WHERE ID = ?';
+$sql = 'SELECT * FROM fertilizerapps WHERE ID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeIDFert']]);
+$stmt->execute([$_COOKIE['PrimeIDFert'], $_SESSION['ID']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '
   Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" value="0"'; if ($arr[2] == 0) {echo ' checked';} echo '>Yes</input><input type="radio" name="VariableRate" value="1"'; if ($arr[2] == 1) {echo ' checked';} echo '>No</input>
@@ -64,17 +64,17 @@ echo '
   </form>';
   if (isset($_POST['FallN'])) {
   if ($_POST['delete'] == "on") {
-    $sql = "DELETE FROM fertilizerapps WHERE ID = ?";
+    $sql = "DELETE FROM fertilizerapps WHERE ID = ? AND UserID = ?";
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDFert']]);
+    $stmt->execute([$_COOKIE['PrimeIDFert'], $_SESSION['ID']]);
     $_POST['delete'] == "off";
     header("Location: fertapps.php");
   }
   else {
-  $sql = 'UPDATE fertilizerapps SET VariableRate = ?, FallN = ?, FallOther = ?, FallLbs = ?, FallInc = ?, PreN = ?, PreOther = ?, PreLbs = ?, PreInc = ?, PreEmergeN = ?, PreEmergeOther = ?, PreEmergeLbs = ?, PreEmergeInc = ?, StarterNPK = ?, SidedressN = ?, SidedressInc = ?, SidedressNFarmer = ?, SidedressNFarmerInc = ?, SidedressN75 = ?, SidedressN75Inc = ?, StabilizerUsed = ?, StabilizerProduct = ?, LbsNfromUAN = ? WHERE ID = ?';
+  $sql = 'UPDATE fertilizerapps SET VariableRate = ?, FallN = ?, FallOther = ?, FallLbs = ?, FallInc = ?, PreN = ?, PreOther = ?, PreLbs = ?, PreInc = ?, PreEmergeN = ?, PreEmergeOther = ?, PreEmergeLbs = ?, PreEmergeInc = ?, StarterNPK = ?, SidedressN = ?, SidedressInc = ?, SidedressNFarmer = ?, SidedressNFarmerInc = ?, SidedressN75 = ?, SidedressN75Inc = ?, StabilizerUsed = ?, StabilizerProduct = ?, LbsNfromUAN = ? WHERE ID = ? AND UserID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['VariableRate'],$_POST['FallN'],$_POST['FallOther'],$_POST['FallLbs'],$_POST['FallInc'],$_POST['PreN'],$_POST['PreOther'],$_POST['PreLbs'],$_POST['PreInc'],$_POST['PreEmergeN'],$_POST['PreEmergeOther'],
-  $_POST['PreEmergeLbs'],$_POST['PreEmergeInc'],$_POST['StarterNPK'],$_POST['SidedressN'],$_POST['SidedressInc'],$_POST['SidedressNFarmer'],$_POST['SidedressNFarmerInc'],$_POST['SidedressN75'],$_POST['SidedressN75Inc'],$_POST['StabilizerUsed'],$_POST['StabilizerProduct'],$_POST['LbsNfromUAN'], $_COOKIE['PrimeIDFert']]);
+  $_POST['PreEmergeLbs'],$_POST['PreEmergeInc'],$_POST['StarterNPK'],$_POST['SidedressN'],$_POST['SidedressInc'],$_POST['SidedressNFarmer'],$_POST['SidedressNFarmerInc'],$_POST['SidedressN75'],$_POST['SidedressN75Inc'],$_POST['StabilizerUsed'],$_POST['StabilizerProduct'],$_POST['LbsNfromUAN'], $_COOKIE['PrimeIDFert'], $_SESSION['ID']]);
   header("Location: fertapps.php");
   }
 }

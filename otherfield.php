@@ -23,6 +23,8 @@
     Ncredits:<input type="number" name="Ncredits"></input>
     How Was It Killed:<input type="radio" name="HowKilled" value="0">Chemical burn down</input><input type="radio" name="HowKilled" value="1">Plowed or Disked under</input><input type="radio" name="HowKilled" value="2">Harvested</input><input type="radio" name="HowKilled" value="3">Other</input>
     Date:<input type="date" name="DateKilled"></input>
+    Number of years in the last 5 manure was applied:<input type="text" name="Last5"></input>
+    Received manure 8 of last 10 years:<input type="radio" name="8of10" value="0">Yes</input><input type="radio" name="8of10" value="1">No</input><input type="radio" name="8of10" value="1">Don't Know</input>
     <input type="submit"></input>
   </form>
 <?php
@@ -36,9 +38,9 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT * FROM field WHERE GrowerID = ?';
+$sql = 'SELECT * FROM field WHERE GrowerID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeIDGrower']]);
+$stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 if (count($arr)>0) {
   echo '<table><tr><th>Field Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
@@ -73,9 +75,9 @@ foreach ($arr as $i=>$val) {
 }
 }
   if ($_POST['FieldName'] != "") {
-  $sql = 'INSERT INTO  field (GrowerID ,  FieldName ,  Acres ,  County ,  Township ,  Section ,  Quarter ,  Tillage ,  Plantingdate,  LastYearCrop ,  YearsCorn ,  Irrigated ,  Rotational ,  CropYear ,  CoverCrop ,  DateSeeded ,  How ,  Ncredits ,  HowKilled ,  DateKilled ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+  $sql = 'INSERT INTO  field (GrowerID ,  FieldName ,  Acres ,  County ,  Township ,  Section ,  Quarter ,  Tillage ,  Plantingdate,  LastYearCrop ,  YearsCorn ,  Irrigated ,  Rotational ,  CropYear ,  CoverCrop ,  DateSeeded ,  How ,  Ncredits ,  HowKilled ,  DateKilled, Last5, 8of10, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
   $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeIDGrower'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled']]);
+  $stmt->execute([$_COOKIE['PrimeIDGrower'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_POST['Last5'], $_POST['8of10'], $_SESSION['ID']]);
   $_POST['FieldName'] = "";
   header("Location: otherfield.php");
   }

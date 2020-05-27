@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2020 at 06:04 PM
+-- Generation Time: May 27, 2020 at 08:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -54,16 +54,17 @@ CREATE TABLE `fertilizerapps` (
   `SidedressN75Inc` int(11) DEFAULT NULL,
   `StabilizerUsed` tinyint(1) DEFAULT NULL,
   `StabilizerProduct` varchar(255) DEFAULT NULL,
-  `LbsNfromUAN` int(11) DEFAULT NULL
+  `LbsNfromUAN` int(11) DEFAULT NULL,
+  `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `fertilizerapps`
 --
 
-INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOther`, `FallLbs`, `FallInc`, `PreN`, `PreOther`, `PreLbs`, `PreInc`, `PreEmergeN`, `PreEmergeOther`, `PreEmergeLbs`, `PreEmergeInc`, `StarterNPK`, `StarterRate`, `SidedressN`, `SidedressInc`, `SidedressNFarmer`, `SidedressNFarmerInc`, `SidedressN75`, `SidedressN75Inc`, `StabilizerUsed`, `StabilizerProduct`, `LbsNfromUAN`) VALUES
-(7, 18, 0, 4567848, '', 0, 1, 0, '', 0, 2, 0, '', 0, 1, '', NULL, 0, 2, 0, NULL, 0, NULL, 1, '', 0),
-(8, 18, 1, 4565, '', 0, 2, 0, '', 0, 2, 0, '', 0, 1, '', NULL, 0, 1, 0, 1, 0, 1, 1, '', 0);
+INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOther`, `FallLbs`, `FallInc`, `PreN`, `PreOther`, `PreLbs`, `PreInc`, `PreEmergeN`, `PreEmergeOther`, `PreEmergeLbs`, `PreEmergeInc`, `StarterNPK`, `StarterRate`, `SidedressN`, `SidedressInc`, `SidedressNFarmer`, `SidedressNFarmerInc`, `SidedressN75`, `SidedressN75Inc`, `StabilizerUsed`, `StabilizerProduct`, `LbsNfromUAN`, `UserID`) VALUES
+(7, 18, 0, 4567848, '', 0, 1, 0, '', 0, 2, 0, '', 0, 1, '', NULL, 0, 2, 0, NULL, 0, NULL, 1, '', 0, 2),
+(8, 18, 1, 4565, '', 0, 2, 0, '', 0, 2, 0, '', 0, 1, '', NULL, 0, 1, 0, 1, 0, 1, 1, '', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -92,17 +93,19 @@ CREATE TABLE `field` (
   `How` varchar(255) NOT NULL,
   `Ncredits` int(11) NOT NULL,
   `HowKilled` int(11) NOT NULL,
-  `DateKilled` date NOT NULL
+  `DateKilled` date NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `Last5` int(11) DEFAULT NULL,
+  `8of10` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `field`
 --
 
-INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`) VALUES
-(18, 58, 'Brendan\'s Field', 0, '', '', '', 3, 2, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 3, '0000-00-00'),
-(19, 58, 'Brendan\'s Field', 3, 'Defiance', 'Washington', 'asdf', 1, 0, '2020-05-20', 'Corn', 6, 0, 0, 2020, 'Alfalfa', '2020-05-22', 'SD', 10, 2, '2020-05-24'),
-(20, 58, 'Brendan\'s Field', 456, 'Defiance', 'Washington', 'asdf', 3, 2, '2020-05-19', 'Corn', 7, 0, 0, 2020, 'Alfalfa', '2020-05-25', 'SD', 1, 1, '2020-05-27');
+INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`, `UserID`, `Last5`, `8of10`) VALUES
+(18, 58, 'Brendan\'s Field', 0, '', '', '', 3, 2, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 3, '0000-00-00', 2, NULL, NULL),
+(22, 58, 'Gary', 36438564, 'Defiance', 'Washington', 'asdf', 2, 2, '2020-05-29', 'Corn', 786, 0, 0, 0000, 'Alfalfa', '2020-05-15', 'SD', 45678, 1, '2020-05-28', 2, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -122,15 +125,16 @@ CREATE TABLE `grower` (
   `Zip` int(11) NOT NULL,
   `HomePhone` bigint(20) NOT NULL,
   `MobilePhone` bigint(20) NOT NULL,
-  `Email` varchar(255) NOT NULL
+  `Email` varchar(255) NOT NULL,
+  `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `grower`
 --
 
-INSERT INTO `grower` (`ID`, `FirstName`, `MI`, `LastName`, `CompanyName`, `MailingAddress`, `City`, `State`, `Zip`, `HomePhone`, `MobilePhone`, `Email`) VALUES
-(58, 'Brendan', '', 'Degryse', '', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com');
+INSERT INTO `grower` (`ID`, `FirstName`, `MI`, `LastName`, `CompanyName`, `MailingAddress`, `City`, `State`, `Zip`, `HomePhone`, `MobilePhone`, `Email`, `UserID`) VALUES
+(58, 'Brendan', '', 'Degryse', '', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 2);
 
 -- --------------------------------------------------------
 
@@ -147,8 +151,37 @@ CREATE TABLE `manure` (
   `Availability` int(11) NOT NULL,
   `AppTiming` int(11) NOT NULL,
   `AmountPerAcre` int(11) NOT NULL,
-  `NPK` varchar(255) NOT NULL
+  `StateOfMatter` tinyint(1) DEFAULT NULL,
+  `NPK` varchar(255) NOT NULL,
+  `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `manure`
+--
+
+INSERT INTO `manure` (`ID`, `FieldID`, `Manure`, `AppType`, `Time`, `Availability`, `AppTiming`, `AmountPerAcre`, `StateOfMatter`, `NPK`, `UserID`) VALUES
+(13, 18, 'Swine', 0, '18:05:00', 0, 2, 0, 1, '15%4%47%', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`ID`, `Name`, `Password`, `email`) VALUES
+(2, 'Brendan Degryse', '$2y$10$Db1wzPHDoyezwybEXJLhdOT6Y0VVLo/jc9BGx5twmtdKhfbovYrtm', 'brendeg39@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -182,6 +215,12 @@ ALTER TABLE `manure`
   ADD KEY `Manure` (`FieldID`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -195,19 +234,25 @@ ALTER TABLE `fertilizerapps`
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `grower`
 --
 ALTER TABLE `grower`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `manure`
 --
 ALTER TABLE `manure`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

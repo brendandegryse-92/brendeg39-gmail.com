@@ -21,19 +21,18 @@ $sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
-echo '
-  <input type="text" value="'.$arr[0].'" name="FirstName"></input>
-  <input type="text" value="'.$arr[1].'" name="MI"></input>
-  <input type="text" value="'.$arr[2].'" name="LastName"></input>
-  <input type="text" value="'.$arr[3].'" name="CompanyName"></input>
-  <input type="text" value="'.$arr[4].'" name="MailAdd"></input>
-  <input type="text" value="'.$arr[5].'" name="City"></input>
-  <input type="text" value="'.$arr[6].'" name="State"></input>
-  <input type="number" value="'.$arr[7].'" name="ZIP"></input>
-  <input type="phone" value="'.$arr[8].'" name="Home"></input>
-  <input type="phone" value="'.$arr[9].'" name="Mobile"></input>
-  <input type="email" value="'.$arr[10].'" name="Email"></input>
-  <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
+echo '<input type="text" value="'.$arr[0].'" name="FirstName"></input>
+<input type="text" value="'.$arr[1].'" name="MI"></input>
+<input type="text" value="'.$arr[2].'" name="LastName"></input>
+<input type="text" value="'.$arr[3].'" name="CompanyName"></input>
+<input type="text" value="'.$arr[4].'" name="MailAdd"></input>
+<input type="text" value="'.$arr[5].'" name="City"></input>
+<input type="text" value="'.$arr[6].'" name="State"></input>
+<input type="number" value="'.$arr[7].'" name="ZIP"></input>
+<input type="phone" value="'.$arr[8].'" name="Home"></input>
+<input type="phone" value="'.$arr[9].'" name="Mobile"></input>
+<input type="email" value="'.$arr[10].'" name="Email"></input>
+<input type="submit"></input><input type="checkbox" name="delete">Delete</input>
 </form></div><a href="otherfield.php">fields</a>';
   if (isset($_POST['FirstName'])) {
   if ($_POST['delete'] == "on") {
@@ -52,11 +51,11 @@ echo '
 }
 ?>
 <script>
-  var txtBox=document.getElementsByTagName("input");
-  //alert(forms[0]); This is hhow you show a popup alert box
-  for (var i = 0;i<txtBox.length;i++){
-    txtBox[i].placeholder=txtBox[i].name.replace(/\B(?<![A-Z])[A-Z]/g," $&");
-  }
+var txtBox = document.getElementsByTagName("input");
+//alert(forms[0]); This is hhow you show a popup alert box
+for (var i = 0; i < txtBox.length; i++) {
+  txtBox[i].placeholder = txtBox[i].name.replace(/\B(?<![A-Z])[A-Z]/g, " $&");
+}
 </script>
 </body>
 </html>

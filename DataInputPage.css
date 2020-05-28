@@ -44,6 +44,7 @@
     border-style:dotted;
   }
   td{
+    cursor: pointer;
     border: 1px dotted black;
     border-style:dotted;
   }

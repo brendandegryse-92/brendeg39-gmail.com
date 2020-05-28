@@ -1,0 +1,24 @@
+<html>
+Fuel: <div id="fuel"></div>
+Tire Pressure: <div id="tirePressure"></div>
+<script>
+  class Car {
+    constructor(fuel, tirePressure) {
+      this.fuel = fuel;
+      this.pressure = tirePressure;
+    }
+    fillUpGas(amount) {
+      this.fuel += amount;
+      document.getElementById("fuel").innerHTML = this.fuel;
+    }
+    fillUpTire(amount) {
+      this.pressure += amount;
+      document.getElementById("tirePressure").innerHTML = this.pressure;
+    }
+  }
+
+  blueCar = new Car(10, 30);
+  blueCar.fillUpGas(3);
+  blueCar.fillUpTire(10);
+</script>
+</html>

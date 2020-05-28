@@ -1,16 +1,18 @@
 <html>
 <head>
+  <link rel="stylesheet" href="DataInputPage.css">
 </head>
 <body>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Field Name:<input type="text" name="FieldName"></input>
-    Acres:<input type="number" name="Acres"></input>
-    County:<input type="text"name="County"></input>
-    Township:<input type="text" name="Township"></input>
-    Section:<input type="text" name="Section"></input>
+    <div class="newspaper">
+    <input type="text" name="FieldName"></input>
+    <input type="number" name="Acres"></input>
+    <input type="text"name="County"></input>
+    <input type="text" name="Township"></input>
+    <input type="text" name="Section"></input>
     Quarter:<input type="radio" name="Quarter" id="Quarter1" value="0"><label for="Quarter1">NE</label></input><input type="radio" name="Quarter" id="Quarter2" value="1"><label for="Quarter2">SE</label></input><input type="radio" name="Quarter" id="Quarter3" value="2"><label for="Quarter3">NW</label></input><input type="radio" name="Quarter" id="Quarter4" value="3"><label for="Quarter4">SW</label></input>
-    Tillage:<input type="radio" name="Tillage" id="Tillage1" value="0"><label for="Tillage1">No Till</label></input><input type="radio" name="Tillage" id="Tillage2" value="1"><label for="Tillage2">Minimum Till</label></input><input type="radio" name="Tillage" id="Tillage3" value="2"><label for="Tillage3">Fall</label></input><input type="radio" name="Tillage" id="Tillage4" value="3"><label for="Tillage4">Spring</label></input><input type="radio" name="Tillage" id="Tillage5" value="4"><label for="Tillage5">Strip Till</label></input>
+    Tillage<input type="radio" name="Tillage" id="Tillage1" value="0"><label for="Tillage1">No Till</label></input><input type="radio" name="Tillage" id="Tillage2" value="1"><label for="Tillage2">Minimum Till</label></input><input type="radio" name="Tillage" id="Tillage3" value="2"><label for="Tillage3">Fall</label></input><input type="radio" name="Tillage" id="Tillage4" value="3"><label for="Tillage4">Spring</label></input><input type="radio" name="Tillage" id="Tillage5" value="4"><label for="Tillage5">Strip Till</label></input>
     Planting Date:<input type="date" name="Plantingdate"></input>
     2019 Crop:<input type="text" name="LastYearCrop"></input>
     How Many Years Corn:<input type="number" name="YearsCorn"></input>
@@ -25,7 +27,7 @@
     Date:<input type="date" name="DateKilled"></input>
     Number of years in the last 5 manure was applied:<input type="text" name="Last5"></input>
     Received manure 8 of last 10 years:<input type="radio" name="8of10" id="8of101" value="0"><label for="8of101">Yes</label></input><input type="radio" name="8of10" id="8of102" value="1"><label for="8of102">No</label></input><input type="radio" name="8of10" id="8of103" value="1"><label for="8of103">Don't Know</label></input>
-    <input type="submit"></input>
+    <input type="submit"></input></div>
   </form>
 <?php
 session_start();
@@ -48,7 +50,7 @@ foreach ($arr as $i=>$val) {
   echo '<tr onclick="edit('.$val[0].')">';
   foreach ($val as $key => $value) {
     if ($key > 1) {
-      if ($key != 7 && $key != 19 && $key != 8) {
+      if ($key != 7 && $key != 19 && $key != 8 && $key <21) {
     echo '<td>'.$value.'</td>';}
     elseif ($key == 7) {
       if ($value == 0) {echo '<td>NE</td>';}
@@ -87,6 +89,11 @@ function edit(x) {
   document.cookie="PrimeIDField=" + x;
   location.href = "editField.php";
 }
+  var txtBox=document.getElementsByTagName("input");
+  //alert(forms[0]); This is hhow you show a popup alert box
+  for (var i = 0;i<txtBox.length;i++){
+    txtBox[i].placeholder=txtBox[i].name.replace(/\B(?<![A-Z])[A-Z]/g," $&");
+  }
 </script>
 </body>
 </html>

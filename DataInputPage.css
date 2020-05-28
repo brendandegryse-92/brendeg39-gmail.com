@@ -1,0 +1,49 @@
+  body {
+  	background-color: lightgray;
+  }
+  .newspaper {
+  column-count: 4;
+  }
+  nav{
+    margin-top: 20px;
+  }
+  Div{
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+  a{
+    margin-left: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 8px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=Submit], select {
+    color: #ffffff;
+    background-color: #99ccff;
+  }
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  table{
+    background-color: white;
+  }
+  th{
+    background-color: lightgray;
+    border: 1px solid black;
+    margin: 8px;
+  }
+  tr{
+    background-color: lightblue;
+    border: 1px dotted black;
+    border-style:dotted;
+  }
+  td{
+    border: 1px dotted black;
+    border-style:dotted;
+  }

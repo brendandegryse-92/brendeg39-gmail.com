@@ -1,8 +1,10 @@
 <html>
 <head>
+    <link rel="stylesheet" href="DataInputPage.css">
 </head>
 <body>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+<div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -20,19 +22,19 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '
-  First Name:<input type="text" value="'.$arr[0].'" name="FirstName"></input>
-  Middle Initial:<input type="text" value="'.$arr[1].'" name="MI"></input>
-  Last Name:<input type="text" value="'.$arr[2].'" name="LastName"></input>
-  Company Name:<input type="text" value="'.$arr[3].'" name="CompanyName"></input>
-  Mailing Address:<input type="text" value="'.$arr[4].'" name="MailAdd"></input>
-  City:<input type="text" value="'.$arr[5].'" name="City"></input>
-  State:<input type="text" value="'.$arr[6].'" name="State"></input>
-  ZIP:<input type="number" value="'.$arr[7].'" name="ZIP"></input>
-  Home Phone:<input type="phone" value="'.$arr[8].'" name="Home"></input>
-  Mobile Phone:<input type="phone" value="'.$arr[9].'" name="Mobile"></input>
-  Email:<input type="email" value="'.$arr[10].'" name="Email"></input>
+  <input type="text" value="'.$arr[0].'" name="FirstName"></input>
+  <input type="text" value="'.$arr[1].'" name="MI"></input>
+  <input type="text" value="'.$arr[2].'" name="LastName"></input>
+  <input type="text" value="'.$arr[3].'" name="CompanyName"></input>
+  <input type="text" value="'.$arr[4].'" name="MailAdd"></input>
+  <input type="text" value="'.$arr[5].'" name="City"></input>
+  <input type="text" value="'.$arr[6].'" name="State"></input>
+  <input type="number" value="'.$arr[7].'" name="ZIP"></input>
+  <input type="phone" value="'.$arr[8].'" name="Home"></input>
+  <input type="phone" value="'.$arr[9].'" name="Mobile"></input>
+  <input type="email" value="'.$arr[10].'" name="Email"></input>
   <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
-</form><a href="otherfield.php">fields</a>';
+</form></div><a href="otherfield.php">fields</a>';
   if (isset($_POST['FirstName'])) {
   if ($_POST['delete'] == "on") {
     $sql = "DELETE FROM grower WHERE ID = ? AND UserID = ?";
@@ -50,6 +52,11 @@ echo '
 }
 ?>
 <script>
+  var txtBox=document.getElementsByTagName("input");
+  //alert(forms[0]); This is hhow you show a popup alert box
+  for (var i = 0;i<txtBox.length;i++){
+    txtBox[i].placeholder=txtBox[i].name.replace(/\B(?<![A-Z])[A-Z]/g," $&");
+  }
 </script>
 </body>
 </html>

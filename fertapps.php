@@ -43,6 +43,7 @@ echo $arr[0][0];
     SidedressN75Inc:<input type="radio" name="SidedressN75Inc" id="SN751" value="0"><label for="SN751">No</label></input><input type="radio" name="SidedressN75Inc" id="SN752" value="1"><label for="SN752">Incorporated</label></input><input type="radio" name="SidedressN75Inc" id="SN753" value="2"><label for="SN753">Dribble</label></input>
     Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"><label for="SU2">No</label></input>
     Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
+    Pounds with UAN from Irrigation:<input type="number" name="LbsNfromUAN"></input>
     <input type="submit"></input>
   </form>
 <?php

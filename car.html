@@ -1,6 +1,12 @@
 <html>
+<style>
+canvas {
+  transform: rotateX(0deg);
+}
+</style>
 Fuel: <div id="fuel"></div>
 Tire Pressure: <div id="tirePressure"></div>
+<canvas id="canv" height="400px" width="400px" style="border:1px solid #000000;"></canvas>
 <script>
   class Car {
     constructor(fuel, tirePressure) {
@@ -20,5 +26,26 @@ Tire Pressure: <div id="tirePressure"></div>
   blueCar = new Car(10, 30);
   blueCar.fillUpGas(3);
   blueCar.fillUpTire(10);
+  var x = [100,200,250,25,60,300];
+  var increment = 400/x.length;
+  var current = 0;
+  var can = document.getElementById("canv");
+  var canvas = can.getContext("2d");
+  canvas.font = "30px Arial";
+  //canvas.moveTo(0,0);
+  canvas.beginPath();
+  for (var i = 0; i < x.length; i++) {
+    canvas.lineTo(current, x[i]);
+    canvas.rotate(180 * Math.Pi / 180);
+    canvas.fillText(x[i], current, x[i]);
+    canvas.rotate(180 * Math.Pi / 180);
+    current += increment;
+  }
+  canvas.stroke();/**
+var c = document.getElementById("canv");
+var ctx = c.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();**/
 </script>
 </html>

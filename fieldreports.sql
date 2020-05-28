@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2020 at 08:48 PM
+-- Generation Time: May 28, 2020 at 09:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.12
 
@@ -75,26 +75,26 @@ INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOth
 CREATE TABLE `field` (
   `ID` int(11) NOT NULL,
   `GrowerID` int(11) NOT NULL,
-  `FieldName` varchar(255) NOT NULL,
-  `Acres` int(11) NOT NULL,
-  `County` varchar(255) NOT NULL,
-  `Township` varchar(255) NOT NULL,
-  `Section` varchar(255) NOT NULL,
-  `Quarter` int(11) NOT NULL,
-  `Tillage` int(11) NOT NULL,
-  `Plantingdate` date NOT NULL,
-  `LastYearCrop` varchar(255) NOT NULL,
-  `YearsCorn` int(11) NOT NULL,
-  `Irrigated` tinyint(1) NOT NULL,
-  `Rotational` int(11) NOT NULL,
-  `CropYear` year(4) NOT NULL,
-  `CoverCrop` varchar(255) NOT NULL,
-  `DateSeeded` date NOT NULL,
-  `How` varchar(255) NOT NULL,
-  `Ncredits` int(11) NOT NULL,
-  `HowKilled` int(11) NOT NULL,
-  `DateKilled` date NOT NULL,
-  `UserID` int(11) NOT NULL,
+  `FieldName` varchar(255) DEFAULT NULL,
+  `Acres` int(11) DEFAULT NULL,
+  `County` varchar(255) DEFAULT NULL,
+  `Township` varchar(255) DEFAULT NULL,
+  `Section` varchar(255) DEFAULT NULL,
+  `Quarter` int(11) DEFAULT NULL,
+  `Tillage` int(11) DEFAULT NULL,
+  `Plantingdate` date DEFAULT NULL,
+  `LastYearCrop` varchar(255) DEFAULT NULL,
+  `YearsCorn` int(11) DEFAULT NULL,
+  `Irrigated` tinyint(1) DEFAULT NULL,
+  `Rotational` int(11) DEFAULT NULL,
+  `CropYear` year(4) DEFAULT NULL,
+  `CoverCrop` varchar(255) DEFAULT NULL,
+  `DateSeeded` date DEFAULT NULL,
+  `How` varchar(255) DEFAULT NULL,
+  `Ncredits` int(11) DEFAULT NULL,
+  `HowKilled` int(11) DEFAULT NULL,
+  `DateKilled` date DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
   `Last5` int(11) DEFAULT NULL,
   `8of10` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -105,7 +105,8 @@ CREATE TABLE `field` (
 
 INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`, `UserID`, `Last5`, `8of10`) VALUES
 (18, 58, 'Brendan\'s Field', 0, '', '', '', 3, 2, '0000-00-00', '', 0, 0, 0, 2000, '0000', '0000-00-00', '0000-00-00', 0, 3, '0000-00-00', 2, NULL, NULL),
-(22, 58, 'Gary', 36438564, 'Defiance', 'Washington', 'asdf', 2, 2, '2020-05-29', 'Corn', 786, 0, 0, 0000, 'Alfalfa', '2020-05-15', 'SD', 45678, 1, '2020-05-28', 2, 5, 1);
+(22, 58, 'Gary', 36438564, 'Defiance', 'Washington', 'asdf', 2, 2, '2020-05-29', 'Corn', 786, 0, 0, 0000, 'Alfalfa', '2020-05-15', 'SD', 45678, 1, '2020-05-28', 2, 5, 1),
+(23, 58, 'Brendan\'s Field', 76175, '7157', '517185', '7815', 0, 1, '2020-05-20', 'Corn', 6546, 127, 1684, 0000, '5894', '2020-05-20', '1984', 89498, 2, '2020-05-20', 2, 2941856, 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,7 @@ CREATE TABLE `grower` (
 --
 
 INSERT INTO `grower` (`ID`, `FirstName`, `MI`, `LastName`, `CompanyName`, `MailingAddress`, `City`, `State`, `Zip`, `HomePhone`, `MobilePhone`, `Email`, `UserID`) VALUES
-(58, 'Brendan', '', 'Degryse', '', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 2);
+(58, 'Brendan', 'C', 'Degryse', 'STS', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 5672396350, 'brendandegryse@yahoo.com', 2);
 
 -- --------------------------------------------------------
 
@@ -234,7 +235,7 @@ ALTER TABLE `fertilizerapps`
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `grower`

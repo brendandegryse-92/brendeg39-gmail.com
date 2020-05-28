@@ -1,22 +1,74 @@
 <html>
+<style media="screen">
+
+  body {
+  	background-color: lightgray;
+  }
+  .newspaper {
+  column-count: 4;
+  }
+  nav{
+    margin-top: 20px;
+  }
+  Div{
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+  a{
+    margin-left: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 8px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=Submit], select {
+    color: #ffffff;
+    background-color: #99ccff;
+  }
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  table{
+    background-color: white;
+  }
+  th{
+    background-color: lightgray;
+    border: 1px solid black;
+    margin: 8px;
+  }
+  tr{
+    background-color: lightblue;
+    border: 1px dotted black;
+    border-style:dotted;
+  }
+</style>
 <head>
 </head>
 <body>
+  <nav>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a> <a href="otherlogin.php">Login</a> <a href="otherregister.php">Register</a>
+  </nav>
+<div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    First Name:<input type="text" name="FirstName"></input>
-    Middle Initial:<input type="text" name="MI"></input>
-    Last Name:<input type="text" name="LastName"></input>
-    Company Name:<input type="text" name="CompanyName"></input>
-    Mailing Address:<input type="text" name="MailAdd"></input>
-    City:<input type="text" name="City"></input>
-    State:<input type="text" name="State"></input>
-    ZIP:<input type="number" name="ZIP"></input>
-    Home Phone:<input type="phone" name="Home"></input>
-    Mobile Phone:<input type="phone" name="Mobile"></input>
-    Email:<input type="email" name="Email"></input>
+    <input type="text" name="FirstName" placeholder="First Name"></input>
+    <input type="text" name="MI" placeholder="Middle Initial"></input>
+    <input type="text" name="LastName" placeholder="Last Name"></input>
+    <input type="text" name="CompanyName" placeholder="Company Name"></input>
+    <input type="text" name="MailAdd" placeholder="Street"></input>
+    <input type="text" name="City" placeholder="City"></input>
+    <input type="text" name="State" placeholder="State"></input>
+    <input type="number" name="ZIP" placeholder="Zip"></input>
+    <input type="phone" name="Home" placeholder="Home Phone"></input>
+    <input type="phone" name="Mobile" placeholder="Mobile Phone"></input>
+    <input type="email" name="Email" placeholder="Email"></input>
     <input type="submit"></input>
   </form>
+</div>
 <?php
 session_start();
 $server = "localhost";

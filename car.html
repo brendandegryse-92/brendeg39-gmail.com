@@ -35,10 +35,11 @@ Tire Pressure: <div id="tirePressure"></div>
   //canvas.moveTo(0,0);
   canvas.beginPath();
   for (var i = 0; i < x.length; i++) {
-    canvas.lineTo(current, x[i]);
-    canvas.rotate(180 * Math.Pi / 180);
-    canvas.fillText(x[i], current, x[i]);
-    canvas.rotate(180 * Math.Pi / 180);
+    var left = x[i]/400;
+    var left = 400 * (100 - left);
+    alert(left);
+    canvas.lineTo(current, left);
+    canvas.fillText(x[i], current, left);
     current += increment;
   }
   canvas.stroke();/**

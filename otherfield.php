@@ -65,7 +65,7 @@
     header("Location: otherfield.php");
     }
   ?>
-  <div id="Grower">Active Grower: </div><button onclick="location.href = 'edit.php'">Edit Grower</button><button onclick="location.href = 'otherfield.php'">Add Field</button><br />
+  <div id="Grower">Active Field: </div><button onclick="location.href = 'editField.php'">Edit Field</button><button onclick="location.href = 'otherfield.php'">Add Field</button><br />
   <button onclick="toggle()">Add Grower</button><div id="Add">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <div class="newspaper">
@@ -96,7 +96,7 @@
 <script>
 function edit(FieldID,ElementName) {
   document.cookie="PrimeIDField=" + FieldID;
-  document.getElementById("Grower").innerHTML = "Active Grower: " + ElementName;
+  document.getElementById("Grower").innerHTML = "Active Field: " + ElementName;
   //location.href = "edit.php";
 }
   var txtBox=document.getElementsByTagName("input");

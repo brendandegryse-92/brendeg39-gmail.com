@@ -1,5 +1,6 @@
 <html>
 <head>
+  <link rel="stylesheet" href="DataInputPage.css">
 </head>
 <body><h1><?php
 session_start();
@@ -18,7 +19,7 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Manure:<input onclick="stop('Swine')" type="radio" id="Manure1" name="Manure1" value="Swine"><label for="Manure1">Swine</label></input><input onclick="stop('Beef')" type="radio" id="Manure2" name="Manure1" value="Beef"><label for="Manure2">Beef</label></input><input onclick="stop('Dairy')" type="radio" id="Manure3" name="Manure1" value="Dairy"><label for="Manure3">Dairy</label></input><input onclick="stop('Layer')" type="radio" id="Manure4" name="Manure1" value="Layer"><label for="Manure4">Layer</label></input><input onclick="stop('Broiler')" type="radio" id="Manure5" name="Manure1" value="Broiler"><label for="Manure5">Broiler</label></input><input onclick="stop('Turkey')" type="radio" id="Manure6" name="Manure1" value="Turkey"><label for="Manure6">Turkey</label></input><input type="radio" id="Manure7" onclick="stop('Layer Pullet')" name="Manure1" value="Layer Pullet"><label for="Manure7">Layer Pullet</label></input>
     <input type="text" id="Manure" name="Manure"></input>
@@ -30,7 +31,7 @@ echo $arr[0][0];
     <input type="radio" name="StateOfMatter" id="SoM1" value="0"><label for="SoM1">Solid</label></input><input type="radio" name="StateOfMatter" id="SoM2" value="1"><label for="SoM2">Liquid</label></input>
     NPK:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="NPK"></input>
     <input type="submit"></input>
-  </form>
+  </form></div>
 <?php
 session_start();
 $server = "localhost";

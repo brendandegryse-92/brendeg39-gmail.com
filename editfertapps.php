@@ -1,5 +1,6 @@
 <html>
 <head>
+  <link rel="stylesheet" href="DataInputPage.css">
 </head>
 <body><h1><?php
 session_start();
@@ -18,7 +19,7 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -61,7 +62,7 @@ echo '
   Stabilizer Product?:<input type="text"  value="'.$arr[24].'" name="StabilizerProduct"></input>
   Lbs From Uan:<input type="number"  value="'.$arr[25].'" name="LbsNfromUAN"></input>
     <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
-  </form>';
+  </form></div>';
   if (isset($_POST['FallN'])) {
   if ($_POST['delete'] == "on") {
     $sql = "DELETE FROM fertilizerapps WHERE ID = ? AND UserID = ?";

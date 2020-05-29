@@ -1,5 +1,6 @@
 <html>
 <head>
+  <link rel="stylesheet" href="DataInputPage.css">
 </head>
 <body><h1><?php
 session_start();
@@ -18,7 +19,7 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" id="RVR1" value="0"><label for="RVR1">Yes</label></input><input type="radio" name="VariableRate" id="RVR2" value="1"><label for="RVR2">No</label></input>
     Fall N:<input type="number" name="FallN"></input>
@@ -45,7 +46,7 @@ echo $arr[0][0];
     Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
     Pounds with UAN from Irrigation:<input type="number" name="LbsNfromUAN"></input>
     <input type="submit"></input>
-  </form>
+  </form></div>
 <?php
 session_start();
 $server = "localhost";

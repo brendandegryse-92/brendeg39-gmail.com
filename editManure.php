@@ -1,5 +1,6 @@
 <html>
 <head>
+  <link rel="stylesheet" href="DataInputPage.css">
 </head>
 <body><h1><?php
 session_start();
@@ -18,7 +19,7 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -46,7 +47,7 @@ echo '
     <input type="radio" name="StateOfMatter" id="SoM1" value="0"'; if ($arr[8] == 0) {echo ' checked';} echo '><label for="SoM1">Solid</label></input><input type="radio" name="StateOfMatter" id="SoM2" value="1"'; if ($arr[8] == 1) {echo ' checked';} echo '><label for="SoM2">Liquid</label></input>
     NPK:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" value="'.$arr[9].'" name="NPK"></input>
     <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
-  </form>';
+  </form></div>';
   if (isset($_POST['Manure'])) {
   if ($_POST['delete'] == "on") {
     $sql = "DELETE FROM manure WHERE ID = ? And UserID = ?";

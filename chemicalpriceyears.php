@@ -5,6 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
   <link rel="stylesheet" href="styles.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    function graph() {
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+        var forms = document.getElementsByTagName("form");
+        var arr = [['Year', 'Price']];
+          for (x = 0; x < (forms.length); x++){
+                arr.push([2008 + x, parseforms[x][2].value]);
+              }
+        console.log(arr);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(arr);
+        /**var data = google.visualization.arrayToDataTable([
+          ['Year', 'Price'],
+          ['2004',  1000],
+          ['2005',  1170],
+          ['2006',  660],
+          ['2007',  1030]
+        ]);**/
+
+        var options = {
+          title: 'Price',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);}
+      }
+    </script>
 </head>
 <body>
   <div include="head.html"></div>
@@ -61,7 +94,7 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
           return $rowNumber;
         }
        ?>
-     </div>
+     </div><div id="curve_chart" style="width: 900px; height: 500px"></div>
         <script>
         function clearRow(x){
           var form = document.getElementsByTagName("form");

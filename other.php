@@ -29,7 +29,7 @@
   if (count($arr)>0) {
     echo '<table><tr><th>First Name</th><th>MI</th><th>Last Name</th><th>Company Name</th><th>Mailing Address</th><th>City</th><th>State</th><th>ZIP</th><th>Home Phone</th><th>Mobile Phone</th><th>Email</th></tr>';
   foreach ($arr as $i=>$val) {
-    echo '<tr onclick="edit('.$val[0].',\''.$val[1].'\')">';
+    echo '<tr onclick="edit('.$val[0].',\''.addslashes($val[1]).'\')">';
     foreach ($val as $key => $value) {
       if ($key > 0) {
       echo '<td>'.$value.'</td>';

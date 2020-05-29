@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta name="description" content="Welcome to On Farm Record Keeping">
 <html>
-<title>Home</title>
+<title>Home</title><?php header("Location: home.php"); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
   <link rel="stylesheet" href="styles.css">

@@ -8,6 +8,9 @@
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
+if (!isset($_SESSION['ID'])) {
+  header("Location: otherlogin.php");
+}
 $server = "localhost";
 $uname = "client";
 $pword = "Pass";

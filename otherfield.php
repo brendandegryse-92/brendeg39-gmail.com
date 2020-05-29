@@ -11,6 +11,9 @@
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a></nav><br />
   <?php
   session_start();
+  if (!isset($_SESSION['ID'])) {
+    header("Location: otherlogin.php");
+  }
   $server = "localhost";
   $uname = "client";
   $pword = "Pass";

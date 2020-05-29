@@ -27,7 +27,7 @@
   if (count($arr)>0) {
     echo '<table><tr><th>Field Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
   foreach ($arr as $i=>$val) {
-    echo '<tr onclick="edit('.$val[0].')">';
+    echo '<tr onclick="edit('.$val[0].',\''.$val[2].'\')">';
     foreach ($val as $key => $value) {
       if ($key > 1) {
         if ($key != 7 && $key != 19 && $key != 8 && $key <21) {

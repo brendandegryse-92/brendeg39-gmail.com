@@ -103,29 +103,29 @@ echo $arr[0][0];
     }
   ?><button onclick="toggle()">Add Fertilizer</button><div id="Add" class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" id="RVR1" value="0"><label for="RVR1">Yes</label></input><input type="radio" name="VariableRate" id="RVR2" value="1"><label for="RVR2">No</label></input>
-    Fall N:<input type="number" name="FallN"></input>
+    <br />Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" id="RVR1" value="0"><label for="RVR1">Yes</label></input><input type="radio" name="VariableRate" id="RVR2" value="1"><label for="RVR2">No</label></input>
+    <br />Fall N:<input type="number" name="FallN"></input>
     Fall Other:<input type="number" name="FallOther"></input>
-    Fall Lbs:<input type="number" name="FallLbs"></input>
+    Fall Lbs:<input type="number" name="FallLbs"></input><br />
     Fall Incorporated:<input type="radio" name="FallInc" id="FI1" value="0"><label for="FI1">Yes</label></input><input type="radio" name="FallInc" id="FI2" value="1"><label for="FI2">No</label></input>
-    Preplant N:<input type="number" name="PreN"></input>
+    <br />Preplant N:<input type="number" name="PreN"></input>
     Preplant Other:<input type="number" name="PreOther"></input>
-    Preplant Lbs:<input type="number" name="PreLbs"></input>
+    Preplant Lbs:<input type="number" name="PreLbs"></input><br />
     Preplant Incorporated:<input type="radio" name="PreInc" id="PI1" value="0"><label for="PI1">No</label></input><input type="radio" id="PI2" name="PreInc" value="1"><label for="PI2">Incorporated</label></input><input type="radio" id="PI3" name="PreInc" value="2"><label for="PI3">Dribble</label></input>
-    Pre-emerge N:<input type="number" name="PreEmergeN"></input>
+    <br />Pre-emerge N:<input type="number" name="PreEmergeN"></input>
     Preplant Other:<input type="number" name="PreEmergeOther"></input>
     Preplant Lbs:<input type="number" name="PreEmergeLbs"></input>
-    Preplant Incorporated:<input type="radio" name="PreEmergeInc" id="PE1" value="0"><label for="PE1">No</label></input><input type="radio" name="PreEmergeInc" id="PE2" value="1"><label for="PE2">Incorporated</label></input><input type="radio" name="PreEmergeInc" id="PE3" value="2"><label for="PE3">Dribble</label></input>
-    Starter:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="StarterNPK"></input>
+    <br />Preplant Incorporated:<input type="radio" name="PreEmergeInc" id="PE1" value="0"><label for="PE1">No</label></input><input type="radio" name="PreEmergeInc" id="PE2" value="1"><label for="PE2">Incorporated</label></input><input type="radio" name="PreEmergeInc" id="PE3" value="2"><label for="PE3">Dribble</label></input>
+    <br />Starter:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="StarterNPK"></input>
     Starter Rate:<input type="number" name="StarterRate"></input>
     Sidedress N:<input type="number" name="SidedressN"></input>
-    Sidedress Inc:<input type="radio" name="SidedressInc" id="SI1" value="0"><label for="SI1">No</label></input><input type="radio" name="SidedressInc" id="SI2" value="1"><label for="SI2">Incorporated</label></input><input type="radio" name="SidedressInc" id="SI3" value="2"><label for="SI3">Dribble</label></input>
-    Sidedress NFarmer:<input type="number" name="SidedressNFarmer"></input>
-    SidedressNFarmerInc:<input type="radio" name="SidedressNFarmerInc" id="SN1" value="0"><label for="SN1">No</label></input><input type="radio" name="SidedressNFarmerInc" id="SN2" value="1"><label for="SN2">Incorporated</label></input><input type="radio" name="SidedressNFarmerInc" id="SN3" value="2"><label for="SN3">Dribble</label></input>
-    Sidedress N75:<input type="number" name="SidedressN75"></input>
-    SidedressN75Inc:<input type="radio" name="SidedressN75Inc" id="SN751" value="0"><label for="SN751">No</label></input><input type="radio" name="SidedressN75Inc" id="SN752" value="1"><label for="SN752">Incorporated</label></input><input type="radio" name="SidedressN75Inc" id="SN753" value="2"><label for="SN753">Dribble</label></input>
-    Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"><label for="SU2">No</label></input>
-    Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
+    <br />Sidedress Inc:<input type="radio" name="SidedressInc" id="SI1" value="0"><label for="SI1">No</label></input><input type="radio" name="SidedressInc" id="SI2" value="1"><label for="SI2">Incorporated</label></input><input type="radio" name="SidedressInc" id="SI3" value="2"><label for="SI3">Dribble</label></input>
+    <br />Sidedress NFarmer:<input type="number" name="SidedressNFarmer"></input>
+    <br />SidedressNFarmerInc:<input type="radio" name="SidedressNFarmerInc" id="SN1" value="0"><label for="SN1">No</label></input><input type="radio" name="SidedressNFarmerInc" id="SN2" value="1"><label for="SN2">Incorporated</label></input><input type="radio" name="SidedressNFarmerInc" id="SN3" value="2"><label for="SN3">Dribble</label></input>
+    <br />Sidedress N75:<input type="number" name="SidedressN75"></input>
+    <br />SidedressN75Inc:<input type="radio" name="SidedressN75Inc" id="SN751" value="0"><label for="SN751">No</label></input><input type="radio" name="SidedressN75Inc" id="SN752" value="1"><label for="SN752">Incorporated</label></input><input type="radio" name="SidedressN75Inc" id="SN753" value="2"><label for="SN753">Dribble</label></input>
+    <br />Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"><label for="SU2">No</label></input>
+    <br />Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
     Pounds with UAN from Irrigation:<input type="number" name="LbsNfromUAN"></input>
     <input type="submit"></input>
   </form></div>

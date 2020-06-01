@@ -14,7 +14,7 @@
         var forms = document.getElementsByTagName("form");
         var arr = [['Lat', 'Long']];
           for (x = 0; x < (forms.length); x++){
-                arr.push([new Date(2008 + x, 1, 1), parseFloat(forms[x][2].value)]);
+                arr.push([new Date(2008 + x, 0, 0), parseFloat(forms[x][2].value)]);
               }
         //console.log(arr);
 

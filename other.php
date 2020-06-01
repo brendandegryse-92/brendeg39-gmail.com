@@ -2,12 +2,33 @@
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
   <style>
-    input {
+    #Add {
       display: none;
     }
   </style>
+    <script type="text/javascript">
+            function File() {
+  const file = document.querySelector('input[type=file]').files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    // convert image file to base64 string
+    document.getElementById("Dropbox").href = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+            /**var fr = new FileReader();
+            fr.readAsDataURL(document.getElementById('inputfile').files[0]);
+              document.getElementById("Dropbox").href = fr.result;**/
+            }
+    </script>
+  <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="ngtax1dgxdfao30"></script>
 </head>
 <body>
+  <input type="file" id="inputfile" onchange="File()"/>
+<a href="C:\Users\brend\Downloads\CIG2020_10GR001_boundary_Boundary Name.kml" id="Dropbox" class="dropbox-saver"></a>
   <nav>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a> <a href="otherlogin.php">Login</a> <a href="otherregister.php">Register</a>
   </nav><br>
@@ -52,7 +73,7 @@
   ?>
   <div id="Grower">Active Grower: </div><button onclick="location.href = 'edit.php'">Edit Grower</button><button onclick="location.href = 'otherfield.php'">Add Field</button><br />
   <button onclick="toggle()">Add Grower</button>
-<div class="newspaper">
+<div id="Add" class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <input type="text" name="FirstName" placeholder="First Name"></input>
     <input type="text" name="MI" placeholder="Middle Initial"></input>
@@ -75,15 +96,13 @@ function edit(GrowerID,ElementName) {
   //location.href = "edit.php";
 }
 function toggle() {
-  var x = document.getElementsByTagName("input");
-  for (i = 0; i < x.length; i++) {
-    if(x[i].style.display=="inline-block") {
-      x[i].style.display="none";
+  var x = document.getElementById("Add");
+    if(x.style.display=="inline-block") {
+      x.style.display="none";
     }
-    else if(x[i].style.display=="none" || x[i].style.display=="") {
-      x[i].style.display="inline-block";
+    else if(x.style.display=="none" || x.style.display=="") {
+      x.style.display="inline-block";
     }
-  }
 }
 </script>
 </body>

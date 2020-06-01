@@ -76,9 +76,10 @@
     <input type="number" name="Acres"></input>
     <input type="text"name="County"></input>
     <input type="text" name="Township"></input>
-    <input type="text" name="Section"></input>
+    <input type="text" name="Section"></input><br />
     Quarter:<input type="radio" name="Quarter" id="Quarter1" value="0"><label for="Quarter1">NE</label></input><input type="radio" name="Quarter" id="Quarter2" value="1"><label for="Quarter2">SE</label></input><input type="radio" name="Quarter" id="Quarter3" value="2"><label for="Quarter3">NW</label></input><input type="radio" name="Quarter" id="Quarter4" value="3"><label for="Quarter4">SW</label></input>
-    Tillage<input type="radio" name="Tillage" id="Tillage1" value="0"><label for="Tillage1">No Till</label></input><input type="radio" name="Tillage" id="Tillage2" value="1"><label for="Tillage2">Minimum Till</label></input><input type="radio" name="Tillage" id="Tillage3" value="2"><label for="Tillage3">Fall</label></input><input type="radio" name="Tillage" id="Tillage4" value="3"><label for="Tillage4">Spring</label></input><input type="radio" name="Tillage" id="Tillage5" value="4"><label for="Tillage5">Strip Till</label></input>
+    <br />Tillage<input type="radio" name="Tillage" id="Tillage1" value="0"><label for="Tillage1">No Till</label></input><input type="radio" name="Tillage" id="Tillage2" value="1"><label for="Tillage2">Minimum Till</label></input><input type="radio" name="Tillage" id="Tillage3" value="2"><label for="Tillage3">Fall</label></input><input type="radio" name="Tillage" id="Tillage4" value="3"><label for="Tillage4">Spring</label></input><input type="radio" name="Tillage" id="Tillage5" value="4">
+    <label for="Tillage5">Strip Till</label></input><br />
     Planting Date:<input type="date" name="Plantingdate"></input>
     2019 Crop:<input type="text" name="LastYearCrop"></input>
     How Many Years Corn:<input type="number" name="YearsCorn"></input>
@@ -88,12 +89,12 @@
     Cover Crop:<input type="text" name="CoverCrop"></input>
     Date Seeded:<input type="date" name="DateSeeded"></input>
     How Was It Seeded:<input type="text" name="HowSeeded"></input>
-    Ncredits:<input type="number" name="Ncredits"></input>
+    Ncredits:<input type="number" name="Ncredits"></input><br />
     How Was It Killed:<input type="radio" name="HowKilled" id="How1" value="0"><label for="How1">Chemical burn down</label></input><input type="radio" name="HowKilled" id="How2" value="1"><label for="How2">Plowed or Disked under</label></input><input type="radio" name="HowKilled" id="How3" value="2"><label for="How3">Harvested</label></input><input type="radio" name="HowKilled" id="How4" value="3"><label for="How4">Other</label></input>
-    Date:<input type="date" name="DateKilled"></input>
-    Number of years in the last 5 manure was applied:<input type="text" name="Last5"></input>
+    <br />Date:<input type="date" name="DateKilled"></input>
+    Number of years in the last 5 manure was applied:<input type="text" name="Last5"></input><br />
     Received manure 8 of last 10 years:<input type="radio" name="8of10" id="8of101" value="0"><label for="8of101">Yes</label></input><input type="radio" name="8of10" id="8of102" value="1"><label for="8of102">No</label></input><input type="radio" name="8of10" id="8of103" value="1"><label for="8of103">Don't Know</label></input>
-    <input type="submit"></input></div>
+    <br /><input type="submit"></input></div>
   </form></div>
 
 <script>

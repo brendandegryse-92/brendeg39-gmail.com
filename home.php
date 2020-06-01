@@ -1,19 +1,29 @@
 <html>
 <head>
-  <link rel="stylesheet" href="DataInputPage.css">
+  <title>CIG Data Tool</title>
+  <link rel="stylesheet" href="css_LoginReg.css">
   <style>
-    input {
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <nav>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a> <a href="otherlogin.php">Login</a> <a href="otherregister.php">Register</a>
-  </nav><br>
-<h1 class="newspaper">
-  Welcome
-</h1>
+  <h1>Welcome to the NutrientStar-CIG data tool.</h1>
+      <hr>
+    <div class="vertical-menu">
+      <ul>
+          <li><a href="otherlogin.php"><strong>Login</strong></a></li>
+          <li><a href="otherregister.php"><strong>Register</strong></a></li>
+      </ul>
+    </div>
+      <hr>
+    <div class ="logos">
+      <table>
+        <Tr>
+          <Td><img src="img/logoamplify.jpg" width="150" align="Middle"></Td>
+          <Td><img src="img/logonutrientstar.jpg" width="150" align="Middle"></Td>
+        </Tr>
+      </table>
+
+    </div>
 <script>
 </script>
 </body>

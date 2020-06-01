@@ -131,6 +131,11 @@ echo $arr[0][0];
   </form></div>
 
 <script>
+var txtBox = document.getElementsByTagName("input");
+//alert(forms[0]); This is hhow you show a popup alert box
+for (var i = 0; i < txtBox.length; i++) {
+  txtBox[i].placeholder = txtBox[i].name.replace(/\B(?<![A-Z])[A-Z]/g, " $&");
+}
 function edit(x) {
   document.cookie="PrimeIDFert=" + x;
   location.href = "editfertapps.php";

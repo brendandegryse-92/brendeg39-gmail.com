@@ -41,28 +41,28 @@ $stmt->execute([$_COOKIE['PrimeIDFert'], $_SESSION['ID']]);
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '
   Recieved Variable Rate N, P, K?:<input type="radio" id="RVR1" name="VariableRate" value="0"'; if ($arr[2] == 0) {echo ' checked';} echo '><label for="RVR1">Yes</label></input><input type="radio" name="VariableRate" id="RVR2" value="1"'; if ($arr[2] == 1) {echo ' checked';} echo '><label for="RVR2">No</label></input>
-  Fall N:<input type="number"  value="'.$arr[3].'" name="FallN"></input>
+  Fall N:<input type="number"  value="'.$arr[3].'" name="FallN"></input><br />
   Fall Other:<input type="number"  value="'.$arr[4].'" name="FallOther"></input>
-  Fall Lbs:<input type="number"  value="'.$arr[5].'" name="FallLbs"></input>
+  Fall Lbs:<input type="number"  value="'.$arr[5].'" name="FallLbs"></input><br />
   Fall Incorporated:<input type="radio" name="FallInc" id="FI1" value="0"'; if ($arr[6] == 0) {echo ' checked';} echo '><label for="FI1">Yes</label></input><input type="radio" name="FallInc" id="FI2" value="1"'; if ($arr[6] == 1) {echo ' checked';} echo '><label for="FI2">No</label></input>
-  Preplant N:<input type="number"  value="'.$arr[7].'" name="PreN"></input>
+  <br />Preplant N:<input type="number"  value="'.$arr[7].'" name="PreN"></input>
   Preplant Other:<input type="number"  value="'.$arr[8].'" name="PreOther"></input>
-  Preplant Lbs:<input type="number"  value="'.$arr[9].'" name="PreLbs"></input>
+  Preplant Lbs:<input type="number"  value="'.$arr[9].'" name="PreLbs"></input><br />
   Preplant Incorporated:<input type="radio" name="PreInc" id="PI1" value="0"'; if ($arr[10] == 0) {echo ' checked';} echo '><label for="PI1">No</label></input><input type="radio" name="PreInc" id="PI2" value="1"'; if ($arr[10] == 1) {echo ' checked';} echo '><label for="PI2">Incorporated</label></input><input type="radio" name="PreInc" id="PI3" value="2"'; if ($arr[10] == 2) {echo ' checked';} echo '><label for="PI3">Dribble</label></input>
-  Pre-emerge N:<input type="number"  value="'.$arr[11].'" name="PreEmergeN"></input>
+  <br />Pre-emerge N:<input type="number"  value="'.$arr[11].'" name="PreEmergeN"></input>
   Preplant Other:<input type="number"  value="'.$arr[12].'" name="PreEmergeOther"></input>
-  Preplant Lbs:<input type="number"  value="'.$arr[13].'" name="PreEmergeLbs"></input>
+  Preplant Lbs:<input type="number"  value="'.$arr[13].'" name="PreEmergeLbs"></input><br />
   Preplant Incorporated:<input type="radio" name="PreEmergeInc" id="PE1" value="0"'; if ($arr[14] == 0) {echo ' checked';} echo '><label for="PE1">No</label></input><input type="radio" id="PE2" name="PreEmergeInc" value="1"'; if ($arr[14] == 1) {echo ' checked';} echo '><label for="PE2">Incorporated</label></input><input type="radio" id="PE3" name="PreEmergeInc" value="2"'; if ($arr[14] == 2) {echo ' checked';} echo '><label for="PE3">Dribble</label></input>
-  Starter:<input type="text" pattern="(\d{1,2}%\d{1,2}%\d{1,2}%)|\d" placeholder="--%--%--%"  value="'.$arr[15].'" name="StarterNPK"></input>
-  Starter Rate:<input type="number"  value="'.$arr[16].'" name="StarterRate"></input>
-  Sidedress N:<input type="number"  value="'.$arr[17].'" name="SidedressN"></input>
+  <br />Starter:<input type="text" pattern="(\d{1,2}%\d{1,2}%\d{1,2}%)|\d" placeholder="--%--%--%"  value="'.$arr[15].'" name="StarterNPK"></input><br />
+  <br />Starter Rate:<input type="number"  value="'.$arr[16].'" name="StarterRate"></input>
+  Sidedress N:<input type="number"  value="'.$arr[17].'" name="SidedressN"></input><br />
   Sidedress Inc:<input type="radio" name="SidedressInc" id="SI1" value="0"'; if ($arr[18] == 0) {echo ' checked';} echo '><label for="SI1">No</label></input><input type="radio" name="SidedressInc" id="SI2" value="1"'; if ($arr[18] == 1) {echo ' checked';} echo '><label for="SI2">Incorporated</label></input><input type="radio" name="SidedressInc" id="SI3" value="2"'; if ($arr[18] == 2) {echo ' checked';} echo '><label for="SI3">Dribble</label></input>
-  Sidedress NFarmer:<input type="number"  value="'.$arr[19].'" name="SidedressNFarmer"></input>
-  SidedressNFarmerInc:<input type="radio" name="SidedressNFarmerInc" id="SN1" value="0"'; if ($arr[20] == 0) {echo ' checked';} echo '><label for="SN1">No</label></input><input type="radio" name="SidedressNFarmerInc" id="SN2" value="1"'; if ($arr[20] == 1) {echo ' checked';} echo '><label for="SN2">Incorporated</label></input><input type="radio" name="SidedressNFarmerInc" id="SN3" value="2"'; if ($arr[20] == 2) {echo ' checked';} echo '><label for="SN3">Dribble</label></input>
-  Sidedress N75:<input type="number"  value="'.$arr[21].'" name="SidedressN75"></input>
+  <br />Sidedress NFarmer:<input type="number"  value="'.$arr[19].'" name="SidedressNFarmer"></input><br />
+  <br />SidedressNFarmerInc:<input type="radio" name="SidedressNFarmerInc" id="SN1" value="0"'; if ($arr[20] == 0) {echo ' checked';} echo '><label for="SN1">No</label></input><input type="radio" name="SidedressNFarmerInc" id="SN2" value="1"'; if ($arr[20] == 1) {echo ' checked';} echo '><label for="SN2">Incorporated</label></input><input type="radio" name="SidedressNFarmerInc" id="SN3" value="2"'; if ($arr[20] == 2) {echo ' checked';} echo '><label for="SN3">Dribble</label></input>
+  Sidedress N75:<input type="number"  value="'.$arr[21].'" name="SidedressN75"></input><br />
   SidedressN75Inc:<input type="radio" name="SidedressN75Inc" id="SN751" value="0"'; if ($arr[22] == 0) {echo ' checked';} echo '><label for="SN751">No</label></input><input type="radio" name="SidedressN75Inc" id="SN752" value="1"'; if ($arr[22] == 1) {echo ' checked';} echo '><label for="SN752">Incorporated</label></input><input type="radio" name="SidedressN75Inc" id="SN753" value="2"'; if ($arr[22] == 2) {echo ' checked';} echo '><label for="SN753">Dribble</label></input>
-  Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"'; if ($arr[23] == 0) {echo ' checked';} echo '><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"'; if ($arr[23] == 1) {echo ' checked';} echo '><label for="SU2">No</label></input>
-  Stabilizer Product?:<input type="text"  value="'.$arr[24].'" name="StabilizerProduct"></input>
+  <br />Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"'; if ($arr[23] == 0) {echo ' checked';} echo '><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"'; if ($arr[23] == 1) {echo ' checked';} echo '><label for="SU2">No</label></input>
+  <br />Stabilizer Product?:<input type="text"  value="'.$arr[24].'" name="StabilizerProduct"></input>
   Lbs From Uan:<input type="number"  value="'.$arr[25].'" name="LbsNfromUAN"></input>
     <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
   </form></div>';

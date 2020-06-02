@@ -36,6 +36,8 @@ li:last-child{
 hr {
   padding-top: 25px;
   border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
   width:50%;
   text-align:center;
 }

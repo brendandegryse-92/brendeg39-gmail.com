@@ -1,6 +1,37 @@
+<?php
+session_start();
+if (!isset($_SESSION['ID'])) {
+  header("Location: otherlogin.php");
+}
+$server = "localhost";
+$uname = "upgrado3_client";
+$pword = "Passterm";
+try {
+$connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
+$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
+}
+catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
+}
+  if (isset($_POST['Manure'])) {
+  if ($_POST['delete'] == "on") {
+    $sql = "DELETE FROM manure WHERE ID = ? And UserID = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDManure'], $_SESSION['ID']]);
+    $_POST['delete'] == "off";
+    header("Location: manure.php");
+  }
+  else {
+  $sql = 'UPDATE manure SET Manure = ?, AppType = ?, Time = ?, Availability = ?, AppTiming = ?, AmountPerAcre = ?, StateOfMatter = ?, NPK = ?, Notes = ? WHERE ID = ? AND UserID = ?';
+  $stmt = $connection->prepare($sql);
+  $stmt->execute([$_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'] ,$_POST['StateOfMatter'], $_POST['NPK'], $_POST['Notes'], $_COOKIE['PrimeIDManure'], $_SESSION['ID']]);
+  header("Location: manure.php");
+  }
+}
+?>
 <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
 </head>
 <body><h1><?php
 session_start();
@@ -8,10 +39,10 @@ if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
 }
 $server = "localhost";
-$uname = "client";
-$pword = "Pass";
+$uname = "upgrado3_client";
+$pword = "Passterm";
 try {
-$connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+$connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -27,10 +58,10 @@ echo $arr[0][0];
 <?php
 session_start();
 $server = "localhost";
-$uname = "client";
-$pword = "Pass";
+$uname = "upgrado3_client";
+$pword = "Passterm";
 try {
-$connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+$connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -49,23 +80,9 @@ echo '
     Amount Per Acre:<input type="number" value="'.$arr[7].'" name="AmountPerAcre"></input><br />
     <br /><input type="radio" name="StateOfMatter" id="SoM1" value="0"'; if ($arr[8] == 0) {echo ' checked';} echo '><label for="SoM1">Solid</label></input><input type="radio" name="StateOfMatter" id="SoM2" value="1"'; if ($arr[8] == 1) {echo ' checked';} echo '><label for="SoM2">Liquid</label></input>
     NPK:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" value="'.$arr[9].'" name="NPK"></input><br />
+    Notes:<input type="text" value="'.$arr[10].'" name="Notes"></input><br />
     <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
   </form></div>';
-  if (isset($_POST['Manure'])) {
-  if ($_POST['delete'] == "on") {
-    $sql = "DELETE FROM manure WHERE ID = ? And UserID = ?";
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDManure'], $_SESSION['ID']]);
-    $_POST['delete'] == "off";
-    header("Location: manure.php");
-  }
-  else {
-  $sql = 'UPDATE manure SET Manure = ?, AppType = ?, Time = ?, Availability = ?, AppTiming = ?, AmountPerAcre = ?, StateOfMatter = ?, NPK = ? WHERE ID = ? AND UserID = ?';
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'] ,$_POST['StateOfMatter'], $_POST['NPK'], $_COOKIE['PrimeIDManure'], $_SESSION['ID']]);
-  header("Location: manure.php");
-  }
-}
 ?>
 <script>
 function stop(y) {

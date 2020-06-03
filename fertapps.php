@@ -1,22 +1,47 @@
-<html>
+<?php
+  session_start();
+  $server = "localhost";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
+  try {
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
+  }
+  catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
+  }
+if (!isset($_SESSION['ID'])) {
+  header("Location: otherlogin.php");
+}
+    if ($_POST['FallN'] != "") {
+    $sql = 'INSERT INTO fertilizerapps (FieldID, VariableRate, FallN, FallOther, FallLbs, FallInc, PreN, PreOther, PreLbs, PreInc, PreEmergeN, PreEmergeOther, PreEmergeLbs, PreEmergeInc, StarterNPK, SidedressN, SidedressInc, SidedressNFarmer, SidedressNFarmerInc, SidedressN75, SidedressN75Inc, StabilizerUsed, StabilizerProduct, LbsNfromUAN, Notes, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['VariableRate'],$_POST['FallN'],$_POST['FallOther'],$_POST['FallLbs'],$_POST['FallInc'],$_POST['PreN'],$_POST['PreOther'],$_POST['PreLbs'],$_POST['PreInc'],$_POST['PreEmergeN'],$_POST['PreEmergeOther'],
+    $_POST['PreEmergeLbs'],$_POST['PreEmergeInc'],$_POST['StarterNPK'],$_POST['SidedressN'],$_POST['SidedressInc'],$_POST['SidedressNFarmer'],$_POST['SidedressNFarmerInc'],$_POST['SidedressN75'],$_POST['SidedressN75Inc'],$_POST['StabilizerUsed'],$_POST['StabilizerProduct'],$_POST['LbsNfromUAN'],$_POST['Notes'], $_SESSION['ID']]);
+    $_POST['FallN'] = "";
+    header("Location: fertapps.php");
+    }
+?>
+  <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
   <style>
     #Add {
       display: none;
     }
   </style>
 </head>
-<body><h1><?php
+<body><h1>
+<?php
 session_start();
 if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
 }
 $server = "localhost";
-$uname = "client";
-$pword = "Pass";
+$uname = "upgrado3_client";
+$pword = "Passterm";
 try {
-$connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+$connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -27,13 +52,14 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1><nav>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a></nav><?php
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a></nav>
+  <?php
   session_start();
   $server = "localhost";
-  $uname = "client";
-  $pword = "Pass";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
   try {
-  $connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -43,11 +69,11 @@ echo $arr[0][0];
   $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
   if (count($arr)>0) {
-    echo '<table><tr><th>Recieved Variable Rate N, P, K?</th><th>Fall N</th><th>Fall Other</th><th>Fall Lbs</th><th>Fall Incorporated</th><th>Preplant N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Pre-emerge N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Starter</th><th>Starter Rate</th><th>Sidedress N</th><th>Sidedress Inc</th><th>Sidedress NFarmer</th><th>SidedressNFarmerInc</th><th>Sidedress N75</th><th>SidedressN75Inc</th><th>Was Stabilizer Used?</th><th>Stabilizer Product?</th><th>Lbs From Uan</th></tr>';
+    echo '<table><tr><th>Recieved Variable Rate N, P, K?</th><th>Fall N</th><th>Fall Other</th><th>Fall Lbs</th><th>Fall Incorporated</th><th>Preplant N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Pre-emerge N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Starter</th><th>Starter Rate</th><th>Sidedress N</th><th>Sidedress Inc</th><th>Sidedress NFarmer</th><th>SidedressNFarmerInc</th><th>Sidedress N75</th><th>SidedressN75Inc</th><th>Was Stabilizer Used?</th><th>Stabilizer Product?</th><th>Lbs From Uan</th><th>Notes</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].')">';
     foreach ($val as $key => $value) {
-      if ($key > 1 && $key !=2 && $key !=6 && $key !=10 && $key !=14 && $key !=18 && $key !=20 && $key !=21 && $key != 23) {
+      if ($key > 1 && $key !=2 && $key !=6 && $key !=10 && $key !=14 && $key !=18 && $key !=20 && $key !=21 && $key != 23 && $key != 27) {
       echo '<td>'.$value.'</td>';
     }
     elseif ($key == 2) {
@@ -93,14 +119,6 @@ echo $arr[0][0];
   }
   echo '</table>';
   }
-    if ($_POST['FallN'] != "") {
-    $sql = 'INSERT INTO fertilizerapps (FieldID, VariableRate, FallN, FallOther, FallLbs, FallInc, PreN, PreOther, PreLbs, PreInc, PreEmergeN, PreEmergeOther, PreEmergeLbs, PreEmergeInc, StarterNPK, SidedressN, SidedressInc, SidedressNFarmer, SidedressNFarmerInc, SidedressN75, SidedressN75Inc, StabilizerUsed, StabilizerProduct, LbsNfromUAN, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['VariableRate'],$_POST['FallN'],$_POST['FallOther'],$_POST['FallLbs'],$_POST['FallInc'],$_POST['PreN'],$_POST['PreOther'],$_POST['PreLbs'],$_POST['PreInc'],$_POST['PreEmergeN'],$_POST['PreEmergeOther'],
-    $_POST['PreEmergeLbs'],$_POST['PreEmergeInc'],$_POST['StarterNPK'],$_POST['SidedressN'],$_POST['SidedressInc'],$_POST['SidedressNFarmer'],$_POST['SidedressNFarmerInc'],$_POST['SidedressN75'],$_POST['SidedressN75Inc'],$_POST['StabilizerUsed'],$_POST['StabilizerProduct'],$_POST['LbsNfromUAN'], $_SESSION['ID']]);
-    $_POST['FallN'] = "";
-    header("Location: fertapps.php");
-    }
   ?><button onclick="toggle()">Add Fertilizer</button><div id="Add" class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <br />Recieved Variable Rate N, P, K?:<input type="radio" name="VariableRate" id="RVR1" value="0"><label for="RVR1">Yes</label></input><input type="radio" name="VariableRate" id="RVR2" value="1"><label for="RVR2">No</label></input>
@@ -127,6 +145,7 @@ echo $arr[0][0];
     <br />Was Stabilizer Used?:<input type="radio" name="StabilizerUsed" id="SU1" value="0"><label for="SU1">Yes</label></input><input type="radio" name="StabilizerUsed" id="SU2" value="1"><label for="SU2">No</label></input>
     <br />Stabilizer Product?:<input type="text" name="StabilizerProduct"></input>
     Pounds with UAN from Irrigation:<input type="number" name="LbsNfromUAN"></input>
+    Notes:<input type="text" name="Notes"></input>
     <input type="submit"></input>
   </form></div>
 

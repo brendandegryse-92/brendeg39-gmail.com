@@ -1,6 +1,29 @@
-<html>
+<?php
+  session_start();
+  $server = "localhost";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
+  try {
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
+  }
+  catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
+  }
+if (!isset($_SESSION['ID'])) {
+  header("Location: otherlogin.php");
+}
+    if ($_POST['AppType'] != "") {
+    $sql = 'INSERT INTO manure (FieldID, Manure,	AppType,	Time,	Availability,	AppTiming,	AmountPerAcre, StateOfMatter, NPK, Notes, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['StateOfMatter'], $_POST['NPK'], $_POST['Notes'], $_SESSION['ID']]);
+    $_POST['AppType'] = "";
+    header("Location: manure.php");
+    }
+  ?>
+  <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
   <style>
     #Add {
       display: none;
@@ -13,10 +36,10 @@ if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
 }
 $server = "localhost";
-$uname = "client";
-$pword = "Pass";
+$uname = "upgrado3_client";
+$pword = "Passterm";
 try {
-$connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+$connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -30,10 +53,10 @@ echo $arr[0][0];
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><?php
   session_start();
   $server = "localhost";
-  $uname = "client";
-  $pword = "Pass";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
   try {
-  $connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -43,11 +66,11 @@ echo $arr[0][0];
   $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
   if (count($arr)>0) {
-    echo '<table><tr><th>Manure</th><th>AppType</th><th>Time</th><th>Availability</th><th>AppTiming</th><th>AmountPerAcre</th><th>Solid/Liquid</th><th>NPK</th></tr>';
+    echo '<table><tr><th>Manure</th><th>AppType</th><th>Time</th><th>Availability</th><th>AppTiming</th><th>AmountPerAcre</th><th>Solid/Liquid</th><th>NPK</th><th>Notes</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].')">';
     foreach ($val as $key => $value) {
-      if ($key > 1 && $key != 8) {
+      if ($key > 1 && $key != 8 && $key != 11) {
       echo '<td>'.$value.'</td>';
     }
     elseif ($key == 8) {
@@ -60,14 +83,7 @@ echo $arr[0][0];
   echo '</table>';
   }
   $_POST['NPK'];
-    if ($_POST['AppType'] != "") {
-    $sql = 'INSERT INTO manure (FieldID, Manure,	AppType,	Time,	Availability,	AppTiming,	AmountPerAcre, StateOfMatter, NPK, UserID) VALUES (?,?,?,?,?,?,?,?,?,?)';
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDField'], $_POST['Manure'], $_POST['AppType'], $_POST['Time'], $_POST['Availability'], $_POST['AppTiming'], $_POST['AmountPerAcre'], $_POST['StateOfMatter'], $_POST['NPK'], $_SESSION['ID']]);
-    $_POST['AppType'] = "";
-    header("Location: manure.php");
-    }
-  ?><button onclick="toggle()">Add Manure</button><div id="Add" class="newspaper"><br />
+  ?><br><button onclick="toggle()">Add Manure</button><div id="Add" class="newspaper"><br />
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Manure:<input onclick="stop('Swine')" type="radio" id="Manure1" name="Manure1" value="Swine"><label for="Manure1">Swine</label></input><input onclick="stop('Beef')" type="radio" id="Manure2" name="Manure1" value="Beef"><label for="Manure2">Beef</label></input><input onclick="stop('Dairy')" type="radio" id="Manure3" name="Manure1" value="Dairy"><label for="Manure3">Dairy</label></input><input onclick="stop('Layer')" type="radio" id="Manure4" name="Manure1" value="Layer"><label for="Manure4">Layer</label></input><input onclick="stop('Broiler')" type="radio" id="Manure5" name="Manure1" value="Broiler"><label for="Manure5">Broiler</label></input><input onclick="stop('Turkey')" type="radio" id="Manure6" name="Manure1" value="Turkey"><label for="Manure6">Turkey</label></input><input type="radio" id="Manure7" onclick="stop('Layer Pullet')" name="Manure1" value="Layer Pullet"><label for="Manure7">Layer Pullet</label></input>
     <br /><input type="text" id="Manure" name="Manure"></input><br />
@@ -78,6 +94,7 @@ echo $arr[0][0];
     <br />Gallons or Tons of Manure Per Acre:<input type="number" name="AmountPerAcre"></input>
     <br /><input type="radio" name="StateOfMatter" id="SoM1" value="0"><label for="SoM1">Solid</label></input><input type="radio" name="StateOfMatter" id="SoM2" value="1"><label for="SoM2">Liquid</label></input>
     <br />NPK:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="NPK"></input><br />
+    Notes:<input type="text" name="Notes"></input>
     <input type="submit"></input>
   </form></div>
 

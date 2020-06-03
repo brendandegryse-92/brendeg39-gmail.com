@@ -11,6 +11,7 @@
     width: 20%;
   }
   </style>
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
 </head>
 <body>
 <div>

@@ -1,47 +1,46 @@
+<?php 
+  session_start();
+  $server = "localhost";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
+  try {
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
+  }
+  catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
+  }
+  if (!isset($_SESSION['ID'])) {
+    header("Location: http://upgradeag.com/CIG/otherlogin.php");
+  }
+    if ($_POST['FirstName'] != "") {
+    $sql = 'INSERT INTO grower (FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_SESSION['ID']]);
+    $_POST['FirstName'] = "";
+    header("Location: other.php");
+    }
+  ?>
 <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
   <style>
     #Add {
       display: none;
     }
   </style>
-    <script type="text/javascript">
-            function File() {
-  const file = document.querySelector('input[type=file]').files[0];
-  const reader = new FileReader();
-
-  reader.addEventListener("load", function () {
-    // convert image file to base64 string
-    document.getElementById("Dropbox").href = reader.result;
-  }, false);
-
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-            /**var fr = new FileReader();
-            fr.readAsDataURL(document.getElementById('inputfile').files[0]);
-              document.getElementById("Dropbox").href = fr.result;**/
-            }
-    </script>
-  <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="ngtax1dgxdfao30"></script>
 </head>
 <body>
-  <input type="file" id="inputfile" onchange="File()"/>
-<a href="C:\Users\brend\Downloads\CIG2020_10GR001_boundary_Boundary Name.kml" id="Dropbox" class="dropbox-saver"></a>
   <nav>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a> <a href="otherlogin.php">Login</a> <a href="otherregister.php">Register</a>
   </nav><br>
   <?php
   session_start();
-  if (!isset($_SESSION['ID'])) {
-    header("Location: otherlogin.php");
-  }
   $server = "localhost";
-  $uname = "client";
-  $pword = "Pass";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
   try {
-  $connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
@@ -63,13 +62,6 @@
   }
   echo '</table>';
   }
-    if ($_POST['FirstName'] != "") {
-    $sql = 'INSERT INTO grower (FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_SESSION['ID']]);
-    $_POST['FirstName'] = "";
-    header("Location: other.php");
-    }
   ?>
   <div id="Grower">Active Grower: </div><button onclick="location.href = 'edit.php'">Edit Grower</button><button onclick="location.href = 'otherfield.php'">Add Field</button><br />
   <button onclick="toggle()">Add Grower</button>

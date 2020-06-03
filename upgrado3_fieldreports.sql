@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 03, 2020 at 03:38 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost:3306
+-- Generation Time: Jun 03, 2020 at 09:30 AM
+-- Server version: 5.7.23-23
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fieldreports`
+-- Database: `upgrado3_fieldreports`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE `fertilizerapps` (
   `PreEmergeOther` varchar(255) DEFAULT NULL,
   `PreEmergeLbs` int(11) DEFAULT NULL,
   `PreEmergeInc` tinyint(4) DEFAULT NULL,
-  `StarterNPK` text DEFAULT NULL,
+  `StarterNPK` text,
   `StarterRate` varchar(255) DEFAULT NULL,
   `SidedressN` int(11) DEFAULT NULL,
   `SidedressInc` tinyint(4) DEFAULT NULL,
@@ -55,6 +55,7 @@ CREATE TABLE `fertilizerapps` (
   `StabilizerUsed` tinyint(1) DEFAULT NULL,
   `StabilizerProduct` varchar(255) DEFAULT NULL,
   `LbsNfromUAN` int(11) DEFAULT NULL,
+  `Notes` varchar(255) NOT NULL,
   `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,9 +63,11 @@ CREATE TABLE `fertilizerapps` (
 -- Dumping data for table `fertilizerapps`
 --
 
-INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOther`, `FallLbs`, `FallInc`, `PreN`, `PreOther`, `PreLbs`, `PreInc`, `PreEmergeN`, `PreEmergeOther`, `PreEmergeLbs`, `PreEmergeInc`, `StarterNPK`, `StarterRate`, `SidedressN`, `SidedressInc`, `SidedressNFarmer`, `SidedressNFarmerInc`, `SidedressN75`, `SidedressN75Inc`, `StabilizerUsed`, `StabilizerProduct`, `LbsNfromUAN`, `UserID`) VALUES
-(9, 27, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, 2),
-(10, 27, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, 2);
+INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOther`, `FallLbs`, `FallInc`, `PreN`, `PreOther`, `PreLbs`, `PreInc`, `PreEmergeN`, `PreEmergeOther`, `PreEmergeLbs`, `PreEmergeInc`, `StarterNPK`, `StarterRate`, `SidedressN`, `SidedressInc`, `SidedressNFarmer`, `SidedressNFarmerInc`, `SidedressN75`, `SidedressN75Inc`, `StabilizerUsed`, `StabilizerProduct`, `LbsNfromUAN`, `Notes`, `UserID`) VALUES
+(9, 27, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, '', 2),
+(10, 27, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, '', 2),
+(11, 29, 0, 7856, '456456', 0, 0, 0, '', 0, 0, 0, '', 0, 0, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', 0, ' && $key != 23', 5),
+(12, 29, 0, 45645, '456456', 0, 0, 0, '', 0, 0, 0, '', 0, 0, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', 0, 'Notessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 5);
 
 -- --------------------------------------------------------
 
@@ -96,17 +99,20 @@ CREATE TABLE `field` (
   `DateKilled` date DEFAULT NULL,
   `UserID` int(11) DEFAULT NULL,
   `Last5` int(11) DEFAULT NULL,
-  `8of10` tinyint(4) DEFAULT NULL
+  `8of10` tinyint(4) DEFAULT NULL,
+  `Notes` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `field`
 --
 
-INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`, `UserID`, `Last5`, `8of10`) VALUES
-(26, 68, 'Field 1', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 2, 0, NULL),
-(27, 67, 'Gary\'s Field', 0, '', '', '', NULL, NULL, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, NULL, '0000-00-00', 2, 0, NULL),
-(28, 67, 'Brendan\'s Field', 0, '', '', '', NULL, NULL, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, NULL, '0000-00-00', 2, 0, NULL);
+INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`, `UserID`, `Last5`, `8of10`, `Notes`) VALUES
+(26, 68, 'Field 1', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 2, 0, NULL, NULL),
+(27, 67, 'Gary\'s Field', 0, '', '', '', NULL, NULL, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, NULL, '0000-00-00', 2, 0, NULL, NULL),
+(28, 67, 'Brendan\'s Field', 0, '', '', '', NULL, NULL, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, NULL, '0000-00-00', 2, 0, NULL, NULL),
+(29, 67, 'Gary\'s Field', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 5, 0, 2, 'Notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes not'),
+(30, 67, 'Brendan\'s Field', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 5, 0, NULL, 'Notes');
 
 -- --------------------------------------------------------
 
@@ -135,9 +141,10 @@ CREATE TABLE `grower` (
 --
 
 INSERT INTO `grower` (`ID`, `FirstName`, `MI`, `LastName`, `CompanyName`, `MailingAddress`, `City`, `State`, `Zip`, `HomePhone`, `MobilePhone`, `Email`, `UserID`) VALUES
-(67, 'Brendan', '', 'Degryse', 'STS', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 2),
-(68, 'John', '', '', '', '', '', '', 0, 0, 0, '', 2),
-(69, 'Brendan', '', 'Degryse', 'STS', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 2);
+(67, 'Brendan', '', 'Degryse', 'STS', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 5),
+(68, 'John', '', '', '', '', '', '', 0, 0, 0, '', 5),
+(69, 'Brendan', '', 'Degryse', 'STS', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 5),
+(70, 'Bren', '', 'Degryse', 'STS', '14361 Scott Rd. Bryan OH 43506', 'Bryan', 'OH', 43506, 5672396350, 0, 'brendandegryse@yahoo.com', 5);
 
 -- --------------------------------------------------------
 
@@ -148,14 +155,15 @@ INSERT INTO `grower` (`ID`, `FirstName`, `MI`, `LastName`, `CompanyName`, `Maili
 CREATE TABLE `manure` (
   `ID` int(11) NOT NULL,
   `FieldID` int(11) NOT NULL,
-  `Manure` varchar(255) NOT NULL,
-  `AppType` int(11) NOT NULL,
-  `Time` time NOT NULL,
-  `Availability` int(11) NOT NULL,
-  `AppTiming` int(11) NOT NULL,
-  `AmountPerAcre` int(11) NOT NULL,
+  `Manure` varchar(255) DEFAULT NULL,
+  `AppType` int(11) DEFAULT NULL,
+  `Time` time DEFAULT NULL,
+  `Availability` int(11) DEFAULT NULL,
+  `AppTiming` int(11) DEFAULT NULL,
+  `AmountPerAcre` int(11) DEFAULT NULL,
   `StateOfMatter` tinyint(1) DEFAULT NULL,
-  `NPK` varchar(255) NOT NULL,
+  `NPK` varchar(255) DEFAULT NULL,
+  `Notes` varchar(255) NOT NULL,
   `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -163,8 +171,10 @@ CREATE TABLE `manure` (
 -- Dumping data for table `manure`
 --
 
-INSERT INTO `manure` (`ID`, `FieldID`, `Manure`, `AppType`, `Time`, `Availability`, `AppTiming`, `AmountPerAcre`, `StateOfMatter`, `NPK`, `UserID`) VALUES
-(14, 27, 'Dairy', 0, '00:00:00', 0, 0, 0, NULL, '', 2);
+INSERT INTO `manure` (`ID`, `FieldID`, `Manure`, `AppType`, `Time`, `Availability`, `AppTiming`, `AmountPerAcre`, `StateOfMatter`, `NPK`, `Notes`, `UserID`) VALUES
+(14, 27, 'Dairy', 0, '00:00:00', 0, 0, 0, NULL, '', '', 2),
+(15, 29, 'Swine', NULL, '00:00:00', 0, 0, 0, 0, '15%45%47%', 'Notes', 5),
+(16, 29, 'Swine', NULL, '00:00:00', 0, 0, 0, 0, '', 'Notes', 5);
 
 -- --------------------------------------------------------
 
@@ -190,11 +200,11 @@ CREATE TABLE `pma__central_columns` (
   `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `col_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `col_type` varchar(64) COLLATE utf8_bin NOT NULL,
-  `col_length` text COLLATE utf8_bin DEFAULT NULL,
+  `col_length` text COLLATE utf8_bin,
   `col_collation` varchar(64) COLLATE utf8_bin NOT NULL,
   `col_isNull` tinyint(1) NOT NULL,
   `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
-  `col_default` text COLLATE utf8_bin DEFAULT NULL
+  `col_default` text COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
 
 -- --------------------------------------------------------
@@ -263,7 +273,7 @@ CREATE TABLE `pma__history` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sqlquery` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
 
@@ -304,6 +314,17 @@ CREATE TABLE `pma__recent` (
   `tables` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
 
+--
+-- Dumping data for table `pma__recent`
+--
+
+INSERT INTO `pma__recent` (`username`, `tables`) VALUES
+('cpses_up7bpru8ly', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"}]'),
+('cpses_upah1pmo4a', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"grower\"}]'),
+('cpses_uphk17nq62', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
+('cpses_uprvcmkihx', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"}]'),
+('upgrado3', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]');
+
 -- --------------------------------------------------------
 
 --
@@ -342,9 +363,9 @@ CREATE TABLE `pma__savedsearches` (
 CREATE TABLE `pma__table_coords` (
   `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
-  `x` float UNSIGNED NOT NULL DEFAULT 0,
-  `y` float UNSIGNED NOT NULL DEFAULT 0
+  `pdf_page_number` int(11) NOT NULL DEFAULT '0',
+  `x` float UNSIGNED NOT NULL DEFAULT '0',
+  `y` float UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
 
 -- --------------------------------------------------------
@@ -370,7 +391,7 @@ CREATE TABLE `pma__table_uiprefs` (
   `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `prefs` text COLLATE utf8_bin NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
 
 -- --------------------------------------------------------
@@ -386,10 +407,10 @@ CREATE TABLE `pma__tracking` (
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
   `schema_snapshot` text COLLATE utf8_bin NOT NULL,
-  `schema_sql` text COLLATE utf8_bin DEFAULT NULL,
-  `data_sql` longtext COLLATE utf8_bin DEFAULT NULL,
+  `schema_sql` text COLLATE utf8_bin,
+  `data_sql` longtext COLLATE utf8_bin,
   `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
-  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
+  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -400,9 +421,19 @@ CREATE TABLE `pma__tracking` (
 
 CREATE TABLE `pma__userconfig` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `config_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
+
+--
+-- Dumping data for table `pma__userconfig`
+--
+
+INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
+('cpses_up3ek4hv7a', '2020-06-01 19:25:21', '{\"Console\\/Mode\":\"collapse\"}'),
+('cpses_up5js4yog8', '2020-06-02 15:24:58', '{\"Console\\/Mode\":\"collapse\"}'),
+('cpses_up8dng43pg', '2020-06-03 15:30:47', '{\"Console\\/Mode\":\"collapse\"}'),
+('cpses_uprvcmkihx', '2020-06-03 13:32:37', '{\"Console\\/Mode\":\"collapse\"}');
 
 -- --------------------------------------------------------
 
@@ -445,8 +476,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Name`, `Password`, `email`) VALUES
-(2, 'Brendan Degryse', '$2y$10$Db1wzPHDoyezwybEXJLhdOT6Y0VVLo/jc9BGx5twmtdKhfbovYrtm', 'brendeg39@gmail.com'),
-(4, 'Brendan Degryse', '$2y$10$sAOnAAJusqjWJREjUXx2dOko8fyShJSM9qCQvuvRPpWxp8bhwwk3G', 'brendandegryse@yahoo.com');
+(1, 'John McGuire', '$2y$10$sAOnAAJusqjWJREjUXx2dOko8fyShJSM9qCQvuvRPpWxp8bhwwk3G', 'mcguire9@gmail.com'),
+(5, 'Brendan Degryse', '$2y$10$n5DZ8rJWKzQlNDPPbJpO2udTRhzyXkgQ1DVtWWYTFiPiXMJ01ji4m', 'brendeg39@gmail.com'),
+(8, 'Brendan Degryse', '$2y$10$UrqJiDipiL71PnDRnaRV.uXJfMG1Y9i6vy.lj3m3dLjDZHdREod.e', 'brendandegryse@yahoo.com');
 
 --
 -- Indexes for dumped tables
@@ -613,25 +645,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `fertilizerapps`
 --
 ALTER TABLE `fertilizerapps`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `grower`
 --
 ALTER TABLE `grower`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `manure`
 --
 ALTER TABLE `manure`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pma__bookmark`
@@ -673,7 +705,7 @@ ALTER TABLE `pma__savedsearches`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

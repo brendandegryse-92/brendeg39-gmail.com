@@ -1,23 +1,44 @@
-<html>
-<head>
-</head>
-<body>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
-if (!isset($_SESSION['ID'])) {
-  header("Location: otherlogin.php");
-}
 $server = "localhost";
-$uname = "client";
-$pword = "Pass";
+$uname = "upgrado3_client";
+$pword = "Passterm";
 try {
-$connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+$connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
+if (!isset($_SESSION['ID'])) {
+  header("Location: otherlogin.php");
+}
+  if (isset($_POST['FieldName'])) {
+  if ($_POST['delete'] == "on") {
+    $sql = "DELETE FROM field WHERE ID = ? AND UserID = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
+    $_POST['delete'] == "off";
+    header("Location: otherfield.php");
+  }
+  else {
+  $sql = 'UPDATE field SET FieldName = ?,  Acres = ?,  County = ?,  Township = ?,  Section = ?,  Quarter = ?,  Tillage = ?,  Plantingdate = ?,  LastYearCrop = ?,  YearsCorn = ?,  Irrigated = ?,  Rotational = ?,  CropYear = ?,  CoverCrop = ?,  DateSeeded = ?,  How = ?,  Ncredits = ?,  HowKilled = ?,  DateKilled = ?, Notes = ? WHERE ID = ? AND UserID = ?';
+  $stmt = $connection->prepare($sql);
+  $stmt->execute([$_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_POST['Notes'], $_COOKIE['PrimeIDField'], $_SESSION['ID']]);
+  header("Location: otherfield.php");
+  }
+}
+?>
+<html>
+<head>
+    <link rel="stylesheet" href="DataInputPage.css">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
+</head>
+<body>
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+  <div class="newspaper">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<?php
+session_start();
 $sql = 'SELECT * FROM field WHERE ID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
@@ -48,23 +69,9 @@ echo '
   Number of years in the last 5 manure was applied:<input type="text" value="'.$arr[22].'" name="Last5"></input><br />
   Received manure 8 of last 10 years:<input type="radio" name="8of10" id="8of101" value="0"'; if ($arr[23] == 0) {echo ' checked';} echo '><label for="8of101">Yes</label></input><input type="radio" name="8of10" id="8of102" value="1"'; if ($arr[23] == 1) {echo ' checked';} echo '><label for="8of102">No</label></input>
   <br /><input type="radio" name="8of10" id="8of103" value="2"'; if ($arr[23] == 2) {echo ' checked';} echo '><label for="8of103">Don\'t Know</label></input><br />
+    Notes:<input type="text" value="'.$arr[24].'" name="Notes"></input>
   <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
-</form><a href="manure.php">Manure</a><br><a href="fertapps.php">Fertilizer Applications</a>';
-  if (isset($_POST['FieldName'])) {
-  if ($_POST['delete'] == "on") {
-    $sql = "DELETE FROM field WHERE ID = ? AND UserID = ?";
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
-    $_POST['delete'] == "off";
-    header("Location: otherfield.php");
-  }
-  else {
-  $sql = 'UPDATE field SET FieldName = ?,  Acres = ?,  County = ?,  Township = ?,  Section = ?,  Quarter = ?,  Tillage = ?,  Plantingdate = ?,  LastYearCrop = ?,  YearsCorn = ?,  Irrigated = ?,  Rotational = ?,  CropYear = ?,  CoverCrop = ?,  DateSeeded = ?,  How = ?,  Ncredits = ?,  HowKilled = ?,  DateKilled = ? WHERE ID = ? AND UserID = ?';
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_COOKIE['PrimeIDField'], $_SESSION['ID']]);
-  header("Location: otherfield.php");
-  }
-}
+</form></div><a href="manure.php">Manure</a><br><a href="fertapps.php">Fertilizer Applications</a>';
 ?>
 <script>
 </script>

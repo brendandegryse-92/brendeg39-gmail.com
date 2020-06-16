@@ -28,12 +28,55 @@
     #Add {
       display: none;
     }
+
+    .sidenav {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: lightgray;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: Black;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 200px; /* Same as the width of the sidenav */
+      font-size: 28px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+
   </style>
 </head>
 <body>
-  <nav>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a> <a href="otherlogin.php">Login</a> <a href="otherregister.php">Register</a>
-  </nav><br>
+
+  <div class="sidenav">
+    <a href="other.php">Mod. Growers</a>
+    <a href="otherfield.php">Field</a>
+    <a href="manure.php">Manure</a>
+    <a href="fertapps.php">Fertilizer Applications</a>
+    <a href="otherlogin.php">Login</a>
+    <a href="otherregister.php">Register</a>
+  </div>
+<div class="main">
   <?php
   session_start();
   $server = "localhost";
@@ -80,6 +123,7 @@
     <input type="email" name="Email" placeholder="Email"></input>
     <input type="submit"></input>
   </form>
+</div>
 </div>
 <script>
 function edit(GrowerID,ElementName) {

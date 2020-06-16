@@ -18,7 +18,7 @@ if (password_verify($_REQUEST["password"], $arr[1])){
 $_SESSION['ID'] = $arr[0];
 //echo $email . $password . $_SESSION['ID']. $arr[0] . $arr[1];
 header("Location: other.php");}
-else {echo "false";}
+else {echo "Incorrect Password!";}
 
 ?>
 <html><head></head></html>

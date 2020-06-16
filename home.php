@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>CIG Data Tool</title>
-  <link rel="stylesheet" href="CIG/css_LoginReg.css">
+  <link rel="stylesheet" href="css_LoginReg.css">
   <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
   <style>
   </style>

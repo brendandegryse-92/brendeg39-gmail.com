@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 15, 2020 at 05:56 AM
+-- Generation Time: Jun 03, 2020 at 09:30 AM
 -- Server version: 5.7.23-23
 -- PHP Version: 7.2.7
 
@@ -65,10 +65,9 @@ CREATE TABLE `fertilizerapps` (
 
 INSERT INTO `fertilizerapps` (`ID`, `FieldID`, `VariableRate`, `FallN`, `FallOther`, `FallLbs`, `FallInc`, `PreN`, `PreOther`, `PreLbs`, `PreInc`, `PreEmergeN`, `PreEmergeOther`, `PreEmergeLbs`, `PreEmergeInc`, `StarterNPK`, `StarterRate`, `SidedressN`, `SidedressInc`, `SidedressNFarmer`, `SidedressNFarmerInc`, `SidedressN75`, `SidedressN75Inc`, `StabilizerUsed`, `StabilizerProduct`, `LbsNfromUAN`, `Notes`, `UserID`) VALUES
 (9, 27, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, '', 2),
-(10, 29, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, '', 2),
+(10, 27, 0, 987, '871', 0, NULL, 0, '', 0, NULL, 0, '', 0, NULL, '', NULL, 0, NULL, 0, NULL, 0, NULL, NULL, '', 0, '', 2),
 (11, 29, 0, 7856, '456456', 0, 0, 0, '', 0, 0, 0, '', 0, 0, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', 0, ' && $key != 23', 5),
-(12, 29, 0, 45645, '456456', 0, 0, 0, '', 0, 0, 0, '', 0, 0, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', 0, '', 5),
-(13, 30, 0, 1, '1', 0, 0, 0, '', 0, 0, 0, '', 0, 0, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', 0, 'Notes', 5);
+(12, 29, 0, 45645, '456456', 0, 0, 0, '', 0, 0, 0, '', 0, 0, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', 0, 'Notessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 5);
 
 -- --------------------------------------------------------
 
@@ -110,9 +109,9 @@ CREATE TABLE `field` (
 
 INSERT INTO `field` (`ID`, `GrowerID`, `FieldName`, `Acres`, `County`, `Township`, `Section`, `Quarter`, `Tillage`, `Plantingdate`, `LastYearCrop`, `YearsCorn`, `Irrigated`, `Rotational`, `CropYear`, `CoverCrop`, `DateSeeded`, `How`, `Ncredits`, `HowKilled`, `DateKilled`, `UserID`, `Last5`, `8of10`, `Notes`) VALUES
 (26, 68, 'Field 1', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 2, 0, NULL, NULL),
-(27, 67, 'Gary\'s Field', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 2, 0, NULL, ''),
+(27, 67, 'Gary\'s Field', 0, '', '', '', NULL, NULL, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, NULL, '0000-00-00', 2, 0, NULL, NULL),
 (28, 67, 'Brendan\'s Field', 0, '', '', '', NULL, NULL, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, NULL, '0000-00-00', 2, 0, NULL, NULL),
-(29, 67, 'Gary\'s Field', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 5, 0, 2, 'Notes notes'),
+(29, 67, 'Gary\'s Field', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 5, 0, 2, 'Notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes notes not'),
 (30, 67, 'Brendan\'s Field', 0, '', '', '', 0, 0, '0000-00-00', '', 0, 0, 0, 0000, '', '0000-00-00', '', 0, 0, '0000-00-00', 5, 0, NULL, 'Notes');
 
 -- --------------------------------------------------------
@@ -173,7 +172,7 @@ CREATE TABLE `manure` (
 --
 
 INSERT INTO `manure` (`ID`, `FieldID`, `Manure`, `AppType`, `Time`, `Availability`, `AppTiming`, `AmountPerAcre`, `StateOfMatter`, `NPK`, `Notes`, `UserID`) VALUES
-(14, 29, 'Dairy', NULL, '00:00:00', 0, 0, 0, 0, '', '', 2),
+(14, 27, 'Dairy', 0, '00:00:00', 0, 0, 0, NULL, '', '', 2),
 (15, 29, 'Swine', NULL, '00:00:00', 0, 0, 0, 0, '15%45%47%', 'Notes', 5),
 (16, 29, 'Swine', NULL, '00:00:00', 0, 0, 0, 0, '', 'Notes', 5);
 
@@ -320,17 +319,10 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('cpses_up1j0qpeax', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
 ('cpses_up7bpru8ly', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"}]'),
-('cpses_up9rwntp6m', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"grower\"}]'),
 ('cpses_upah1pmo4a', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"grower\"}]'),
-('cpses_upciusl3m7', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"grower\"}]'),
-('cpses_upcsd5yy0i', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
 ('cpses_uphk17nq62', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
-('cpses_upjeqjm5fz', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
-('cpses_upruce4z4r', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
 ('cpses_uprvcmkihx', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"}]'),
-('cpses_upya6ovwi4', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
 ('upgrado3', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]');
 
 -- --------------------------------------------------------
@@ -438,14 +430,10 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('cpses_up1j0qpeax', '2020-06-08 17:46:40', '{\"Console\\/Mode\":\"collapse\"}'),
 ('cpses_up3ek4hv7a', '2020-06-01 19:25:21', '{\"Console\\/Mode\":\"collapse\"}'),
 ('cpses_up5js4yog8', '2020-06-02 15:24:58', '{\"Console\\/Mode\":\"collapse\"}'),
 ('cpses_up8dng43pg', '2020-06-03 15:30:47', '{\"Console\\/Mode\":\"collapse\"}'),
-('cpses_up9rwntp6m', '2020-06-04 15:46:35', '{\"Console\\/Mode\":\"collapse\"}'),
-('cpses_upciusl3m7', '2020-06-11 16:07:11', '{\"Console\\/Mode\":\"collapse\"}'),
-('cpses_uprvcmkihx', '2020-06-03 13:32:37', '{\"Console\\/Mode\":\"collapse\"}'),
-('cpses_upya6ovwi4', '2020-06-10 12:58:39', '{\"Console\\/Mode\":\"collapse\"}');
+('cpses_uprvcmkihx', '2020-06-03 13:32:37', '{\"Console\\/Mode\":\"collapse\"}');
 
 -- --------------------------------------------------------
 
@@ -480,42 +468,17 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `AccountType` varchar(255) NOT NULL,
-  `mode` tinyint(1) NOT NULL
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `Name`, `Password`, `email`, `AccountType`, `mode`) VALUES
-(1, 'John McGuire', '$2y$10$sAOnAAJusqjWJREjUXx2dOko8fyShJSM9qCQvuvRPpWxp8bhwwk3G', 'mcguire9@gmail.com', 'Admin', 0),
-(2, 'Paul Anez', '$2y$10$G801N52ZmXar99XFe2BaSu5ULwyqPDE7eD7DF9RSKMxBD7.OSR1PG1', 'paul@anezconsulting.com', '', 0),
-(3, 'Jeff Lehnert', '$2y$10$JvQE2svqeA.0zmeWXeD.hOHOxBVOfe8KBcIO3tDfssQwNNwEqG0zi1', 'jeff@livingsoilsllc.com ', '', 0),
-(4, 'Shannon Gomes', '$2y$10$pTF.dBRkdn9ZOHCJzhd3feELmSEcyn2F/Fsjuk5AutJAQXRKfclZm1', 'cedarbasin@gmail.com ', '', 0),
-(5, 'Brendan Degryse', '$2y$10$n5DZ8rJWKzQlNDPPbJpO2udTRhzyXkgQ1DVtWWYTFiPiXMJ01ji4m', 'brendeg39@gmail.com', 'Admin', 1),
-(6, 'Shannon Gomes', '$2y$10$Xjz0vA1zSOpoAMtUsdamB.1Py1W/uNOyD5adBzM9bKIcfDuZeUzEK1', 'cedarbasin@gmail.com', '', 0),
-(7, 'Jared Malcolm', '$2y$10$xUnf1EGm07cyRMwBIThriOw0ffkSdqOx08SCuih/ytN0iJ4vGh79K1', 'sitespecificag@gmail.com', '', 0),
-(8, 'Kevin Otte', '$2y$10$bIhgiw8kS2Wv4qjQQCN45Olt0/KDXA953f7hcX1GCxp8CO4utRqDG1', 'kevin@otte-ag1.com', '', 0),
-(9, 'Don Brucker', '$2y$10$3/nHUylagzxmJQ1hztd99Onq2o9Y8ZzcJNJaYlLDgHYik4tmqs5KW1', 'aaron.hand@soilbalance.com', '', 0),
-(10, 'Matt Vehorn', '$2y$10$erhULP/R0XKi5l0tUvyvAe4Z5OBI01UEsWG8l6arTdDKY4dH4AMCS1', 'MVehorn@precisionagriservices.com', '', 0),
-(11, 'Danny Greene', '$2y$10$z9LHZ7r3si7d1WYeQ2p9CuialFrvwpohqjv3K1kpExSUth3uHIPJu1', 'abby@greenecrop.com', '', 0),
-(12, 'Clint Nester', '$2y$10$amuqEYF/R7OMz0S92ZpsWeDfYNVmwlSLl54vpThNR//kkyP3nWAR61', 'clintnester@nesterag.com', '', 0),
-(13, 'Aaron Boldrey', '$2y$10$sW8rr0ZT8/flH/mas0aeLO5QqG4jDHd15tVtiwGbjuonttgaLRLfC1', 'crlegrand1s@gmail.com', '', 0),
-(14, 'Elliot Moughler', '$2y$10$hh8n3jCMQMYWPW3Rf1llg.LGSrcESDfr2iwB/wYw/aXBwpm41lE0W1', 'emoughler@gmail.com', '', 0),
-(15, 'Jason Maust', '$2y$10$dT7Qza0m8L8EdzRD5JydGukexsZvgxkHAkbtjk6og5dvSu/RSMkbu1', 'jmaust@agadvantagellc.com', '', 0),
-(16, 'Greg Kneubuhler', '$2y$10$gfGuMWcYJ9OHmwUu/.Pt8ONdmX7RiMV/FjP6RibjJnUf/gih7ozX61', 'mcguire2649@gmail.com', '', 0),
-(17, 'Kyle Haselman', '$2y$10$T8K6viRgrCZpyeIfptkF7ezcmz6hfFmtdfT7HWD16ebNeH4uGCfhK1', 'haselman@gmail.com', '', 0),
-(18, 'Todd Dallas', '$2y$10$hNTKRs/byUGzEFXvfA22ZeY.cXbZc7ut2azzGhSpVQ7KTFVt.bk4K1', 'dallasag@ctcn.net', '', 0),
-(19, 'Brian Dargus', '$2y$10$PwqlPT/F09rW9Wx1T6LykON68l4.aORV3DjrLr65mCeaCFb0fIRkq1', 'bdargus@msn.com', '', 0),
-(20, 'John Mackson', '$2y$10$Xo6Zkazpjlo4GwMRl209HOnikavqIEgcUrcARJp.ATxFvG1upIg.G1', 'jmackson@maxagronomy.com', '', 0),
-(21, 'Jeremiah Durbin', '$2y$10$zA8ZjIQ777ShcNThv4JaoebT6iAXIL.Hf2zk1Ep..EdUQbq1nEZcO1', 'jeremiah.durbinslc@gmail.com', '', 0),
-(22, 'Jim Moffit', '$2y$10$c4mjume8pt7ls5orsgTxsOBbAju1wBRGpCVusDY9rmUIyA/BBcKOq1', 'jpmoffitt@frontier.com', '', 0),
-(23, 'Geoffrey Ecker', '$2y$10$ACuUF8TjWNEw3MZfZ3rmk.uyPrfc/TPSp8Cux9csvpExx6kRqpOYq1', 'giecker@gmail.com', '', 0),
-(24, 'Jon Gilbert', '$2y$10$dmpkD3yIdponzSuTlLofz.zS62pKmc6OVn5RtGrrVWqJYjYvlguEC1', 'jongilbert24@hotmail.com', '', 0),
-(25, 'Scott Eickholt', '$2y$10$mMKDEL2mX05A.9COcrUtvurCAYOEUFD5DWxAMpmJRHBunSbDHzUni1', 'srefarms@gmail.com', '', 0),
-(26, 'Mitchell Hora', '$2y$10$ZKX5PMu4lheiGmRoMmYQyeScHKQoziNTe.Cp4awUpXBInMS6YPKFO', 'mitchell@continuumagllc.com', '', 0);
+INSERT INTO `users` (`ID`, `Name`, `Password`, `email`) VALUES
+(1, 'John McGuire', '$2y$10$sAOnAAJusqjWJREjUXx2dOko8fyShJSM9qCQvuvRPpWxp8bhwwk3G', 'mcguire9@gmail.com'),
+(5, 'Brendan Degryse', '$2y$10$n5DZ8rJWKzQlNDPPbJpO2udTRhzyXkgQ1DVtWWYTFiPiXMJ01ji4m', 'brendeg39@gmail.com'),
+(8, 'Brendan Degryse', '$2y$10$UrqJiDipiL71PnDRnaRV.uXJfMG1Y9i6vy.lj3m3dLjDZHdREod.e', 'brendandegryse@yahoo.com');
 
 --
 -- Indexes for dumped tables
@@ -682,19 +645,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `fertilizerapps`
 --
 ALTER TABLE `fertilizerapps`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `grower`
 --
 ALTER TABLE `grower`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `manure`
@@ -742,7 +705,7 @@ ALTER TABLE `pma__savedsearches`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

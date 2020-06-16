@@ -1,0 +1,119 @@
+  body{
+  	background-color: lightgray;
+  }
+  .newspaper {
+  column-count: 4;
+  }
+
+  nav{
+    margin-top: 20px;
+  }
+
+  label {
+      display: table-cell;
+      width: 1px;
+      white-space: nowrap
+  }
+
+  input[type=select], select {
+    width: 100%;
+    color: black;
+    background-color: white;
+    padding: 4px 4px;
+    margin: 4px 0;
+    height: 2em;
+    border-width: 0px;
+    border-radius: 4px;
+  }
+
+  span {
+      width: 100%;
+      display: table-cell;
+      padding: 0 0 0 5px
+  }
+  input {
+      width: 60%
+  }
+  .container {
+      display: table;
+      width: 100%
+  }
+
+  input[type=radio],
+  input.radio {
+    float: left;
+    clear: none;
+    margin: 2px 0 0 2px;
+  }
+
+  dl {
+    display: block;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  p {
+    display: block;
+    margin-block-start: 3px;
+    margin-block-end: 3px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+
+  div{
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  a{
+    margin-left: 10px;
+  }
+
+  input:not([type=radio]) {
+    width: 100%;
+    padding: 4px 4px;
+    margin: 4px 0;
+    height: 2em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input:[type=radio] {
+    padding: 8px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=Submit] {
+    color: black;
+    background-color: lightblue;
+  }
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+  table{
+    background-color: white;
+  }
+  th{
+    background-color: lightgray;
+    border: 1px solid black;
+    margin: 8px;
+  }
+  tr{
+    background-color: lightblue;
+    border: 1px dotted black;
+    border-style:dotted;
+  }
+  td{
+    cursor: pointer;
+    border: 1px dotted black;
+    border-style:dotted;
+  }

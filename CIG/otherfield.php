@@ -19,7 +19,7 @@
   $uname = "upgrado3_client";
   $pword = "Pass";
   try {
-  $connection = new PDO("mysql:host=$server;dbname=fieldreports",$uname,$pword);
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();

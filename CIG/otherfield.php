@@ -6,10 +6,47 @@
       display: none;
     }
 
+    .sidenav {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: lightgray;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: Black;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 200px; /* Same as the width of the sidenav */
+      font-size: 16px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
   </style>
 </head>
-<body><nav>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a></nav><br />
+<body>
+<div class="sidenav">
+  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+</div>
+<div class="main">
   <?php
   session_start();
   if (!isset($_SESSION['ID'])) {
@@ -203,6 +240,7 @@
         <br /><input type="submit"></input>
     </div>
   </form></div>
+</div>
 
 <script>
 function edit(FieldID,ElementName) {
@@ -224,6 +262,7 @@ function edit(FieldID,ElementName) {
         x.style.display="inline-block";
       }
   }
+
 </script>
 </body>
 </html>

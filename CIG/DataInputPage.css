@@ -1,6 +1,7 @@
   body{
   	background-color: lightgray;
   }
+
   .newspaper {
   column-count: 4;
   }
@@ -62,11 +63,11 @@
     margin-inline-end: 0px;
   }
 
-
   div{
     margin-top: 10px;
     margin-bottom: 20px;
   }
+
   a{
     margin-left: 10px;
   }

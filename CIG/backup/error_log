@@ -1,0 +1,15 @@
+[23-Jun-2020 10:51:13 America/Boise] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home4/upgrado3/public_html/CIG/inventory.php:30
+Stack trace:
+#0 /home4/upgrado3/public_html/CIG/inventory.php(30): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /home4/upgrado3/public_html/CIG/inventory.php on line 30
+[23-Jun-2020 10:51:17 America/Boise] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home4/upgrado3/public_html/CIG/inventory.php:30
+Stack trace:
+#0 /home4/upgrado3/public_html/CIG/inventory.php(30): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /home4/upgrado3/public_html/CIG/inventory.php on line 30
+[23-Jun-2020 10:51:18 America/Boise] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home4/upgrado3/public_html/CIG/inventory.php:30
+Stack trace:
+#0 /home4/upgrado3/public_html/CIG/inventory.php(30): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /home4/upgrado3/public_html/CIG/inventory.php on line 30

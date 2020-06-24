@@ -1,19 +1,52 @@
 <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
-  <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
   <style>
     #Add {
       display: none;
     }
 
+    .sidenav {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: lightgray;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: Black;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 200px; /* Same as the width of the sidenav */
+      font-size: 16px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
   </style>
 </head>
 <body>
-<nav>
+<div class="sidenav">
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
-</nav><br />
-
+</div>
+<div class="main">
   <?php
   session_start();
   if (!isset($_SESSION['ID'])) {
@@ -28,48 +61,36 @@
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
   }
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-  $sql = 'SELECT * FROM field WHERE GrowerID = ?';
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeIDGrower']]);
-  $arr = $stmt->fetchAll(PDO::FETCH_NUM);}
-  else {
   $sql = 'SELECT * FROM field WHERE GrowerID = ? AND UserID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
-  $arr = $stmt->fetchAll(PDO::FETCH_NUM);}
+  $arr = $stmt->fetchAll(PDO::FETCH_NUM);
   if (count($arr)>0) {
-    echo '<table><tr><th>Field Name</th><th>Project Field Name</th><th>Product Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
+    echo '<table><tr><th>Field Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].',\''.addslashes($val[2]).'\')">';
     foreach ($val as $key => $value) {
       if ($key > 1) {
-        if ($key != 9 && $key != 21 && $key != 10 && $key <23) {
+        if ($key != 7 && $key != 19 && $key != 8 && $key <21) {
       echo '<td>'.$value.'</td>';}
-      elseif ($key == 9) {
+      elseif ($key == 7) {
         if ($value == 0) {echo '<td>NE</td>';}
-        elseif ($value == 1) {echo '<td>SE</td>';}
-        elseif ($value == 2) {echo '<td>NW</td>';}
-        elseif ($value == 3) {echo '<td>SW</td>';}
-        else {echo '<td></td>';}
+        if ($value == 1) {echo '<td>SE</td>';}
+        if ($value == 2) {echo '<td>NW</td>';}
+        if ($value == 3) {echo '<td>SW</td>';}
       }
-      elseif ($key == 21) {
+      elseif ($key == 19) {
         if ($value == 0) {echo '<td>Chemical burn down</td>';}
-        elseif ($value == 1) {echo '<td>Plowed or Disked under</td>';}
-        elseif ($value == 2) {echo '<td>Harvested</td>';}
-        elseif ($value == 3) {echo '<td>Other</td>';}
-        else {echo '<td></td>';}
+        if ($value == 1) {echo '<td>Plowed or Disked under</td>';}
+        if ($value == 2) {echo '<td>Harvested</td>';}
+        if ($value == 3) {echo '<td>Other</td>';}
       }
-      elseif ($key == 10) {
+      elseif ($key == 8) {
         if ($value == 0) {echo '<td>No Till</td>';}
-        elseif ($value == 1) {echo '<td>Minimum Till</td>';}
-        elseif ($value == 2) {echo '<td>Fall</td>';}
-        elseif ($value == 3) {echo '<td>Spring</td>';}
-        elseif ($value == 4) {echo '<td>Strip Till</td>';}
-        else {echo '<td></td>';}
+        if ($value == 1) {echo '<td>Minimum Till</td>';}
+        if ($value == 2) {echo '<td>Fall</td>';}
+        if ($value == 3) {echo '<td>Spring</td>';}
+        if ($value == 4) {echo '<td>Strip Till</td>';}
       }
     }
     }
@@ -78,22 +99,21 @@
   echo '</table>';
   }
     if ($_POST['FieldName'] != "") {
-    $sql = 'INSERT INTO  field (GrowerID ,  FieldName ,  Acres ,  County ,  Township ,  Section ,  Quarter ,  Tillage ,  Plantingdate,  LastYearCrop ,  YearsCorn ,  Irrigated ,  Rotational ,  CropYear ,  CoverCrop ,  DateSeeded ,  How ,  Ncredits ,  HowKilled ,  DateKilled, Last5, 8of10, ProjectFieldName, ProductName, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    $sql = 'INSERT INTO  field (GrowerID ,  FieldName ,  Acres ,  County ,  Township ,  Section ,  Quarter ,  Tillage ,  Plantingdate,  LastYearCrop ,  YearsCorn ,  Irrigated ,  Rotational ,  CropYear ,  CoverCrop ,  DateSeeded ,  How ,  Ncredits ,  HowKilled ,  DateKilled, Last5, 8of10, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDGrower'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_POST['Last5'], $_POST['8of10'], $_POST['ProjectFieldName'], $_POST['ProductName'], $_SESSION['ID']]);
+    $stmt->execute([$_COOKIE['PrimeIDGrower'], $_POST['FieldName'], $_POST['Acres'], $_POST['County'], $_POST['Township'], $_POST['Section'], $_POST['Quarter'], $_POST['Tillage'], $_POST['Plantingdate'], $_POST['LastYearCrop'], $_POST['YearsCorn'], $_POST['Irrigated'], $_POST['Rotational'], $_POST['CropYear'], $_POST['CoverCrop'], $_POST['DateSeeded'], $_POST['HowSeeded'], $_POST['Ncredits'], $_POST['HowKilled'], $_POST['DateKilled'], $_POST['Last5'], $_POST['8of10'], $_SESSION['ID']]);
     $_POST['FieldName'] = "";
     header("Location: otherfield.php");
     }
   ?>
-  <div id="Grower">Active Field: </div><button onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'editField.php';}">Edit Field</button><button onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</button><button onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</button><br />
+  <!-- -->
+  <div id="Grower">Active Field: </div><button onclick="location.href = 'editField.php'">Edit Field</button><button onclick="location.href = 'fertapps.php'">Add Fertilizer</button><button onclick="location.href = 'manure.php'">Add Manure</button><br />
   <button onclick="toggle()">Add Field</button><div id="Add">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
     <div class="newspaper">
 
         <input type="text" name="FieldName"></input>
-        <input type="text" name="ProjectFieldName"></input>
-        <input type="text" name="ProductName"></input>
         <input type="number" name="Acres"></input>
         <input type="text"name="County"></input>
         <input type="text" name="Township"></input>
@@ -221,13 +241,9 @@
         <br /><input type="submit"></input>
     </div>
   </form></div>
+</div>
 
-<script><?php
-  $sql = "SELECT FieldName FROM field WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeIDField']]);
-  $arr = $stmt->fetch(PDO::FETCH_NUM);
-  echo 'document.getElementById("Grower").innerHTML = "Active Field: '.$arr[0].'";';?>
+<script>
 function edit(FieldID,ElementName) {
   document.cookie="PrimeIDField=" + FieldID;
   document.getElementById("Grower").innerHTML = "Active Field: " + decodeURI(ElementName);
@@ -247,6 +263,7 @@ function edit(FieldID,ElementName) {
         x.style.display="inline-block";
       }
   }
+
 </script>
 </body>
 </html>

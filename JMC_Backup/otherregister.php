@@ -4,7 +4,7 @@ echo "Email this: ".password_hash($_REQUEST["password"], PASSWORD_DEFAULT)." to 
   //session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
 try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -53,7 +53,7 @@ if(!$arr) exit('<a href="register.php">Register</a>');
     width: 30%;
   }
   </style>
-  <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
 </head>
 <body>
   <div include="head.html"></div>

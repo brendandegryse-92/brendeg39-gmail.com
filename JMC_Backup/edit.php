@@ -13,47 +13,24 @@ if (!isset($_SESSION['ID'])) {
 }
   if (isset($_POST['FirstName'])) {
   if ($_POST['delete'] == "on") {
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-    $sql = "DELETE FROM grower WHERE ID = ?";
+    $sql = "DELETE FROM grower WHERE ID = ? AND UserID = ?";
     $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDGrower']]);
+    $stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
     $_POST['delete'] == "off";
-    header("Location: other.php");}
-  else {
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-    $sql = "DELETE FROM field WHERE ID = ? AND UserID = ?";
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
-    $_POST['delete'] == "off";
-    header("Location: otherfield.php");}}}
-  else {
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-  $sql = 'UPDATE grower SET FirstName = ?, MI = ?, LastName = ?, CompanyName = ?, MailingAddress = ?, City = ?, State = ?, Zip = ?, HomePhone = ?, MobilePhone = ?, Email = ? WHERE ID = ?';
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_COOKIE['PrimeIDGrower']]);
-  header("Location: other.php");}
+    header("Location: other.php");
+  }
   else {
   $sql = 'UPDATE grower SET FirstName = ?, MI = ?, LastName = ?, CompanyName = ?, MailingAddress = ?, City = ?, State = ?, Zip = ?, HomePhone = ?, MobilePhone = ?, Email = ? WHERE ID = ? AND UserID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_POST['FirstName'], $_POST['MI'], $_POST['LastName'], $_POST['CompanyName'], $_POST['MailAdd'], $_POST['City'], $_POST['State'], $_POST['ZIP'], $_POST['Home'], $_POST['Mobile'], $_POST['Email'], $_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
   header("Location: other.php");
-  }
 }
 }
 ?>
 <html>
 <head>
     <link rel="stylesheet" href="DataInputPage.css">
-  <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
 </head>
 <body>
   <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
@@ -61,18 +38,9 @@ if (!isset($_SESSION['ID'])) {
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-$sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower WHERE ID = ?';
-$stmt = $connection->prepare($sql);
-$stmt->execute([$_COOKIE['PrimeIDGrower']]);}
-else {
 $sql = 'SELECT FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower WHERE ID = ? AND UserID = ?';
 $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
-}
 $arr = $stmt->fetch(PDO::FETCH_NUM);
 echo '<input type="text" value="'.$arr[0].'" name="FirstName"></input>
 <input type="text" value="'.$arr[1].'" name="MI"></input>

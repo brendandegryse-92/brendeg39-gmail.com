@@ -2,7 +2,7 @@
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -23,7 +23,7 @@ if (!isset($_SESSION['ID'])) {
   <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
-  <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
   <style>
     #Add {
       display: none;
@@ -37,7 +37,7 @@ if (!isset($_SESSION['ID'])) {
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Passterm";
+$pword = "Pass";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -54,44 +54,28 @@ echo $arr[0][0];
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
   }
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-  $sql = 'SELECT * FROM manure WHERE FieldID = ?';
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeIDField']]);
-$arr = $stmt->fetchAll(PDO::FETCH_NUM);}
-else {
   $sql = 'SELECT * FROM manure WHERE FieldID = ? AND UserID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
-  $arr = $stmt->fetchAll(PDO::FETCH_NUM);}
+  $arr = $stmt->fetchAll(PDO::FETCH_NUM);
   if (count($arr)>0) {
     echo '<table><tr><th>Manure</th><th>AppType</th><th>Time</th><th>Availability</th><th>AppTiming</th><th>AmountPerAcre</th><th>Solid/Liquid</th><th>NPK</th><th>Notes</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].')">';
     foreach ($val as $key => $value) {
-      if ($key > 1 && $key != 3 && $key != 8 && $key != 11) {
+      if ($key > 1 && $key != 8 && $key != 11) {
       echo '<td>'.$value.'</td>';
     }
     elseif ($key == 8) {
       if ($value == 0) {echo '<td>Solid</td>';}
-      elseif ($value == 1) {echo '<td>Liquid</td>';}
-    else {echo '<td></td>';}
-    }
-    elseif ($key == 3) {
-      if ($value == 0) {echo '<td>Surface Applied</td>';}
-      elseif ($value == 1) {echo '<td>Incorporated</td>';}
-      elseif ($value == 2) {echo '<td>Injected</td>';}
-    else {echo '<td></td>';}
+      if ($value == 1) {echo '<td>Liquid</td>';}
     }
     }
     echo '</tr>';

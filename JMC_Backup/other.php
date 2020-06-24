@@ -10,7 +10,7 @@
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
   }
   if (!isset($_SESSION['ID'])) {
-    header("Location: http://upgradeag.com/CIG/otherlogin.php");
+    header("Location: localhost/CIG/otherlogin.php");
   }
     if ($_POST['FirstName'] != "") {
     $sql = 'INSERT INTO grower (FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email, UserID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
@@ -23,29 +23,60 @@
 <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
-  <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
+  <link rel="shortcut icon" href="http://upgradeag.com/CIG/img/favicon.ico">
   <style>
     #Add {
       display: none;
     }
+
+    .sidenav {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: lightgray;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: Black;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 200px; /* Same as the width of the sidenav */
+      font-size: 28px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+
   </style>
 </head>
 <body>
-  <nav class="sidenav">
-  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
-    <div class="indented"><a onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'edit.php';}">Edit Grower</a><br>
-    <a onclick="toggle()">Add Grower</a>
-  </div>
-  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
-</nav>
 
-<br>
-  <div class="main">
-    <h1>All growers for <?php
-    $sql = 'SELECT Name FROM users WHERE ID = ?;';
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([$_SESSION['ID']]);
-    echo $stmt->fetch(PDO::FETCH_NUM)[0]; ?>:</h1>
+  <div class="sidenav">
+    <a href="other.php">Mod. Growers</a>
+    <a href="otherfield.php">Field</a>
+    <a href="manure.php">Manure</a>
+    <a href="fertapps.php">Fertilizer Applications</a>
+    <a href="otherlogin.php">Login</a>
+    <a href="otherregister.php">Register</a>
+  </div>
+<div class="main">
   <?php
   session_start();
   $server = "localhost";
@@ -57,23 +88,12 @@
   }
   catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
   }
-  $sql = "SELECT AccountType FROM users WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_SESSION['ID']]);
-  if ($stmt->fetch(PDO::FETCH_NUM)[0] == "Admin") {
-  $sql = 'SELECT ID, FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower';
-  $stmt = $connection->prepare($sql);
-  $stmt->execute();
-  $arr = $stmt->fetchAll(PDO::FETCH_NUM);}
-  else {
   $sql = 'SELECT ID, FirstName, MI, LastName, CompanyName, MailingAddress, City, State, Zip, HomePhone, MobilePhone, Email FROM grower WHERE UserID = ?';
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
-  }
   if (count($arr)>0) {
-    echo '  <b><div class="active" id="Grower">Active Grower: </div> </b>
-    <table><tr><th>First Name</th><th>MI</th><th>Last Name</th><th>Company Name</th><th>Mailing Address</th><th>City</th><th>State</th><th>ZIP</th><th>Home Phone</th><th>Mobile Phone</th><th>Email</th></tr>';
+    echo '<table><tr><th>First Name</th><th>MI</th><th>Last Name</th><th>Company Name</th><th>Mailing Address</th><th>City</th><th>State</th><th>ZIP</th><th>Home Phone</th><th>Mobile Phone</th><th>Email</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].',\''.addslashes($val[1]).'\')">';
     foreach ($val as $key => $value) {
@@ -86,7 +106,8 @@
   echo '</table>';
   }
   ?>
-
+  <div id="Grower">Active Grower: </div><button onclick="location.href = 'edit.php'">Edit Grower</button><button onclick="location.href = 'otherfield.php'">Add Field</button><br />
+  <button onclick="toggle()">Add Grower</button>
 <div id="Add" class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <input type="text" name="FirstName" placeholder="First Name"></input>
@@ -104,12 +125,7 @@
   </form>
 </div>
 </div>
-<script><?php
-  $sql = "SELECT FirstName FROM grower WHERE ID = ?";
-  $stmt = $connection->prepare($sql);
-  $stmt->execute([$_COOKIE['PrimeIDGrower']]);
-  $arr = $stmt->fetch(PDO::FETCH_NUM);
-  echo 'document.getElementById("Grower").innerHTML = "Active Grower: '.$arr[0].'";';?>
+<script>
 function edit(GrowerID,ElementName) {
   document.cookie="PrimeIDGrower=" + GrowerID;
   document.getElementById("Grower").innerHTML = "Active Grower: " + ElementName;

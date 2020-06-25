@@ -33,13 +33,13 @@
 <body>
   <nav class="sidenav">
   <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
-    <div class="indented"><a onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'edit.php';}">Edit Grower</a><br>
+    <div class="indented"><a onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'edit.php';}">Edit Grower</a><br />
     <a onclick="toggle()">Add Grower</a>
   </div>
   <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
 </nav>
 
-<br>
+<br />
   <div class="main">
     <h1>All growers for <?php
     $sql = 'SELECT Name FROM users WHERE ID = ?;';
@@ -72,7 +72,7 @@
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);
   }
   if (count($arr)>0) {
-    echo '  <b><div class="active" id="Grower">Active Grower: </div> </b>
+    echo '  <b><div class="active">Active Grower: <tag style="color: green;" id="Grower"></span></tag> </b>
     <table><tr><th>First Name</th><th>MI</th><th>Last Name</th><th>Company Name</th><th>Mailing Address</th><th>City</th><th>State</th><th>ZIP</th><th>Home Phone</th><th>Mobile Phone</th><th>Email</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].',\''.addslashes($val[1]).'\')">';
@@ -109,10 +109,10 @@
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDGrower']]);
   $arr = $stmt->fetch(PDO::FETCH_NUM);
-  echo 'document.getElementById("Grower").innerHTML = "Active Grower: '.$arr[0].'";';?>
+  echo 'document.getElementById("Grower").innerHTML = "'.$arr[0].'";';?>
 function edit(GrowerID,ElementName) {
   document.cookie="PrimeIDGrower=" + GrowerID;
-  document.getElementById("Grower").innerHTML = "Active Grower: " + ElementName;
+  document.getElementById("Grower").innerHTML = ElementName;
   //location.href = "edit.php";
 }
 function toggle() {

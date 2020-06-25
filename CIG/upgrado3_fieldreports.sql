@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 24, 2020 at 07:58 AM
+-- Generation Time: Jun 25, 2020 at 12:49 PM
 -- Server version: 5.7.23-23
 -- PHP Version: 7.3.6
 
@@ -300,7 +300,7 @@ INSERT INTO `inventory` (`ID`, `DropboxNum`, `Consultant`, `State`, `FieldID`, `
 (37, 11, 'Haselman', 'OH', 'CIG2020_11HA001', 1, 0, ''),
 (38, 11, 'Haselman', 'OH', 'CIG2020_11HA002', 1, 0, ''),
 (39, 11, 'Haselman', 'OH', 'CIG2020_11HA003', 1, 1, ''),
-(40, 11, 'Haselman', 'OH', 'CIG2020_11HA004', 0, 0, ''),
+(40, 11, 'Haselman', 'OH', 'CIG2020_11HA004', 1, 0, ''),
 (41, 15, 'Max Ag (Mackson-Koenig)', 'OH', 'CIG2020_15MAX003', 1, 1, 'Liebreict - Karen mapped on 06-17-2020'),
 (42, 19, 'Nester Ag', 'OH', 'CIG2020_19NAG002', 1, 0, 'Baker'),
 (43, 19, 'Nester Ag', 'OH', 'CIG2020_19NAG003', 1, 0, 'Swartz'),
@@ -314,6 +314,29 @@ INSERT INTO `inventory` (`ID`, `DropboxNum`, `Consultant`, `State`, `FieldID`, `
 (51, 26, 'Todd Dallas', 'OH', 'CIG2020_26DAL002', 1, 1, 'Instinct'),
 (52, 26, 'Todd Dallas', 'OH', 'CIG2020_26DAL003', 1, 1, 'Instinct'),
 (53, 16, 'Jon Gilbert', 'SD', 'CIG2020_16JG001', 0, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logintime`
+--
+
+CREATE TABLE `logintime` (
+  `ID` int(11) NOT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `logintime`
+--
+
+INSERT INTO `logintime` (`ID`, `UserID`, `Name`, `Time`) VALUES
+(1, 5, 'Brendan Degryse', '2020-06-25 17:06:43'),
+(2, 1, 'John McGuire', '2020-06-25 17:37:21'),
+(3, 5, 'Brendan Degryse', '2020-06-25 17:46:16'),
+(4, 5, 'Brendan Degryse', '2020-06-25 17:58:03');
 
 -- --------------------------------------------------------
 
@@ -344,7 +367,8 @@ INSERT INTO `manure` (`ID`, `FieldID`, `Manure`, `AppType`, `Time`, `Availabilit
 (14, 29, 'Dairy', 10, '00:00:00', 0, 10, 0, 10, '', '', 2),
 (15, 29, 'Swine', NULL, '00:00:00', 0, 10, 0, 10, '15%45%47%', 'Notes', 5),
 (16, 29, 'Swine', NULL, '00:00:00', 0, 0, 0, 0, '', 'Notes', 5),
-(17, 27, 'Swine', 0, '16:00:00', 456, 0, 0, 0, '', '', 5);
+(17, 27, 'Swine', 0, '16:00:00', 456, 0, 0, 0, '', '', 5),
+(18, 27, 'Layer', 1, '17:05:00', 3, 1, 1, 10, '15%45%47%', 'Notes', 5);
 
 -- --------------------------------------------------------
 
@@ -490,6 +514,7 @@ CREATE TABLE `pma__recent` (
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
 ('cpses_up1j0qpeax', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"}]'),
+('cpses_up2phshg6t', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"logintime\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"inventory\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"}]'),
 ('cpses_up4vfb57l1', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"}]'),
 ('cpses_up7bpru8ly', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"}]'),
 ('cpses_up9rwntp6m', '[{\"db\":\"upgrado3_fieldreports\",\"table\":\"users\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"fertilizerapps\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"manure\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"field\"},{\"db\":\"upgrado3_fieldreports\",\"table\":\"grower\"}]'),
@@ -616,6 +641,7 @@ CREATE TABLE `pma__userconfig` (
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
 ('cpses_up1j0qpeax', '2020-06-08 17:46:40', '{\"Console\\/Mode\":\"collapse\"}'),
+('cpses_up2phshg6t', '2020-06-25 17:07:26', '{\"Console\\/Mode\":\"collapse\"}'),
 ('cpses_up3ek4hv7a', '2020-06-01 19:25:21', '{\"Console\\/Mode\":\"collapse\"}'),
 ('cpses_up4vfb57l1', '2020-06-17 14:37:31', '{\"Console\\/Mode\":\"collapse\"}'),
 ('cpses_up5js4yog8', '2020-06-02 15:24:58', '{\"Console\\/Mode\":\"collapse\"}'),
@@ -688,7 +714,7 @@ INSERT INTO `users` (`ID`, `Name`, `Password`, `email`, `AccountType`, `mode`) V
 (13, 'Aaron Boldrey', '$2y$10$sW8rr0ZT8/flH/mas0aeLO5QqG4jDHd15tVtiwGbjuonttgaLRLfC1', 'crlegrand1s@gmail.com', '', 0),
 (14, 'Elliot Moughler', '$2y$10$hh8n3jCMQMYWPW3Rf1llg.LGSrcESDfr2iwB/wYw/aXBwpm41lE0W1', 'emoughler@gmail.com', '', 0),
 (15, 'Jason Maust', '$2y$10$dT7Qza0m8L8EdzRD5JydGukexsZvgxkHAkbtjk6og5dvSu/RSMkbu1', 'jmaust@agadvantagellc.com', '', 0),
-(16, 'Greg Kneubuhler', '$2y$10$gfGuMWcYJ9OHmwUu/.Pt8ONdmX7RiMV/FjP6RibjJnUf/gih7ozX61', 'mcguire2649@gmail.com', '', 0),
+(16, 'Greg Kneubuhler', '$2y$10$gfGuMWcYJ9OHmwUu/.Pt8ONdmX7RiMV/FjP6RibjJnUf/gih7ozX61', 'Greg@gmail.com', '', 0),
 (17, 'Kyle Haselman', '$2y$10$T8K6viRgrCZpyeIfptkF7ezcmz6hfFmtdfT7HWD16ebNeH4uGCfhK1', 'haselman@gmail.com', '', 0),
 (18, 'Todd Dallas', '$2y$10$hNTKRs/byUGzEFXvfA22ZeY.cXbZc7ut2azzGhSpVQ7KTFVt.bk4K1', 'dallasag@ctcn.net', '', 0),
 (19, 'Brian Dargus', '$2y$10$PwqlPT/F09rW9Wx1T6LykON68l4.aORV3DjrLr65mCeaCFb0fIRkq1', 'bdargus@msn.com', '', 0),
@@ -736,6 +762,13 @@ ALTER TABLE `grower`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `logintime`
+--
+ALTER TABLE `logintime`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `UserID` (`UserID`);
 
 --
 -- Indexes for table `manure`
@@ -905,10 +938,16 @@ ALTER TABLE `inventory`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
+-- AUTO_INCREMENT for table `logintime`
+--
+ALTER TABLE `logintime`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `manure`
 --
 ALTER TABLE `manure`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pma__bookmark`

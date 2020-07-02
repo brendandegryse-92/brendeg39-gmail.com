@@ -6,10 +6,62 @@
             body {
                 margin: 0px;
             }
+  .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  .sidenav a {
+
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenavmain{
+    padding: 0px 6px 0px 16px;
+    font-size: 25px;
+    text-decoration: none;
+    color: Black;
+    display: block;
+  }
+
+  .indented {
+    font-size: 20px;
+    margin-left: 40px;
+    padding: 8px 8px;
+  }
+
+  .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 16px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+
+  .active {
+    font-size: 20px;
+    color: blue;
+  }
+
         </style>      
     </head>
     <body>
-        <div id='map' style='width: 100%; height: 100%;'></div>
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+    <div class="indented"><a onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'edit.php';}">Edit Grower</a><br>
+    <a onclick="toggle()">Add Grower</a>
+  </div>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
+</nav>
+        <div id='map' class="main" style='width: 100%; height: 100%;'></div>
         <script>
 <?php
 session_start();

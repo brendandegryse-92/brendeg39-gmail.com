@@ -6,7 +6,6 @@
   }
 
   nav{
-    margin-top: 20px;
   }
 
   label {
@@ -95,6 +94,7 @@
   }
 
   .sidenav {
+    border-style: solid;
     height: 100%;
     width: 200px;
     position: fixed;
@@ -107,7 +107,8 @@
   }
 
   .sidenav a {
-
+    text-decoration: none;
+    color: inherit;
   }
 
   .sidenav a:hover {

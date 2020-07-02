@@ -2,7 +2,7 @@
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -24,25 +24,23 @@ if (!isset($_SESSION['ID'])) {
   </style>
 </head>
 <body>
-  <div class="sidenav"><a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a></div>
-  <div class="main">
-    <h1>Current status of data for the 2020 CIG trials:</h1>
-    <table><tr><th>Dropbox Num</th><th>Consultant</th><th>State</th><th>FieldId</th><th>Boundary</th><th>Spatial Plot Location</th><th>Notes</th></tr>
-      <?php
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+</nav><div class="main"><table><tr><th>Dropbox Num</th><th>Consultant</th><th>State</th><th>FieldId</th><th>Boundary</th><th>Spatial Plot Location</th><th>Notes</th></tr><?php
 session_start();
 if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
 }
 catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
 }
-$sql = 'SELECT * FROM inventory ORDER BY Boundary ASC, SpatialPlotLocation ASC';
+$sql = 'SELECT * FROM inventory ORDER BY Boundary ASC, SpatialPlotLocation ASC, FieldID';
 $stmt = $connection->prepare($sql);
 $stmt->execute([]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
@@ -64,7 +62,7 @@ $arr = $stmt->fetchAll(PDO::FETCH_NUM);
     echo '</tr>';
   }
 ?>
-</table>
-</div> <!--closes main section-->
+ </table>
+ </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<html>
+  <html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
@@ -10,10 +10,28 @@
   </style>
 </head>
 <body>
-<nav>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
-</nav><br />
-
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
+  <div class="indented"><a onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'editField.php';}">Edit Field</a><br />
+    <a onclick="toggle()" href="#Add">Add Field</a>
+</div><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
+</nav><br /><div class="main">
+    <h1>All fields for <?php
+  session_start();
+  $server = "localhost";
+  $uname = "upgrado3_client";
+  $pword = "Passterm";
+  try {
+  $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
+  }
+  catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage();
+  }
+    $sql = 'SELECT FirstName FROM grower WHERE ID = ?';
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$_COOKIE['PrimeIDGrower']]);
+    echo $stmt->fetch(PDO::FETCH_NUM)[0]; ?>:</h1>
   <?php
   session_start();
   if (!isset($_SESSION['ID'])) {
@@ -21,7 +39,7 @@
   }
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -42,7 +60,7 @@
   $stmt->execute([$_COOKIE['PrimeIDGrower'], $_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);}
   if (count($arr)>0) {
-    echo '<table><tr><th>Field Name</th><th>Project Field Name</th><th>Product Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
+    echo '<b><span class="active">Active Field: </span><tag style="color: green;" id="Field"></span></tag> </b><table><tr><th>Field Name</th><th>Project Field Name</th><th>Product Name</th><th>Acres</th><th>County</th><th>Township</th><th>Section</th><th>Quarter</th><th>Tillage</th><th>Planting Date</th><th>Last Year\'s Crop</th><th>YearsCorn</th><th>Irrigated</th><th>Rotational</th><th>CropYear</th><th>CoverCrop</th><th>DateSeeded</th><th>How</th><th>Ncredits</th><th>HowKilled</th><th>DateKilled</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].',\''.addslashes($val[2]).'\')">';
     foreach ($val as $key => $value) {
@@ -84,9 +102,7 @@
     $_POST['FieldName'] = "";
     header("Location: otherfield.php");
     }
-  ?>
-  <div id="Grower">Active Field: </div><button onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'editField.php';}">Edit Field</button><button onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</button><button onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</button><br />
-  <button onclick="toggle()">Add Field</button><div id="Add">
+  ?><div id="Add">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
     <div class="newspaper">
@@ -220,17 +236,17 @@
 // -->
         <br /><input type="submit"></input>
     </div>
-  </form></div>
+  </form></div></div>
 
 <script><?php
   $sql = "SELECT FieldName FROM field WHERE ID = ?";
   $stmt = $connection->prepare($sql);
   $stmt->execute([$_COOKIE['PrimeIDField']]);
   $arr = $stmt->fetch(PDO::FETCH_NUM);
-  echo 'document.getElementById("Grower").innerHTML = "Active Field: '.$arr[0].'";';?>
+  echo 'document.getElementById("Field").innerHTML = "'.$arr[0].'";';?>
 function edit(FieldID,ElementName) {
   document.cookie="PrimeIDField=" + FieldID;
-  document.getElementById("Grower").innerHTML = "Active Field: " + decodeURI(ElementName);
+  document.getElementById("Field").innerHTML = decodeURI(ElementName);
   //location.href = "edit.php";
 }
   var txtBox=document.getElementsByTagName("input");

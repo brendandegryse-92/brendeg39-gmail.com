@@ -2,7 +2,7 @@
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -50,7 +50,7 @@
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

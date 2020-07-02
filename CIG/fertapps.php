@@ -51,8 +51,15 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
-?></h1><nav>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a></nav>
+?></h1>
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a>
+  <div class="indented">
+    <a onclick="toggle()" href="#Add">Add Fertilizer Application</a>
+</div><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
+</nav><br /><div class="main">
   <?php
   session_start();
   $server = "localhost";
@@ -142,7 +149,10 @@ echo $arr[0][0];
   }
   echo '</table>';
   }
-  ?><button onclick="toggle()">Add Fertilizer</button><div id="Add" class="newspaper">
+  else {
+      echo '<table><tr><th>Recieved Variable Rate N, P, K?</th><th>Fall N</th><th>Fall Other</th><th>Fall Lbs</th><th>Fall Incorporated</th><th>Preplant N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Pre-emerge N</th><th>Preplant Other</th><th>Preplant Lbs</th><th>Preplant Incorporated</th><th>Starter</th><th>Starter Rate</th><th>Sidedress N</th><th>Sidedress Inc</th><th>Sidedress NFarmer</th><th>SidedressNFarmerInc</th><th>Sidedress N75</th><th>SidedressN75Inc</th><th>Was Stabilizer Used?</th><th>Stabilizer Product?</th><th>Lbs From Uan</th><th>Notes</th></tr></table>';
+  }
+  ?><div id="Add" class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <br />Recieved Variable Rate N, P, K?:<select name="VariableRate"><option value="10"></option><option type="radio" name="VariableRate" id="RVR1" value="0"><label for="RVR1">Yes</label></option><option type="radio" name="VariableRate" id="RVR2" value="1"><label for="RVR2">No</label></option></select>
     <br />Fall N:<input type="number" name="FallN"></input>
@@ -170,7 +180,7 @@ echo $arr[0][0];
     Pounds with UAN from Irrigation:<input type="number" name="LbsNfromUAN"></input>
     Notes:<input type="text" name="Notes"></input>
     <input type="submit"></input>
-  </form></div>
+  </form></div></div>
 
 <script>
 var txtBox = document.getElementsByTagName("input");

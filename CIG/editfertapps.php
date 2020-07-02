@@ -54,7 +54,13 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   <link rel="stylesheet" href="DataInputPage.css">
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
 </head>
-<body><h1><?php
+<body>
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a>
+    <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
+</nav><br /><div class="main"><h1><?php
 session_start();
 if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
@@ -74,7 +80,7 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><div class="newspaper">
+  <div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
 session_start();
@@ -127,7 +133,7 @@ echo '
   Lbs From Uan:<input type="number"  value="'.$arr[25].'" name="LbsNfromUAN"></input>
   Notes:<input type="text"  value="'.$arr[26].'" name="Notes"></input>
     <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
-  </form></div>';
+  </form></div></div>';
 ?>
 <script>
 </script>

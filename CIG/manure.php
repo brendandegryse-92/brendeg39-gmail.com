@@ -30,7 +30,14 @@ if (!isset($_SESSION['ID'])) {
     }
   </style>
 </head>
-<body><h1><?php
+<body>
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a>
+  <div class="indented">
+    <a onclick="toggle()" href="#Add">Add Manure</a>
+</div>
+</nav><br /><div class="main"><h1><?php
 session_start();
 if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
@@ -50,7 +57,7 @@ $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
 ?></h1>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a><?php
+  <?php
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
@@ -79,7 +86,7 @@ else {
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].')">';
     foreach ($val as $key => $value) {
-      if ($key > 1 && $key != 3 && $key != 8 && $key != 11) {
+      if ($key > 1 && $key != 3 && $key != 6 && $key != 8 && $key != 11) {
       echo '<td>'.$value.'</td>';
     }
     elseif ($key == 8) {
@@ -93,26 +100,32 @@ else {
       elseif ($value == 2) {echo '<td>Injected</td>';}
     else {echo '<td></td>';}
     }
+    elseif ($key == 6) {
+      if ($value == 0) {echo '<td>Fall</td>';}
+      elseif ($value == 1) {echo '<td>Spring</td>';}
+      elseif ($value == 2) {echo '<td>Both</td>';}
+    else {echo '<td></td>';}
+    }
     }
     echo '</tr>';
   }
   echo '</table>';
   }
   $_POST['NPK'];
-  ?><br><button onclick="toggle()">Add Manure</button><div id="Add" class="newspaper"><br />
+  ?><br><div id="Add" class="newspaper"><br />
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Manure:<input onclick="stop('Swine')" type="radio" id="Manure1" name="Manure1" value="Swine"><label for="Manure1">Swine</label></input><input onclick="stop('Beef')" type="radio" id="Manure2" name="Manure1" value="Beef"><label for="Manure2">Beef</label></input><input onclick="stop('Dairy')" type="radio" id="Manure3" name="Manure1" value="Dairy"><label for="Manure3">Dairy</label></input><input onclick="stop('Layer')" type="radio" id="Manure4" name="Manure1" value="Layer"><label for="Manure4">Layer</label></input><input onclick="stop('Broiler')" type="radio" id="Manure5" name="Manure1" value="Broiler"><label for="Manure5">Broiler</label></input><input onclick="stop('Turkey')" type="radio" id="Manure6" name="Manure1" value="Turkey"><label for="Manure6">Turkey</label></input><input type="radio" id="Manure7" onclick="stop('Layer Pullet')" name="Manure1" value="Layer Pullet"><label for="Manure7">Layer Pullet</label></input>
+    Manure:<select name="Manure1" onchange="setManure()" id="Box"><option name="Manure1" value=""></option><option  name="Manure1" id="Manure1" value="Swine">Swine</option><option name="Manure1" id="Manure2" value="Beef">Beef</option><option type="radio" name="Manure1" id="Manure3" value="Dairy"><label for="Manure3">Dairy</label></option><option type="radio" name="Manure1" id="Manure4" value="Layer"><label for="Manure4">Layer</label></option><option type="radio" name="Manure1" id="Manure5" value="Broiler"><label for="Manure5">Broiler</label></option><option type="radio" name="Manure1" id="Manure6" value="Turkey"><label for="Manure6">Turkey</label></option><option type="radio" name="Manure1" id="Manure7" value="Layer Pullet"><label for="Manure7">Layer Pullet</label></option></select>
     <br /><input type="text" id="Manure" name="Manure"></input><br />
-    App Type:<input type="radio" name="AppType" id="App1" value="0"><label for="App1">Surface Applied</label></input><input type="radio" name="AppType" id="App2" value="1"><label for="App2">Incorporated</label></input><input type="radio" id="App3" name="AppType" value="2"><label for="App3">Injected</label></input>
+    App Type:<select name="AppType"><option value="10"></option><option type="radio" name="AppType" id="App1" value="0"><label for="App1">Surface Applied</label></option><option type="radio" name="AppType" id="App2" value="1"><label for="App2">Incorporated</label></option><option type="radio" id="App3" name="AppType" value="2"><label for="App3">Injected</label></option></select>
     <br />Time:<input type="time" name="Time"></input>
     Availability:<input type="text" name="Availability"></input><br />
-    App Timing:<input type="radio" name="AppTiming" id="AppT1" value="0"><label for="AppT1">Fall</label></input><input type="radio" name="AppTiming" id="AppT2" value="1"><label for="AppT2">Spring</label></input><input type="radio" id="AppT3" name="AppTiming" value="2"><label for="AppT3">Both</label></input>
+    App Timing:<select name="AppTiming"><option value="10"></option><option type="radio" name="AppTiming" id="AppT1" value="0"><label for="AppT1">Fall</label></option><option type="radio" name="AppTiming" id="AppT2" value="1"><label for="AppT2">Spring</label></option><option type="radio" id="AppT3" name="AppTiming" value="2"><label for="AppT3">Both</label></option></select>
     <br />Gallons or Tons of Manure Per Acre:<input type="number" name="AmountPerAcre"></input>
-    <br /><input type="radio" name="StateOfMatter" id="SoM1" value="0"><label for="SoM1">Solid</label></input><input type="radio" name="StateOfMatter" id="SoM2" value="1"><label for="SoM2">Liquid</label></input>
+    <br /><select><option value="10"></option><option type="radio" name="StateOfMatter" id="SoM1" value="0"><label for="SoM1">Solid</label></option><option type="radio" name="StateOfMatter" id="SoM2" value="1"><label for="SoM2">Liquid</label></option></select>
     <br />NPK:<input type="text" pattern="\d{1,2}%\d{1,2}%\d{1,2}%" placeholder="--%--%--%" name="NPK"></input><br />
     Notes:<input type="text" name="Notes"></input>
     <input type="submit"></input>
-  </form></div>
+  </form></div></div>
 
 <script>
 function stop(y) {
@@ -122,6 +135,12 @@ function stop(y) {
 function edit(x) {
   document.cookie="PrimeIDManure=" + x;
   location.href = "editManure.php";
+}
+function setManure(x) {
+  var form = document.getElementById("Manure");
+  var box = document.getElementById("Box");
+  var selected = box.options[box.selectedIndex];
+  form.value = selected.value;
 }
 function toggle() {
   var x = document.getElementById("Add");

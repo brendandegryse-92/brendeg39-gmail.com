@@ -2,7 +2,7 @@
 session_start();
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -53,7 +53,12 @@ if (!isset($_SESSION['ID'])) {
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
 </head>
 <body>
-  <a href="other.php">Grower</a> <a href="otherfield.php">Field</a> <a href="manure.php">Manure</a> <a href="fertapps.php">Fertilizer Applications</a>
+  <nav class="sidenav">
+  <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
+  <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
+  <div class="indented"><a onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'editField.php';}">Edit Field</a><br />
+</div><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
+</nav><br /><div class="main">
   <div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <?php
@@ -101,7 +106,7 @@ echo '
   <br /><option name="8of10" id="8of103" value="2"'; if ($arr[24] == 2) {echo ' selected';} echo '>Don\'t Know</option><br /></select>
     Notes:<input type="text" value="'.$arr[25].'" name="Notes"></input>
   <input type="submit"></input><input type="checkbox" name="delete">Delete</input>
-</form></div><a href="manure.php">Manure</a><br><a href="fertapps.php">Fertilizer Applications</a><a href="map.php">Field Map</a>';?>
+</form></div><a href="map.php">Field Map</a></div>';?>
 <script>
 </script>
 </body>

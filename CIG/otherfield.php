@@ -1,4 +1,10 @@
-  <html>
+<?php
+  session_start();
+  if (!isset($_SESSION['ID'])) {
+    header("Location: otherlogin.php");
+  }
+  ?>
+<html>
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
@@ -16,12 +22,14 @@
   <div class="indented"><a onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'editField.php';}">Edit Field</a><br />
     <a onclick="toggle()" href="#Add">Add Field</a>
 </div><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
+  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
+  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav><br /><div class="main">
     <h1>All fields for <?php
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -33,13 +41,9 @@
     $stmt->execute([$_COOKIE['PrimeIDGrower']]);
     echo $stmt->fetch(PDO::FETCH_NUM)[0]; ?>:</h1>
   <?php
-  session_start();
-  if (!isset($_SESSION['ID'])) {
-    header("Location: otherlogin.php");
-  }
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

@@ -2,7 +2,7 @@
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -37,6 +37,8 @@ if (!isset($_SESSION['ID'])) {
   <div class="indented">
     <a onclick="toggle()" href="#Add">Add Manure</a>
 </div>
+  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
+  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav><br /><div class="main"><h1><?php
 session_start();
 if (!isset($_SESSION['ID'])) {
@@ -44,7 +46,7 @@ if (!isset($_SESSION['ID'])) {
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Passterm";
+$pword = "Pass";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -56,12 +58,12 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
-?></h1>
+?></h1><table><tr><th>Manure</th><th>AppType</th><th>Time</th><th>Availability</th><th>AppTiming</th><th>AmountPerAcre</th><th>Solid/Liquid</th><th>NPK</th><th>Notes</th></tr>
   <?php
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -82,7 +84,6 @@ else {
   $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
   $arr = $stmt->fetchAll(PDO::FETCH_NUM);}
   if (count($arr)>0) {
-    echo '<table><tr><th>Manure</th><th>AppType</th><th>Time</th><th>Availability</th><th>AppTiming</th><th>AmountPerAcre</th><th>Solid/Liquid</th><th>NPK</th><th>Notes</th></tr>';
   foreach ($arr as $i=>$val) {
     echo '<tr onclick="edit('.$val[0].')">';
     foreach ($val as $key => $value) {
@@ -109,10 +110,9 @@ else {
     }
     echo '</tr>';
   }
-  echo '</table>';
   }
   $_POST['NPK'];
-  ?><br><div id="Add" class="newspaper"><br />
+  ?></table><br><div id="Add" class="newspaper"><br />
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Manure:<select name="Manure1" onchange="setManure()" id="Box"><option name="Manure1" value=""></option><option  name="Manure1" id="Manure1" value="Swine">Swine</option><option name="Manure1" id="Manure2" value="Beef">Beef</option><option type="radio" name="Manure1" id="Manure3" value="Dairy"><label for="Manure3">Dairy</label></option><option type="radio" name="Manure1" id="Manure4" value="Layer"><label for="Manure4">Layer</label></option><option type="radio" name="Manure1" id="Manure5" value="Broiler"><label for="Manure5">Broiler</label></option><option type="radio" name="Manure1" id="Manure6" value="Turkey"><label for="Manure6">Turkey</label></option><option type="radio" name="Manure1" id="Manure7" value="Layer Pullet"><label for="Manure7">Layer Pullet</label></option></select>
     <br /><input type="text" id="Manure" name="Manure"></input><br />

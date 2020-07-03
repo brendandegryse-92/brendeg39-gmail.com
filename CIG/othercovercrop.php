@@ -1,5 +1,5 @@
-<?php
-  session_start();
+</html>
+session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
   $pword = "Pass";

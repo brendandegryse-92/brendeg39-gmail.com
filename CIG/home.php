@@ -1,5 +1,5 @@
-<html>
-<head>
+</html>
+ead>
   <title>CIG Data Tool</title>
   <link rel="stylesheet" href="https://upgradeag.com/CIG/css_LoginReg.css">
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">

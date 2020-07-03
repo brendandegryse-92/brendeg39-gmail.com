@@ -1,4 +1,4 @@
-<html><head>
+</html>head>
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
   <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="ngtax1dgxdfao30"></script>
   </head><body><form  method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">

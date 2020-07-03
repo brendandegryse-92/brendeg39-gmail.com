@@ -1,5 +1,5 @@
-<html>
-    <head>
+</html>
+   <head>
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="DataInputPage.css">

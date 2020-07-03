@@ -1,5 +1,5 @@
-<?php
-session_start();
+</html>
+sion_start();
 if (!isset($_SESSION['ID'])) {
   header("Location: otherlogin.php");
 }

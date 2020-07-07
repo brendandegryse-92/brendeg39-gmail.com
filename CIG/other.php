@@ -2,7 +2,7 @@
 session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -24,13 +24,9 @@ session_start();
 <head>
   <link rel="stylesheet" href="DataInputPage.css">
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     #Add {
       display: none;
-    }
-    .sidenav {
-      background-color: green;
     }
   </style>
 </head>
@@ -41,14 +37,8 @@ session_start();
     <a onclick="toggle()">Add Grower</a>
   </div>
   <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
-  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
-  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav>
-<script>
-$(document).ready(function(){
-    $(".sidenav").css({backgroundImage: "linear-gradient( 180deg, blue, pink )"});
-});
-</script>
+
 <br />
   <div class="main">
     <h1>All growers for <?php
@@ -60,7 +50,7 @@ $(document).ready(function(){
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

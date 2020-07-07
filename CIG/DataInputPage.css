@@ -13,9 +13,6 @@
       width: 1px;
       white-space: nowrap
   }
-    img {
-        width: 49%;
-    }
 
   input[type=select], select {
     width: 100%;

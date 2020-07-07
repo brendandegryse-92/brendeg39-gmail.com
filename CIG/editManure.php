@@ -5,7 +5,7 @@ if (!isset($_SESSION['ID'])) {
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -57,8 +57,6 @@ catch (PDOException $e){echo "failed to connect to database, " . $e->getMessage(
   <nav class="sidenav">
   <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
   <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a>
-  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
-  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav><br /><div class="main"><h1><?php
 session_start();
 if (!isset($_SESSION['ID'])) {
@@ -66,7 +64,7 @@ if (!isset($_SESSION['ID'])) {
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -85,7 +83,7 @@ echo $arr[0][0];
 session_start();
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

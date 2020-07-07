@@ -2,7 +2,7 @@
 ession_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ if (!isset($_SESSION['ID'])) {
     }
   </style>
 </head>
-<body><div class="main"><h1>
+<body><h1>
 <?php
 session_start();
 if (!isset($_SESSION['ID'])) {
@@ -39,7 +39,7 @@ if (!isset($_SESSION['ID'])) {
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$_COOKIE['PrimeIDField'], $_SESSION['ID']]);
 $arr = $stmt->fetchAll(PDO::FETCH_NUM);
 echo $arr[0][0];
-?></h1></div>
+?></h1>
   <nav class="sidenav">
   <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
   <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
@@ -59,14 +59,12 @@ echo $arr[0][0];
   <div class="indented">
     <a onclick="toggle()" href="#Add">Add Fertilizer Application</a>
 </div><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
-  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
-  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav><br /><div class="main">
   <?php
   session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

@@ -2,7 +2,7 @@
 sion_start();
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -59,10 +59,9 @@ if (!isset($_SESSION['ID'])) {
   <nav class="sidenav">
   <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
     <div class="indented"><a onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'edit.php';}">Edit Grower</a><br />
+    <a onclick="toggle()">Add Grower</a>
   </div>
   <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
-  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
-  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav><br /><div class="main">
 <div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

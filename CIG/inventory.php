@@ -2,7 +2,7 @@
 ession_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Pass";
+  $pword = "Passterm";
   try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -26,8 +26,6 @@ if (!isset($_SESSION['ID'])) {
 <body>
   <nav class="sidenav">
   <a class="sidenavmain" style = "margin-top: 10px;" href="other.php">Grower</a>
-  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" />
-  <img src="https://upgradeag.com/CIG/img/logoamplify.jpg" />
 </nav><div class="main"><table><tr><th>Dropbox Num</th><th>Consultant</th><th>State</th><th>FieldId</th><th>Boundary</th><th>Spatial Plot Location</th><th>Notes</th></tr><?php
 session_start();
 if (!isset($_SESSION['ID'])) {
@@ -35,7 +33,7 @@ if (!isset($_SESSION['ID'])) {
 }
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Pass";
+$pword = "Passterm";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

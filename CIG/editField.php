@@ -1,8 +1,8 @@
-</html>
-sion_start();
+<?php
+session_start();
 $server = "localhost";
 $uname = "upgrado3_client";
-$pword = "Passterm";
+$pword = "Pass";
 try {
 $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);
@@ -58,6 +58,8 @@ if (!isset($_SESSION['ID'])) {
   <a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDGrower')>=0) {location.href = 'otherfield.php';}">Fields</a>
   <div class="indented"><a onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'editField.php';}">Edit Field</a><br />
 </div><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'fertapps.php';}">Add Fertilizer</a><a class="sidenavmain" onclick="if (document.cookie.search('PrimeIDField')>=0) {location.href = 'manure.php';}">Add Manure</a><br />
+  <img src="https://upgradeag.com/CIG/img/LogoNutrientStar.png" />
+  <img src="https://upgradeag.com/CIG/img/logoamplify.png" />
 </nav><br /><div class="main">
   <div class="newspaper">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

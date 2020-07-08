@@ -1,5 +1,4 @@
-</html>
- html>
+<!DOCTYPE html>
 <meta name="description" content="Login">
 <html>
 <title>Login</title>
@@ -18,7 +17,7 @@
 <div>
   <form method="post" action="otherloginphp.php"><br/>
   Email:
-    <input name="email" type = "email" required/>
+    <input name="email" type = "email" required/><br />
   Password:
     <input name = "password" type="password" required/><br/><br/>
   <input type="submit"/>

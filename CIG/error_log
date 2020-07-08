@@ -1,0 +1,3 @@
+[08-Jul-2020 08:38:28 America/Boise] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home4/upgrado3/public_html/CIG/map.php:1) in /home4/upgrado3/public_html/CIG/map.php on line 27
+[08-Jul-2020 08:39:50 America/Boise] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home4/upgrado3/public_html/CIG/map.php:1) in /home4/upgrado3/public_html/CIG/map.php on line 27
+[08-Jul-2020 08:42:08 America/Boise] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home4/upgrado3/public_html/CIG/map.php:1) in /home4/upgrado3/public_html/CIG/map.php on line 27

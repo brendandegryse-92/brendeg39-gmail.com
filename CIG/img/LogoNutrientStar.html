@@ -1,0 +1,24 @@
+<html>
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    img {
+        margin: auto;
+    }
+</style>
+    </head>
+    <body>
+        <img src="LogoNutrientStar.png">
+        <script>
+            /**$(document).ready(function(){
+    $("body").css({"backgroundImage": "linear-gradient(45deg, #3535ff, #1aff1a)"});
+});**/
+var degree = 45;
+function grad() {
+    $("body").css({"backgroundImage": "linear-gradient(" + (degree + 1) + "deg, #3535ff, #1aff1a)"});
+    degree = degree + 1;
+}
+setInterval(grad(), 200);
+        </script>
+    </body>
+</html>

@@ -1,5 +1,5 @@
-</html>
-ead>
+<html>
+<head>
   <title>CIG Data Tool</title>
   <link rel="stylesheet" href="https://upgradeag.com/CIG/css_LoginReg.css">
   <link rel="shortcut icon" href="https://upgradeag.com/CIG/img/favicon.ico">
@@ -19,8 +19,8 @@ ead>
     <div class ="logos">
       <table>
         <Tr>
-          <Td><img src="https://upgradeag.com/CIG/img/logoamplify.jpg" width="150" align="Middle"></Td>
-          <Td><img src="https://upgradeag.com/CIG/img/LogoNutrientStar.jpg" width="150" align="Middle"></Td>
+          <Td><img src="https://upgradeag.com/CIG/img/logoamplify.png" width="150" align="Middle"></Td>
+          <Td><img src="https://upgradeag.com/CIG/img/LogoNutrientStar.png" width="150" align="Middle"></Td>
         </Tr>
       </table>
 

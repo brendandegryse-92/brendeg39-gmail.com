@@ -1,10 +1,10 @@
-</html>
-o "Email this: ".password_hash($_REQUEST["password"], PASSWORD_DEFAULT)." to brendeg39@gmail.com or mcguire9@gmail.com from the address you want your username to be.";
+<?php
+echo "Email this: ".password_hash($_REQUEST["password"], PASSWORD_DEFAULT)." to brendeg39@gmail.com or mcguire9@gmail.com from the address you want your username to be.";
 /**
   //session_start();
   $server = "localhost";
   $uname = "upgrado3_client";
-  $pword = "Passterm";
+  $pword = "Pass";
 try {
   $connection = new PDO("mysql:host=$server;dbname=upgrado3_fieldreports",$uname,$pword);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::FETCH_ASSOC);

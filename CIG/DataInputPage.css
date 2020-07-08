@@ -1,5 +1,5 @@
   body{
-  	background-color: lightgray;
+  	background-color: #d7cec7;
   }
   .newspaper {
   column-count: 4;
@@ -13,6 +13,9 @@
       width: 1px;
       white-space: nowrap
   }
+    img {
+        width: 49%;
+    }
 
   input[type=select], select {
     width: 100%;
@@ -101,7 +104,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: lightgray;
+    background-color: #d7cec7;
     overflow-x: hidden;
     padding-top: 20px;
   }
@@ -146,10 +149,10 @@
   }
 
   table{
-    background-color: white;
+    background-color: transparent;
   }
   th{
-    background-color: lightgray;
+    background-color: #d7cec7;
     border: 1px solid black;
     margin: 8px;
   }
